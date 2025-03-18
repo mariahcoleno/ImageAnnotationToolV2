@@ -1,3 +1,4 @@
+# label_images.py
 import sqlite3
 import os
 from PIL import Image, ImageTk
@@ -13,7 +14,7 @@ db_path = '/Users/mariahcoleno/Documents/AnnotationProject/annotation_db.sqlite'
 def get_unlabeled_image(cursor):
     cursor.execute("SELECT id, file_path FROM images WHERE id NOT IN (SELECT image_id FROM annotations)")
     result = cursor.fetchone()
-    logging.debug(f"Fetched image: {result}")
+    logging.debug(f"Fetched unlabeled image: {result}")
     return result
 
 def save_label(cursor, conn, image_id, label):
@@ -25,31 +26,35 @@ def main():
     try:
         conn = sqlite3.connect(db_path, check_same_thread=False)
         cursor = conn.cursor()
-        labeled_count = 0
+        # Initialize labeled_count from database
+        cursor.execute("SELECT COUNT(*) FROM annotations")
+        labeled_count = cursor.fetchone()[0]
+        logging.debug(f"Starting with {labeled_count} labeled images")
 
         root = tk.Tk()
         root.title("Image Annotation Tool")
         root.geometry("400x400")
         img_label = ttk.Label(root)
         img_label.pack()
-        counter_label = ttk.Label(root, text="Labeled: 0/100")
+        counter_label = ttk.Label(root, text=f"Labeled: {labeled_count}/100")
         counter_label.pack()
 
         def update_counter():
             nonlocal labeled_count
             labeled_count += 1
             counter_label.config(text=f"Labeled: {labeled_count}/100")
+            logging.debug(f"Counter updated to {labeled_count}")
 
         def update_image():
             img_data = get_unlabeled_image(cursor)
             if img_data:
                 image_id, file_path = img_data
-                logging.debug(f"Loading image from: {file_path}")
+                logging.debug(f"Loading image: {file_path} (id: {image_id})")
                 img = Image.open(file_path).resize((300, 300), Image.Resampling.LANCZOS)
                 logging.debug(f"Resized image size: {img.size}")
                 photo = ImageTk.PhotoImage(img)
                 img_label.config(image=photo)
-                img_label.image = photo
+                img_label.image = photo  # Keep reference to avoid garbage collection
                 root.update()
                 logging.debug("Image set")
                 return image_id
