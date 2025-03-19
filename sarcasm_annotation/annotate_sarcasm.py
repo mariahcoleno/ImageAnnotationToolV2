@@ -1,4 +1,3 @@
-# annotate_sarcasm.py
 import sqlite3
 import tkinter as tk
 from tkinter import ttk
@@ -29,32 +28,52 @@ def main():
     root = tk.Tk()
     root.title("Sarcasm Annotation Tool")
     root.geometry("400x200")
+
+    # Text and counter labels
     text_label = ttk.Label(root, text="", wraplength=350)
     text_label.pack(pady=10)
     counter_label = ttk.Label(root, text=f"Labeled: {labeled_count}/{total_count}")
     counter_label.pack()
 
-    def update_counter():
+    # Frame for buttons
+    button_frame = ttk.Frame(root)
+    button_frame.pack(pady=10)
+
+    last_text_id = None
+
+    def update_counter(increment=True):
         nonlocal labeled_count
-        labeled_count += 1
+        if increment:
+            labeled_count += 1
+        else:
+            labeled_count -= 1
         counter_label.config(text=f"Labeled: {labeled_count}/{total_count}")
 
     def update_text():
+        nonlocal last_text_id
         text_data = get_unlabeled_text(cursor)
         if text_data:
             text_id, text_content = text_data
             text_label.config(text=text_content)
+            last_text_id = text_id
             return text_id
         else:
             text_label.config(text="All texts labeled!")
             counter_label.config(text=f"Labeled: {labeled_count}/{total_count} - Done!")
-            root.quit()
+            for widget in button_frame.winfo_children():
+                widget.config(state='disabled')
             return None
 
+    def undo():
+        nonlocal last_text_id
+        if last_text_id and labeled_count > 0:
+            cursor.execute("DELETE FROM sarcasm_annotations WHERE text_id = ? AND annotated_at = (SELECT MAX(annotated_at) FROM sarcasm_annotations WHERE text_id = ?)", (last_text_id, last_text_id))
+            conn.commit()
+            update_counter(increment=False)
+            last_text_id = update_text()
+
     text_id = update_text()
-    if text_id is None:
-        root.quit()
-    else:
+    if text_id is not None:
         def on_label(label):
             nonlocal text_id
             if text_id:
@@ -62,8 +81,11 @@ def main():
                 update_counter()
                 text_id = update_text()
 
-        ttk.Button(root, text="Sarcastic", command=lambda: on_label("sarcastic")).pack(side=tk.LEFT, padx=20, pady=20)
-        ttk.Button(root, text="Not Sarcastic", command=lambda: on_label("not_sarcastic")).pack(side=tk.RIGHT, padx=20, pady=20)
+        # Buttons in frame, side by side
+        ttk.Button(button_frame, text="Sarcastic", command=lambda: on_label("sarcastic")).pack(side=tk.LEFT, padx=5)
+        ttk.Button(button_frame, text="Maybe", command=lambda: on_label("maybe")).pack(side=tk.LEFT, padx=5)
+        ttk.Button(button_frame, text="Not Sarcastic", command=lambda: on_label("not_sarcastic")).pack(side=tk.LEFT, padx=5)
+        ttk.Button(button_frame, text="Undo", command=undo).pack(side=tk.LEFT, padx=5)
 
     root.mainloop()
     conn.close()
