@@ -1,7 +1,9 @@
 .DS_Store
 __pycache__/
-*.sqlite
-images/
+image_annotation/*.sqlite
+sarcasm_annotation/*.sqlite
+image_annotation/images/
 *.save
 labeled_images.csv
 venv/
+
