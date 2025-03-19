@@ -1,7 +1,7 @@
 import sqlite3
 import csv
 
-conn = sqlite3.connect('/Users/mariahcoleno/Documents/AnnotationProject/annotation_db.sqlite')
+conn = sqlite3.connect('annotation_db.sqlite')
 cursor = conn.cursor()
 cursor.execute("SELECT file_path, label FROM images JOIN annotations ON images.id = annotations.image_id ORDER BY image_id")
 rows = cursor.fetchall()

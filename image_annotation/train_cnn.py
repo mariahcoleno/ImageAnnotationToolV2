@@ -14,7 +14,8 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 logging.debug("Script started!")
 
-db_path = '/Users/mariahcoleno/Documents/AnnotationProject/annotation_db.sqlite'
+db_path = 'annotation_db.sqlite' 
+
 image_dir = os.path.expanduser('~/Documents/AnnotationProject/images')
 img_size = (64, 64)
 

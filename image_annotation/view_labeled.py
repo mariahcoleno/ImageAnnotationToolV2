@@ -3,7 +3,7 @@ from PIL import Image, ImageTk
 import tkinter as tk
 from tkinter import ttk
 
-db_path = '/Users/mariahcoleno/Documents/AnnotationProject/annotation_db.sqlite'
+db_path = 'annotation_db.sqlite'
 
 def main():
     conn = sqlite3.connect(db_path)
