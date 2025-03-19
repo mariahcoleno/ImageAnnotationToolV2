@@ -1,31 +1,26 @@
-# Image Annotation and Classification Tool
-A Python-based workflow for labeling images and training a PyTorch CNN to classify cats and dogs, built as a learning project with help from xAI's Grok.
+# Annotation Workflow Toolkit
+A collection of Python-based annotation tools for machine learning datasets, developed with assistance from xAI's Grok to showcase my growing skills.
 
 ## Overview
-- **Annotation**: Labeled 100 images (50 cats, 50 dogs) using a Tkinter GUI, stored in an SQLite database after 5+ hours of debugging for accuracy.
-- **Training**: Trained a simple PyTorch CNN on the labeled dataset to compute training, validation, and test accuracies.
-- **Tools**: Python, Tkinter, Pillow, SQLite, PyTorch, Scikit-learn.
-- **Features**:
-  - GUI resizes images to 300x300 for labeling.
-  - CNN processes 64x64 images, achieving ~50% test accuracy (small dataset).
-- **Learning Note**: As a PyTorch beginner, I adapted the CNN training code from xAI's Grok to learn PyTorch while applying it to my custom dataset.
+This repository contains two distinct annotation workflows:
+- **Image Annotation Tool**: Labels images (e.g., cats and dogs) and trains a PyTorch CNN.
+- **Sarcasm Detection Annotation Tool**: Labels text snippets for sarcasm detection in NLP.
 
-## Files
-- **Annotation**:
-  - `label_images.py`: Main labeling GUI.
-  - `view_labeled.py`: View labeled images.
-  - `check_images.py`: Verify labels.
-  - `export_labels.py`: Export to CSV.
-  - `load_images.py`: Load images to DB.
-  - `setup_db.py`: Initialize database.
-  - `verify_images.py`: Validate data integrity.
-- **Training**:
-  - `train_cnn.py`: PyTorch script to train CNN and report accuracies.
-  - `cat_dog_cnn_pytorch.pth`: Trained model weights (800KB).
+## Tools
+### 1. Image Annotation Tool
+- **Path**: `image_annotation/`
+- **Purpose**: Labels 100 images (50 cats, 50 dogs) with a Tkinter GUI, then trains a CNN to classify them.
+- **Details**: See `image_annotation/README.md`.
 
-## Results
-- **Annotation**: Successfully labeled 100 images with 100% user accuracy via GUI.
-- **Training**: CNN results after 10 epochs:
-  - Training Accuracy: ~70% (64 images).
-  - Validation Accuracy: ~62% (16 images).
-  - Test Accuracy: 50% (20 images, expected due to small dataset).
+### 2. Sarcasm Detection Annotation Tool
+- **Path**: `sarcasm_annotation/`
+- **Purpose**: Labels text snippets as "Sarcastic" or "Not Sarcastic" for NLP tasks.
+- **Details**: See `sarcasm_annotation/README.md`.
+
+## Usage
+- Each tool has its own subdirectory with scripts and instructions.
+- Built with Python, Tkinter, SQLite, and PyTorch (for image tool).
+- See sub-READMEs for setup and running instructions.
+
+## Note
+As a learning project, I adapted some code (e.g., PyTorch CNN) from xAI's Grok while building my own annotation pipelines.
