@@ -10,7 +10,7 @@ cursor = conn.cursor()
 cursor.execute("DELETE FROM images")
 conn.commit()
 
-image_dir = os.path.expanduser('~/Documents/AnnotationProject/images')
+image_dir = os.path.expanduser('~/Documents/AnnotationProject/image_annotation/images')
 for img_file in os.listdir(image_dir):
     if img_file.endswith('.jpg'):  # Only load .jpg files
         file_path = os.path.join(image_dir, img_file)
