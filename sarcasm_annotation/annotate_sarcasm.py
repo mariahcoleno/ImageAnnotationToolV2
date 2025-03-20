@@ -1,94 +1,119 @@
-import sqlite3
 import tkinter as tk
 from tkinter import ttk
-import logging
+import sqlite3
+import csv
 
-logging.basicConfig(level=logging.DEBUG)
-logging.debug("Script started!")
-
-db_path = 'sarcasm_db.sqlite'
-
-def get_unlabeled_text(cursor):
-    cursor.execute("SELECT id, text_content FROM texts WHERE id NOT IN (SELECT text_id FROM sarcasm_annotations)")
-    return cursor.fetchone()
-
-def save_label(cursor, conn, text_id, label):
-    cursor.execute("INSERT INTO sarcasm_annotations (text_id, label) VALUES (?, ?)", (text_id, label))
+def setup_database():
+    conn = sqlite3.connect('sarcasm_labels.db')
+    c = conn.cursor()
+    c.execute('''CREATE TABLE IF NOT EXISTS labels
+                 (id INTEGER PRIMARY KEY AUTOINCREMENT,
+                  message TEXT,
+                  label TEXT)''')
+    # Clear existing data to start fresh each run (optional: comment out if you want persistence)
+    c.execute("DELETE FROM labels")
     conn.commit()
-    logging.debug(f"Saved label: {label} for text_id: {text_id}")
+    conn.close()
+
+def load_messages():
+    return ["Wow, you're SO good at this!", "I love Mondays.", "Nice weather today."]
+
+def save_label(message, label):
+    conn = sqlite3.connect('sarcasm_labels.db')
+    c = conn.cursor()
+    c.execute("INSERT INTO labels (message, label) VALUES (?, ?)", (message, label))
+    conn.commit()
+    conn.close()
+
+def get_labeled_count():
+    conn = sqlite3.connect('sarcasm_labels.db')
+    c = conn.cursor()
+    c.execute("SELECT COUNT(*) FROM labels")
+    count = c.fetchone()[0]
+    conn.close()
+    return count
+
+def load_existing_labels():
+    conn = sqlite3.connect('sarcasm_labels.db')
+    c = conn.cursor()
+    c.execute("SELECT message, label FROM labels")
+    rows = c.fetchall()
+    conn.close()
+    return rows
+
+def undo_last_label():
+    conn = sqlite3.connect('sarcasm_labels.db')
+    c = conn.cursor()
+    c.execute("DELETE FROM labels WHERE id = (SELECT MAX(id) FROM labels)")
+    conn.commit()
+    conn.close()
+
+def export_to_csv():
+    conn = sqlite3.connect('sarcasm_labels.db')
+    c = conn.cursor()
+    c.execute("SELECT message, label FROM labels")
+    rows = c.fetchall()
+    conn.close()
+    with open('sarcasm_labels.csv', 'w', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow(['Message', 'Label'])
+        writer.writerows(rows)
+    print("Exported to sarcasm_labels.csv")
 
 def main():
-    conn = sqlite3.connect(db_path, check_same_thread=False)
-    cursor = conn.cursor()
-    cursor.execute("SELECT COUNT(*) FROM sarcasm_annotations")
-    labeled_count = cursor.fetchone()[0]
-    cursor.execute("SELECT COUNT(*) FROM texts")
-    total_count = cursor.fetchone()[0]
+    setup_database()
+    messages = load_messages()
+    current_index = [0]
+    labels = list(load_existing_labels())  # Load existing labels from DB
 
-    root = tk.Tk()
-    root.title("Sarcasm Annotation Tool")
-    root.geometry("400x200")
-
-    # Text and counter labels
-    text_label = ttk.Label(root, text="", wraplength=350)
-    text_label.pack(pady=10)
-    counter_label = ttk.Label(root, text=f"Labeled: {labeled_count}/{total_count}")
-    counter_label.pack()
-
-    # Frame for buttons
-    button_frame = ttk.Frame(root)
-    button_frame.pack(pady=10)
-
-    last_text_id = None
-
-    def update_counter(increment=True):
-        nonlocal labeled_count
-        if increment:
-            labeled_count += 1
+    def update_message():
+        if current_index[0] < len(messages):
+            message_label.config(text=messages[current_index[0]])
         else:
-            labeled_count -= 1
-        counter_label.config(text=f"Labeled: {labeled_count}/{total_count}")
+            message_label.config(text="All messages labeled!")
 
-    def update_text():
-        nonlocal last_text_id
-        text_data = get_unlabeled_text(cursor)
-        if text_data:
-            text_id, text_content = text_data
-            text_label.config(text=text_content)
-            last_text_id = text_id
-            return text_id
-        else:
-            text_label.config(text="All texts labeled!")
-            counter_label.config(text=f"Labeled: {labeled_count}/{total_count} - Done!")
-            for widget in button_frame.winfo_children():
-                widget.config(state='disabled')
-            return None
+    def label_message(label):
+        if current_index[0] < len(messages):
+            message = messages[current_index[0]]
+            save_label(message, label)
+            labels.append((message, label))
+            current_index[0] += 1
+            update_message()
+            count_label.config(text=f"Labeled: {get_labeled_count()}/{len(messages)}")
+            print(f"Labeled: {message} -> {label}, Labels={labels}")
 
     def undo():
-        nonlocal last_text_id
-        if last_text_id and labeled_count > 0:
-            cursor.execute("DELETE FROM sarcasm_annotations WHERE text_id = ? AND annotated_at = (SELECT MAX(annotated_at) FROM sarcasm_annotations WHERE text_id = ?)", (last_text_id, last_text_id))
-            conn.commit()
-            update_counter(increment=False)
-            last_text_id = update_text()
+        if labels:
+            undo_last_label()
+            labels.pop()
+            if current_index[0] > 0:
+                current_index[0] -= 1
+            update_message()
+            count_label.config(text=f"Labeled: {get_labeled_count()}/{len(messages)}")
+            print(f"Undid: Labels={labels}, Index={current_index[0]}")
+        else:
+            print("Nothing to undo!")
 
-    text_id = update_text()
-    if text_id is not None:
-        def on_label(label):
-            nonlocal text_id
-            if text_id:
-                save_label(cursor, conn, text_id, label)
-                update_counter()
-                text_id = update_text()
+    root = tk.Tk()
+    root.title("Sarcasm Annotation")
 
-        # Buttons in frame, side by side
-        ttk.Button(button_frame, text="Sarcastic", command=lambda: on_label("sarcastic")).pack(side=tk.LEFT, padx=5)
-        ttk.Button(button_frame, text="Maybe", command=lambda: on_label("maybe")).pack(side=tk.LEFT, padx=5)
-        ttk.Button(button_frame, text="Not Sarcastic", command=lambda: on_label("not_sarcastic")).pack(side=tk.LEFT, padx=5)
-        ttk.Button(button_frame, text="Undo", command=undo).pack(side=tk.LEFT, padx=5)
+    message_label = ttk.Label(root, text="", wraplength=400)
+    message_label.pack(pady=10)
 
+    button_frame = ttk.Frame(root)
+    button_frame.pack(pady=5)
+
+    ttk.Button(button_frame, text="Sarcastic", command=lambda: label_message("Sarcastic")).pack(side=tk.LEFT, padx=5)
+    ttk.Button(button_frame, text="Not Sarcastic", command=lambda: label_message("Not Sarcastic")).pack(side=tk.LEFT, padx=5)
+    ttk.Button(button_frame, text="Unsure", command=lambda: label_message("Unsure")).pack(side=tk.LEFT, padx=5)
+    ttk.Button(button_frame, text="Undo", command=undo).pack(side=tk.LEFT, padx=5)
+    ttk.Button(button_frame, text="Export to CSV", command=export_to_csv).pack(side=tk.LEFT, padx=5)
+
+    count_label = ttk.Label(root, text=f"Labeled: {get_labeled_count()}/{len(messages)}")
+    count_label.pack(pady=5)
+
+    update_message()
     root.mainloop()
-    conn.close()
 
 if __name__ == "__main__":
     main()
