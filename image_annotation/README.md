@@ -8,21 +8,22 @@ A Python-based workflow for labeling images and training a PyTorch CNN to classi
 - Features 300x300 resizing during labeling; CNN uses 64x64 images.
 
 ## Files
-- `setup_db.py`: Initialize SQLite database (`annotation_db.sqlite`).
-- `load_images.py`: Load images into database.
-- `label_images.py`: Main labeling GUI.
-- `view_labeled.py`: View labeled images.
-- `check_images.py`: Verify labels.
-- `export_labels.py`: Export to CSV (`labeled_images.csv`).
-- `verify_images.py`: Validate data integrity.
-- `train_cnn_pytorch.py`: Train PyTorch CNN.
+- `setup_db.py`: Initializes SQLite database (`annotation_db.sqlite`).
+- `load_images.py`: Loads images into database.
+- `label_images.py`: Main labeling GUI to annotate images.
+- `view_labeled.py`: Displays labeled images with "Next" button.
+- `check_images.py`: Verifies labels (see also `check_db.py`).
+- `export_labels.py`: Exports labels to CSV (`labeled_images.csv`).
+- `verify_images.py`: Validates data integrity.
+- `train_cnn_pytorch.py`: Trains PyTorch CNN on labeled data.
 - `cat_dog_cnn_pytorch.pth`: Trained model weights (800KB).
 
 ## Setup and Usage
 1. Place images in `images/` (ignored by Git).
 2. Run `python setup_db.py` and `python load_images.py`.
 3. Label with `python label_images.py`.
-4. Train with `python train_cnn_pytorch.py`.
+4. View with `python view_labeled.py`.
+5. Train with `python train_cnn_pytorch.py`.
 
 ## Results
 - Annotation: 100% user accuracy after 5+ hours of debugging.
