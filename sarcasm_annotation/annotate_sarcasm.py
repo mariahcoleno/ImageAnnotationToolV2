@@ -3,6 +3,8 @@ from tkinter import ttk
 import sqlite3
 import csv
 
+conn = sqlite3.connect('sarcasm_labels.db')  # Define globally at the top, after imports
+
 def setup_database():
     conn = sqlite3.connect('sarcasm_labels.db')
     c = conn.cursor()
@@ -18,12 +20,11 @@ def setup_database():
 def load_messages():
     return ["Wow, you're SO good at this!", "I love Mondays.", "Nice weather today."]
 
-def save_label(message, label):
-    conn = sqlite3.connect('sarcasm_labels.db')
-    c = conn.cursor()
-    c.execute("INSERT INTO labels (message, label) VALUES (?, ?)", (message, label))
+def save_label(conn, message, label):
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO labels (message, label) VALUES (?, ?)", (message, label))
     conn.commit()
-    conn.close()
+    print(f"Saved: '{label}' for message '{message}'")
 
 def get_labeled_count():
     conn = sqlite3.connect('sarcasm_labels.db')
@@ -75,7 +76,7 @@ def main():
     def label_message(label):
         if current_index[0] < len(messages):
             message = messages[current_index[0]]
-            save_label(message, label)
+            save_label(conn, message, label)  # Use global conn and message
             labels.append((message, label))
             current_index[0] += 1
             update_message()
