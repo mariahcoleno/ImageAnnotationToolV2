@@ -1,22 +1,14 @@
 import sqlite3
 import os
 
-db_path = 'annotation_db.sqlite'
-
-conn = sqlite3.connect(db_path)
-cursor = conn.cursor()
-
-# Clear existing entries (fresh start)
-cursor.execute("DELETE FROM images")
+conn = sqlite3.connect('annotation_db.sqlite')
+c = conn.cursor()
+image_dir = 'images'
+existing_files = set(os.listdir(image_dir))  # Avoid duplicates
+for f in sorted(existing_files):
+    if f.endswith(('.jpg', '.png')):
+        c.execute("INSERT INTO images (file_path) VALUES (?)", (os.path.join(image_dir, f),))
 conn.commit()
-
-image_dir = os.path.expanduser('~/Documents/AnnotationProject/image_annotation/images')
-for img_file in os.listdir(image_dir):
-    if img_file.endswith('.jpg'):  # Only load .jpg files
-        file_path = os.path.join(image_dir, img_file)
-        cursor.execute("INSERT OR IGNORE INTO images (file_path) VALUES (?)", (file_path,))
-conn.commit()
-
-cursor.execute("SELECT COUNT(*) FROM images")
-print(f"Loaded {cursor.fetchone()[0]} images")
+count = c.execute("SELECT COUNT(*) FROM images").fetchone()[0]  # Query before closing
 conn.close()
+print("Loaded", count, "images")
