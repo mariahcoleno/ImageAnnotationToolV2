@@ -1,3 +1,5 @@
 # Required for image processing in label_images.py and view_labeled.py
 Pillow
 torch
+scikit-learn
+numpy
