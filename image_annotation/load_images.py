@@ -6,7 +6,13 @@ c = conn.cursor()
 c.execute('''CREATE TABLE IF NOT EXISTS images (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 file_path TEXT UNIQUE)''')
-c.execute("DELETE FROM images")  # Reset every run
+c.execute('''CREATE TABLE IF NOT EXISTS annotations (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                image_id INTEGER,
+                label TEXT,
+                FOREIGN KEY(image_id) REFERENCES images(id))''')
+c.execute("DELETE FROM images")
+c.execute("DELETE FROM annotations")  # Reset both
 conn.commit()
 image_dir = 'images'
 if not os.path.exists(image_dir):
