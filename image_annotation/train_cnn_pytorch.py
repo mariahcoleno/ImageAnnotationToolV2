@@ -129,18 +129,16 @@ for epoch in range(10):
 
 # Evaluate model on test set
 model.eval()
-correct = 0
-total = 0
+correct_test = 0
+total_test = 0
 with torch.no_grad():
     for images, labels in test_loader:
-        images, labels = images.to(device), labels.to(device).float()
         outputs = model(images)
-        predicted = (outputs.squeeze() > 0.5).float()
-        total += labels.size(0)
-        correct += (predicted == labels).sum().item()
-
-test_accuracy = 100 * correct / total
-print(f"Test Accuracy: {test_accuracy:.2f}%")
+        _, predicted = torch.max(outputs.data, 1)
+        total_test += labels.size(0)
+        correct_test += (predicted == labels).sum().item()
+test_acc = correct_test / total_test
+print(f"Test Accuracy: {test_acc:.4f}")
 
 # Save model
 torch.save(model.state_dict(), 'cat_dog_cnn_pytorch.pth')
