@@ -39,10 +39,10 @@ A Python-based tool for annotating images with bounding boxes using a Tkinter GU
    ```
 
 5. Run:
-   `python setup_db.py`       # Initialize the database
-   `python load_images.py`    # Load images from ../image_annotation/images/
-   `python annotate_boxes.py` # Draw bounding boxes and label objects
-   `python export_boxes.py`   # Export annotations to bounding_boxes
+   - `python setup_db.py` to initialize the database
+   - `python load_images.py` to load images from ../image_annotation/images/
+   - `python annotate_boxes.py` to draw bounding boxes and label objects
+   - `python export_boxes.py` to export annotations to bounding_boxes
 
 ### Notes
 - Shares `images/` with `image_annotation/`—ensure images are present in `../image_annotation/images/`.
