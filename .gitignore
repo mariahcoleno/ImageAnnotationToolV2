@@ -13,3 +13,5 @@ image_annotation/annotation_db.sqlite  # Explicit, though covered by *.sqlite
 # Generated files in sarcasm_annotation
 sarcasm_annotation/sarcasm_labels.csv
 sarcasm_annotation/sarcasm_labels.db
+bounding_box_annotation/bounding_box_db.sqlite
+bounding_box_annotation/bounding_boxes.csv
