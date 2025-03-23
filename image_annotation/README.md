@@ -38,9 +38,10 @@ A Python-based workflow for labeling images and training a PyTorch CNN to classi
 ### Results
 - Annotation: 100% user accuracy after 5+ hours of debugging.
 - CNN (10 epochs):
-  - Training Accuracy: ~70% (64 images).
-  - Validation Accuracy: ~62% (16 images).
-  - Test Accuracy: 50% (20 images, small dataset).
+  - Training Accuracy: ~100% (80 images).
+  - Validation Accuracy: ~100% (10 images).
+  - Test Accuracy: 70% (10 images, small dataset).
 
 ### Note
 - PyTorch CNN code adapted from xAI's Grok as I learn PyTorch.
+- Results based on 100 labeled images; expect variance with small test set (10 images).
