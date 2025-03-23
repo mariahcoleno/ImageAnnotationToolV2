@@ -1,43 +1,50 @@
-# Bounding Box Annotation Tool
+# ImageAnnotationToolV2 
+## Bounding Box Annotation Tool
 A Python-based tool for annotating images with bounding boxes using a Tkinter GUI.
 
-## Overview
+### Overview
 - Annotates images by drawing bounding boxes and assigning labels.
 - Stores annotations in SQLite; exports to CSV.
 - Built with Python, Tkinter, Pillow, SQLite.
 
-## Files
+### Files
 - `setup_db.py`: Initializes SQLite database (`bounding_box_db.sqlite`).
 - `load_images.py`: Loads images from `images/` into database.
 - `annotate_boxes.py`: GUI to draw boxes and label objects.
 - `export_boxes.py`: Exports annotations to `bounding_boxes.csv`.
 
-## Setup and Usage
+### Setup and Usage
 1. Clone the repo (if not already done):
    ```bash
    git clone https://github.com/mariahcoleno/ImageAnnotationToolV2.git
    cd ImageAnnotationToolV2/bounding_box_annotation/
+   ```
 
 2. Activate virtual environment (from parent dir):
+   ```bash
    source ../venv/bin/activate
+   ```
 
 3. Install dependencies:
+   ```bash
    pip install -r requirements.txt
+   ```
 
-4. Use existing images from image_annotation/ (shared directory):
-
-   - Ensure images are in ../image_annotation/images/ (e.g., from image_annotation setup).
+4. Use existing images from `image_annotation/` (shared directory):
+   - Ensure images are in `../image_annotation/images/` (e.g., from image_annotation setup).
    - Or add new images:  
-
-   mkdir ../image_annotation/images
+   ```bash
+   mkdir ../image_annotation/images/
    cp /path/to/your/images/*.jpg ../image_annotation/images/
+   ```
 
 5. Run:
-   python setup_db.py       # Initialize the database
-   python load_images.py    # Load images from ../image_annotation/images/
-   python annotate_boxes.py # Draw bounding boxes and label objects
-   python export_boxes.py   # Export annotations to bounding_boxes.csv
+   `python setup_db.py`       # Initialize the database
+   `python load_images.py`    # Load images from ../image_annotation/images/
+   `python annotate_boxes.py` # Draw bounding boxes and label objects
+   `python export_boxes.py`   # Export annotations to bounding_boxes
 
-Notes
-- Shares images/ with image_annotation/—ensure images are present in ../image_annotation/images/.
+### Notes
+- Shares `images/` with `image_annotation/`—ensure images are present in `../image_annotation/images/`.
 - Example: Draw boxes around "cat" or "dog" and assign labels.
+
