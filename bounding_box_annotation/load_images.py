@@ -1,7 +1,7 @@
 import sqlite3
 import os
 
-def load_images(image_dir='images'):
+def load_images(image_dir='../image_annotation/images'):
     conn = sqlite3.connect('bounding_box_db.sqlite')
     c = conn.cursor()
     for filename in os.listdir(image_dir):
