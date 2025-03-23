@@ -14,21 +14,12 @@ A Python-based tool for annotating images with bounding boxes using a Tkinter GU
 - `export_boxes.py`: Exports annotations to `bounding_boxes.csv`.
 
 ### Setup and Usage
-1. Clone the repo (if not already done):
-   ```bash
-   git clone https://github.com/mariahcoleno/ImageAnnotationToolV2.git
-   cd ImageAnnotationToolV2/bounding_box_annotation/
-   ```
+1. Clone the repo (if not already done): `git clone https://github.com/mariahcoleno/ImageAnnotationToolV2.git
+                                          cd ImageAnnotationToolV2/bounding_box_annotation/`
 
-2. Activate virtual environment (from parent dir):
-   ```bash
-   source ../venv/bin/activate
-   ```
+2. Activate virtual environment (from parent dir): `source ../venv/bin/activate`
 
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+3. Install dependencies: `pip install -r requirements.txt`
 
 4. Use existing images from `image_annotation/` (shared directory):
    - Ensure images are in `../image_annotation/images/` (e.g., from image_annotation setup).
@@ -39,10 +30,10 @@ A Python-based tool for annotating images with bounding boxes using a Tkinter GU
    ```
 
 5. Run:
-   - `python setup_db.py` to initialize the database
-   - `python load_images.py` to load images from ../image_annotation/images/
-   - `python annotate_boxes.py` to draw bounding boxes and label objects
-   - `python export_boxes.py` to export annotations to bounding_boxes
+   - `python setup_db.py` to initialize the database.
+   - `python load_images.py` to load images from ../image_annotation/images/.
+   - `python annotate_boxes.py` to draw bounding boxes and label objects.
+   - `python export_boxes.py` to export annotations to bounding_boxes.
 
 ### Notes
 - Shares `images/` with `image_annotation/`—ensure images are present in `../image_annotation/images/`.
