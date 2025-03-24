@@ -20,20 +20,35 @@ A Python-based workflow for labeling images and training a PyTorch CNN to classi
 - `cat_dog_cnn_pytorch.pth`: Trained model weights (800KB).
 
 ### Setup and Usage
+#### Option 1: From GitHub (Clone)
 1. Clone the repo: `git clone https://github.com/mariahcoleno/ImageAnnotationToolV2.git`
-2. Create virtual env: `python3 -m venv venv`
+2. Create virtual environment: `python3 -m venv venv`
 3. Activate: `source venv/bin/activate`
 4. Navigate: `cd ImageAnnotationToolV2/image_annotation/`
 5. Install dependencies: `pip install -r requirements.txt`
 6. Place images in `images/` (ignored by Git):
    - `mkdir -p images/`
    - Add .jpg files (e.g., copy your own: `cp /path/to/your/images/*.jpg images/`).
-7. Run:
-   - `python setup_db.py` to initialize the database.
-   - `python load_images.py` to load images.
-   - `python label_images.py` to label images.
-   - `python view_labeled.py` to view labeled images.
-   - `python train_cnn_pytorch.py` to train the CNN (after labeling).
+
+#### Option 2: Local Setup (Existing Repo)
+1. Navigate to your local repository: `cd ~/Documents/AnnotationProject/` # Adjust path as needed
+2. Setup and activate a virtual environment:
+   - If existing: `source venv/bin/activate` # Adjust path if venv is elsewhere
+   - If new:
+     - `python3 -m venv venv`
+     - `source venv/bin/activate`
+3. Navigate to image_annotation directory: `cd image_annotation/`
+4. Install dependencies (if not already): `pip install -r requirements.txt`
+5. Place images in the images/ directory (ignored by Git): 
+   - `mkdir -p images/`
+   - `cp /path/to/your/images/*.jpg images/`
+
+### Run the Tool (Both Options):
+1. `python setup_db.py` to initialize the database.
+2. `python load_images.py` to load images.
+3. `python label_images.py` to label images.
+4. `python view_labeled.py` to view labeled images.
+5. `python train_cnn_pytorch.py` to train the CNN (after labeling).
 
 ### Results
 - Annotation: 100% user accuracy after 5+ hours of debugging.
