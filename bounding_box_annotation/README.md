@@ -41,7 +41,7 @@ A Python-based tool for annotating images with bounding boxes using a Tkinter GU
      - `mkdir -p ../image_annotation/images/`
      - Add .jpg files (e.g., copy your own: `cp /path/to/your/images/*.jpg ../image_annotation/images/`
 
-### Run (Both Options):
+### Run the Tool (Both Options):
 1. `python setup_db.py` to initialize the database.
 2. `python load_images.py` to load images from ../image_annotation/images/.
 3. `python annotate_boxes.py` to draw bounding boxes and label objects.
