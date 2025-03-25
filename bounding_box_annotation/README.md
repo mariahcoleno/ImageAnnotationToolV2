@@ -16,8 +16,8 @@ A Python-based tool for annotating images with bounding boxes using a Tkinter GU
 ### Setup and Usage 
 #### Option 1: From GitHub(Clone)
 1. Clone the repo (if not already done): `git clone https://github.com/mariahcoleno/ImageAnnotationToolV2.git`                                      
-2  Navigate to bounding_box_annotation directory: `cd ImageAnnotationToolV2/bounding_box_annotation/`
-3. Create virtual env: `python3 -m venv venv`
+2. Navigate to bounding_box_annotation directory: `cd ImageAnnotationToolV2/bounding_box_annotation/`
+3. Create virtual environment: `python3 -m venv venv`
 4. Activate virtual environment (from parent dir): `source venv/bin/activate`
 5. Install dependencies: `pip install -r requirements.txt`
 6. Use existing images from `image_annotation/` (shared directory):

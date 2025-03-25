@@ -24,7 +24,7 @@ A Python-based workflow for labeling text snippets as sarcastic or not using a T
 #### Option 2: Local Setup (Existing Repo):
 1. Navigate to your local repository `cd ~/Documents/AnnotationProject/` # Adjust path as needed
 2. Navigate to sarcasm_annoation directory: `cd sarcasm_annotation/`
-3.Setup and activate a virtual environment:
+3. Setup and activate a virtual environment:
    - If existing: `source venv/bin/activate` # Adjust path if venv is elsewhere
    - If new:
      - `python3 -m venv venv`
