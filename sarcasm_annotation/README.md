@@ -15,6 +15,9 @@ A Python-based workflow for labeling text snippets as sarcastic or not using a T
 
 ### Setup and Usage
 #### Option 1: From GitHub (Clone)
+- **Note**:
+  - Start in your preferred directory (e.g., cd ~/Desktop/ or cd ~/Documents/) to control where the repo clones. 
+  - If you skip this step, it clones to your current directory.
 1. Clone the repo: `git clone https://github.com/mariahcoleno/ImageAnnotationToolV2.git`
 2. Navigate to sarcasm_annotation directory: `cd ImageAnnotationToolV2/sarcasm_annotation/`
 3. Create virtual env: `python3 -m venv venv`
