@@ -16,19 +16,19 @@ A Python-based workflow for labeling text snippets as sarcastic or not using a T
 ### Setup and Usage
 #### Option 1: From GitHub (Clone)
 1. Clone the repo: `git clone https://github.com/mariahcoleno/ImageAnnotationToolV2.git`
-2. Create virtual env: `python3 -m venv venv`
-3. Activate: `source venv/bin/activate`
-4. Navigate: `cd ImageAnnotationToolV2/sarcasm_annotation/`
+2. Navigate to sarcasm_annotation directory: `cd ImageAnnotationToolV2/sarcasm_annotation/`
+3. Create virtual env: `python3 -m venv venv`
+4. Activate: `source venv/bin/activate`
 5. Install dependencies: `pip install -r requirements.txt`  # No external dependencies needed
 
 #### Option 2: Local Setup (Existing Repo):
 1. Navigate to your local repository `cd ~/Documents/AnnotationProject/` # Adjust path as needed
-2. Setup and activate a virtual environment:
+2. Navigate to sarcasm_annoation directory: `cd sarcasm_annotation/`
+3.Setup and activate a virtual environment:
    - If existing: `source venv/bin/activate` # Adjust path if venv is elsewhere
    - If new:
      - `python3 -m venv venv`
      - `source venv/bin/activate`
-3. Navigate to sarcasm_annoation directory: `cd sarcasm_annotation/`
 4. Install dependencies (if not already): `pip install -r requirements.txt` 
 
 ### Run the Tool (Both Options):

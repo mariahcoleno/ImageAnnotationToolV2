@@ -16,9 +16,9 @@ A Python-based tool for annotating images with bounding boxes using a Tkinter GU
 ### Setup and Usage 
 #### Option 1: From GitHub(Clone)
 1. Clone the repo (if not already done): `git clone https://github.com/mariahcoleno/ImageAnnotationToolV2.git`                                      
-2. Create virtual env: `python3 -m venv venv`
-3. Activate virtual environment (from parent dir): `source venv/bin/activate`
-4. Navigate: `cd ImageAnnotationToolV2/bounding_box_annotation/`
+2  Navigate to bounding_box_annotation directory: `cd ImageAnnotationToolV2/bounding_box_annotation/`
+3. Create virtual env: `python3 -m venv venv`
+4. Activate virtual environment (from parent dir): `source venv/bin/activate`
 5. Install dependencies: `pip install -r requirements.txt`
 6. Use existing images from `image_annotation/` (shared directory):
    - Ensure images are in `../image_annotation/images/` (e.g., from image_annotation setup).
@@ -28,12 +28,12 @@ A Python-based tool for annotating images with bounding boxes using a Tkinter GU
 
 #### Option 2: Local Setup (Existing Repo)
 1. Navigate to your local repository: `cd ~/Documents/Annotation Project/` # Adjust path as needed
-2. Setup and activate a virtual environment:
+2. Navigate to the bounding_box_annotation directory: `cd bounding_box_annotation/`
+3. Setup and activate a virtual environment:
    - If existing: `source venv/bin/activate` # Adjust path if venv is elsewhere
    - If new: 
      - `python3 -m venv venv`
      - `source venv/bin/activate`
-3. Navigate to the bounding_box_annotation directory: `cd bounding_box_annotation/`
 4. Install dependencies (if not already): `pip install -r requirements.txt`
 5. Use existing images from `image_annotation/images/` (shared directory):
    - Ensure images are in `../image_annotation/images/` (e.g., from image_annotation setup).

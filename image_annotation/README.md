@@ -22,9 +22,9 @@ A Python-based workflow for labeling images and training a PyTorch CNN to classi
 ### Setup and Usage
 #### Option 1: From GitHub (Clone)
 1. Clone the repo: `git clone https://github.com/mariahcoleno/ImageAnnotationToolV2.git`
-2. Create virtual environment: `python3 -m venv venv`
-3. Activate: `source venv/bin/activate`
-4. Navigate: `cd ImageAnnotationToolV2/image_annotation/`
+2. Navigate to image_annotation directory: `cd ImageAnnotationToolV2/image_annotation/`
+3. Create a virtual environment: `python3 -m venv venv`
+4. Activate the virtual environment: `source venv/bin/activate`
 5. Install dependencies: `pip install -r requirements.txt`
 6. Place images in `images/` (ignored by Git):
    - `mkdir -p images/`
@@ -32,12 +32,12 @@ A Python-based workflow for labeling images and training a PyTorch CNN to classi
 
 #### Option 2: Local Setup (Existing Repo)
 1. Navigate to your local repository: `cd ~/Documents/AnnotationProject/` # Adjust path as needed
-2. Setup and activate a virtual environment:
+2. Navigate to image_annotation directory: `cd image_annotation/`
+3. Setup and activate a virtual environment:
    - If existing: `source venv/bin/activate` # Adjust path if venv is elsewhere
    - If new:
      - `python3 -m venv venv`
      - `source venv/bin/activate`
-3. Navigate to image_annotation directory: `cd image_annotation/`
 4. Install dependencies (if not already): `pip install -r requirements.txt`
 5. Place images in the images/ directory (ignored by Git): 
    - `mkdir -p images/`
