@@ -57,7 +57,8 @@ A Python-based workflow for labeling images and training a PyTorch CNN to classi
 2. `python load_images.py` to load images.
 3. `python label_images.py` to label images.
 4. `python view_labeled.py` to view labeled images.
-5. `python train_cnn_pytorch.py` to train the CNN (after labeling).
+5. `python export_labels.py` to export annotations to labeled_images.csv
+6. `python train_cnn_pytorch.py` to train the CNN (after labeling).
 
 ### Results
 - Annotation: 100% user accuracy after 5+ hours of debugging.
