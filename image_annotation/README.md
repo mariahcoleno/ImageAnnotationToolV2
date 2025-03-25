@@ -22,7 +22,7 @@ A Python-based workflow for labeling images and training a PyTorch CNN to classi
 ### Setup and Usage
 #### Option 1: From GitHub (Clone)
 - **Note**: 
-  - Start in your preferred directory (e.g., cd ~/Desktop/ or cd ~/Documents/) to control where the repo clones. 
+  - Start in your preferred directory (e.g., `cd ~/Desktop/` or `cd ~/Documents/`) to control where the repo clones. 
   - If you skip this, it clones to your current directory.
 1. Clone the repo: `git clone https://github.com/mariahcoleno/ImageAnnotationToolV2.git`
 2. Navigate to image_annotation directory: `cd ImageAnnotationToolV2/image_annotation/`
@@ -37,7 +37,10 @@ A Python-based workflow for labeling images and training a PyTorch CNN to classi
      - Use your own .jpg files (e.g., from ~/Downloads/, ~/Pictures/, or a dataset like Kaggle’s “Cats vs Dogs”). 
      - To find your path:
        - In Finder: Right-click a file, hold the Option key, select "Copy [filename] as Pathname” where [filename] is the name of your file. 
-       - In Terminal: Use 'pwd' from your image directory (e.g., /Users/yourusername/Downloads/).
+       - In Terminal:
+         - Navigate to your image directory: `cd ~/Downloads/` # Adjust path as needed
+         - Run pwd to get the path (e.g., /Users/yourusername/Downloads/)
+         - Go back to the image_annotation directory: `cd ~/ImageAnnotationToolV2/image_annotation/` (adjust if cloned elsewhere).
 
 #### Option 2: Local Setup (Existing Repo)
 1. Navigate to your local repository: `cd ~/Documents/AnnotationProject/` # Adjust path as needed
