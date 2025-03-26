@@ -15,3 +15,6 @@ sarcasm_annotation/sarcasm_labels.csv
 sarcasm_annotation/sarcasm_labels.db
 bounding_box_annotation/bounding_box_db.sqlite
 bounding_box_annotation/bounding_boxes.csv
+hypothesis_annotator/hypotheses.sqlite
+hypothesis_annotator/hypothesis_data.csv
+hypothesis_annotator/venv/
