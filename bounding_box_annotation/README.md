@@ -34,8 +34,9 @@ A Python-based tool for annotating images with bounding boxes using a Tkinter GU
        - To find your path:
          - In Finder: Right-click a file, hold the Option key, select "Copy [filename] as Pathname" where [filename] is the name of your file.
          - In Terminal: Use 'pwd' from your image directory (e.g., /Users/yourusername/Downloads/).
+
 #### Option 2: Local Setup (Existing Repo)
-1. Navigate to your local repository: `cd ~/Documents/Annotation Project/` # Adjust path as needed
+1. Navigate to your local repository: `cd ~/Documents/AnnotationProject/` # Adjust path as needed
 2. Navigate to the bounding_box_annotation directory: `cd bounding_box_annotation/`
 3. Setup and activate a virtual environment:
    - If existing: `source venv/bin/activate` # Adjust path if venv is elsewhere
