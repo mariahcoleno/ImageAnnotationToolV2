@@ -25,17 +25,6 @@ A Python-based tool for annotating hypotheses on images and text using a Tkinter
 3. Create a virtual environment: `python3 -m venv venv`
 4. Activate the virtual environment: `source venv/bin/activate`
 5. Install dependencies: `pip install -r requirements.txt`
-6. Place images in `images/` (ignored by Git):
-   - **Note**: 
-     - Sample image (ssc2019-15b-med.jpg) included in images/ for testing
-     - Add your own images to images/ directory (ignored by Git) for additional annotations.
-     - Use your own .jpg files (e.g., from ~/Downloads/, ~/Pictures/, or a dataset like NASA's images). 
-     - To find your path:
-       - In Finder: Right-click a file, hold the Option key, select "Copy [filename] as Pathname” where [filename] is the name of your file. 
-       - In Terminal:
-         - Navigate to your image directory: `cd ~/Downloads/` # Adjust path as needed
-         - Run pwd to get the path (e.g., /Users/yourusername/Downloads/)
-         - Go back to the image_annotation directory: `cd ~/ImageAnnotationToolV2/image_annotation/` (adjust if cloned elsewhere).
 
 #### Option 2: Local Setup (Existing Repo)
 1. Navigate to your local repository: `cd ~/Documents/AnnotationProject/` # Adjust path as needed
@@ -46,12 +35,25 @@ A Python-based tool for annotating hypotheses on images and text using a Tkinter
      - `python3 -m venv venv`
      - `source venv/bin/activate`
 4. Install dependencies (if not already): `pip install -r requirements.txt`
-5. Place images in the images/ directory (ignored by Git): 
-  
 
 ### Run the Tool (Both Options):
-1. `python hypothesis_annotator.py` open the GUI, enter hypotheses via text input, and save annotations (stored in hypotheses.sqlite, exported to hypothesis_data.csv).
+1.`python hypothesis_annotator.py` to:
+   - open the GUI
+   - view the sample image
+   - add hypotheses via text input
+   - save annotations (stored in hypotheses.sqlite, exported to hypothesis_data.csv).
 
+### Note
+     - Sample image (ssc2019-15b-med.jpg) included in `images/` for testing.
+     - Add your own .jpg images (e.g., from ~/Downloads, ~/Pictures/, or a dataset like Nasa's "galaxy images") to images/ directory (ignored by Git) for additional annotations.
+       `cp /path/to/your/images/*.jpg images/`
+        - To find your path:
+          - In Finder: Right-click a file, hold the Option key, select "Copy [filename] as Pathname” where [filename] is the name of your file.
+          - In Terminal:
+            - Navigate to your image directory: `cd ~/Downloads/` # Adjust path as needed
+            - Run pwd to get the path (e.g., /Users/yourusername/Downloads/)
+              - If in clone, go back to the hypothesis_annotator directory: `cd ~/ImageAnnotationToolV2/hypothesis_annotator/ (adjust if cloned elsewhere).
+              
 ### Results
 - Annotation: Successfully labels hypotheses on the sample image after user interaction.
 - Output: Generates hypothesis_data.csv (e.g., 380 bytes) and hypotheses.sqlite (e.g., 12KB) with annotated data.
