@@ -51,7 +51,7 @@ A Python-based tool for annotating hypotheses on images and text using a Tkinter
 ### Note
 - Sample image (ssc2019-15b-med.jpg) included in `images/` for testing.
 - Add your own images (e.g., from ~/Downloads, ~/Pictures/, or a dataset like NASA "Galaxies Images") to images/ (ignored by Git) and update the database to annotate them. 
-  - To add new images (Images can be in various formats—not limited to .jpg (e.g., .jpg, .png, .bmp, .gif supported via Pillow):  
+  - To add new images (Images can be in various formats—not limited to .jpg (e.g., .jpg, .png, .bmp, .gif supported via Pillow)):  
     1. Copy to images/:  
        `cp /path/to/your/images/sample.png images/`
     2. Add to database:
