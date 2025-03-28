@@ -10,4 +10,3 @@ bounding_box_annotation/bounding_boxes.csv
 hypothesis_annotator/hypothesis_data.csv
 */venv/ # Ignores venv/ in any subdirectory
 
-*/*.db
