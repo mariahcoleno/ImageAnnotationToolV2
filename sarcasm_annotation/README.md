@@ -10,9 +10,10 @@ A Python-based workflow for labeling text snippets as sarcastic or not using a T
 - Features a responsive GUI with labeling, export, and undo options.
 
 ### Files
-- `requirements.txt`: Lists dependencies required to run scripts (in this case, no external dependencies are required)
-- `annotate_sarcasm.py`: Main script containing the GUI, database setup, and labeling logic.
-- `sarcasm_labels.db`: SQLite database storing labeled texts (ignored by Git).
+- `requirements.txt`: Lists dependencies required to run scripts.
+- `annotate_sarcasm.py`: Main script containing the GUI, database setup, and labeling logic for annotating sarcasm in text.
+- `sarcasm_db.sqlite`: Generated SQLite database storing all sarcasm annotation data (ignored by Git)
+- `sarcasm_labels.db`: Generated SQLite database storing labeled texts (ignored by Git).
 - `sarcasm_labels.csv`: Exported CSV of labeled texts (ignored by Git).
 
 ### Setup and Usage
@@ -45,7 +46,7 @@ A Python-based workflow for labeling text snippets as sarcastic or not using a T
 
 ### Results
 - Annotation: Labels 3 text snippets as Sarcastic, Not Sarcastic, or Unsure.
-- Output: Generates sarcasm_labels.csv and sarcasm_labels.db
+- Output: Generates sarcasm_labels.csv, sarcasm_labels.db, and sarcasm_db.sqlite.
 - Note: GUI starts with "Labeled: 0/3".
 
 ### Database Schema
