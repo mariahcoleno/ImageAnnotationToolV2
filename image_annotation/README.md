@@ -15,7 +15,7 @@ A Python-based workflow for labeling images and training a PyTorch CNN to classi
 - `label_images.py`: Main script for labeling images.
 - `view_labeled.py`: Script to view labeled images.
 - `images/`: Directory for input images (e.g., example.jpg)
-- `check_images.py`: Verifies labels (see also `check_db.py`).
+- `check_images.py`: Verifies labels.
 - `export_labels.py`: Exports labels to CSV (`labeled_images.csv`).
 - `verify_images.py`: Validates data integrity.
 - `train_cnn_pytorch.py`: Trains PyTorch CNN on labeled data.
