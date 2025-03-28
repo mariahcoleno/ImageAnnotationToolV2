@@ -1,3 +1,4 @@
+# ImageAnnotationToolV2
 ## Sarcasm Annotation Tool
 A Python-based workflow for labeling text snippets as sarcastic or not using a Tkinter GUI and exporting results.
 
@@ -9,6 +10,7 @@ A Python-based workflow for labeling text snippets as sarcastic or not using a T
 - Features a responsive GUI with labeling, export, and undo options.
 
 ### Files
+- `requirements.txt`: Lists dependencies required to run scripts (in this case, no external dependencies are required)
 - `annotate_sarcasm.py`: Main script containing the GUI, database setup, and labeling logic.
 - `sarcasm_labels.db`: SQLite database storing labeled texts (ignored by Git).
 - `sarcasm_labels.csv`: Exported CSV of labeled texts (ignored by Git).
@@ -26,7 +28,7 @@ A Python-based workflow for labeling text snippets as sarcastic or not using a T
 
 #### Option 2: Local Setup (Existing Repo):
 1. Navigate to your local repository `cd ~/Documents/AnnotationProject/` # Adjust path as needed
-2. Navigate to sarcasm_annoation directory: `cd sarcasm_annotation/`
+2. Navigate to sarcasm_annotation directory: `cd sarcasm_annotation/`
 3. Setup and activate a virtual environment:
    - If existing: `source venv/bin/activate` # Adjust path if venv is elsewhere
    - If new:
@@ -35,11 +37,16 @@ A Python-based workflow for labeling text snippets as sarcastic or not using a T
 4. Install dependencies (if not already): `pip install -r requirements.txt` 
 
 ### Run the Tool (Both Options):
-1. `python annotate_sarcasm.py`
+1. `python annotate_sarcasm.py` to:
+   - Open a GUI with sample entries.
    - Use "Sarcastic", "Not Sarcastic", or "Unsure" buttons to label each text. 
+   - Store annotations in a SQL database and export to CSV.
    - Click "Undo" to revert the last annotation.
-   - Click "Export to CSV" to save labels to `sarcasm_labels.csv`.
-   - GUI exits when all 3 predefined texts are labeled.
+
+### Results
+- Annotation: Labels 3 text snippets as Sarcastic, Not Sarcastic, or Unsure.
+- Output: Generates sarcasm_labels.csv and sarcasm_labels.db
+- Note: GUI starts with "Labeled: 0/3'.
 
 ### Database Schema
 - **labels table**:
@@ -48,12 +55,8 @@ A Python-based workflow for labeling text snippets as sarcastic or not using a T
   - `label TEXT` ("Sarcastic", "Not Sarcastic", or "Unsure")
 
 ### Features
-- **Export Button**: Saves all current annotations to `sarcasm_labels.csv` at any time.
+- **Export to CSV Button**: Saves all current annotations to `sarcasm_labels.csv` at any time.
 - **Undo Button**: Reverts the last annotation, updating the database and GUI.
 - **Progress Tracking**: Displays "Labeled: X/Y" (e.g., "Labeled: 2/3").
 - **Predefined Texts**: Currently hardcoded (3 examples); no external `texts.txt` required.
 
-### Setup Example
-```bash
-cd sarcasm_annotation/
-python annotate_sarcasm.py
