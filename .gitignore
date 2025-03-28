@@ -1,20 +1,12 @@
 .DS_Store
 __pycache__/
-image_annotation/*.sqlite
-sarcasm_annotation/*.sqlite
+*/*.sqlite # Ignores all .sqlite files in subdirectories
+*/*.db # Ignors all .db files in subdirectories
 image_annotation/images/
 *.save
-venv/
-
-# Generated files in image_annotation
 image_annotation/labeled_images.csv
-image_annotation/annotation_db.sqlite
-
-# Generated files in sarcasm_annotation
 sarcasm_annotation/sarcasm_labels.csv
-sarcasm_annotation/sarcasm_labels.db
-bounding_box_annotation/bounding_box_db.sqlite
 bounding_box_annotation/bounding_boxes.csv
-hypothesis_annotator/hypotheses.sqlite
 hypothesis_annotator/hypothesis_data.csv
-hypothesis_annotator/venv/
+*/venv/ # Ignores venv/ in any subdirectory
+
