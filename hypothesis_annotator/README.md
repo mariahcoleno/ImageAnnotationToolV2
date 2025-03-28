@@ -3,10 +3,10 @@
 A Python-based tool for annotating hypotheses on images and text using a Tkinter GUI.
 
 ### Overview
-- Annotates hypotheses on a sample image (e.g., `ssc2019-15b-med.jpg`) with user-defined text inputs.
+- Annotates hypotheses on images (e.g., `ssc2019-15b-med.jpg`) or text with user-defined text labels.
 - Stores annotations in a SQLite database and exports to CSV.
 - Built with Python, Tkinter, Pillow, SQLite.
-- Features interactive undo/redo functionality (with limits).
+- Features interactive undo/redo for new annotations.
 
 ### Files
 - `hypothesis_annotator.py`: Main script with GUI for annotating hypotheses.
@@ -37,25 +37,29 @@ A Python-based tool for annotating hypotheses on images and text using a Tkinter
 4. Install dependencies (if not already): `pip install -r requirements.txt`
 
 ### Run the Tool (Both Options):
-1.`python hypothesis_annotator.py` to:
-   - open the GUI
-   - view the sample image
-   - add hypotheses via text input
-   - save annotations (stored in hypotheses.sqlite, exported to hypothesis_data.csv).
-
-### Note
-     - Sample image (ssc2019-15b-med.jpg) included in `images/` for testing.
-     - Add your own .jpg images (e.g., from ~/Downloads, ~/Pictures/, or a dataset like Nasa's "galaxy images") to images/ directory (ignored by Git) for additional annotations.
-       `cp /path/to/your/images/*.jpg images/`
-        - To find your path:
-          - In Finder: Right-click a file, hold the Option key, select "Copy [filename] as Pathname” where [filename] is the name of your file.
-          - In Terminal:
-            - Navigate to your image directory: `cd ~/Downloads/` # Adjust path as needed
-            - Run pwd to get the path (e.g., /Users/yourusername/Downloads/)
-              - If in clone, go back to the hypothesis_annotator directory: `cd ~/ImageAnnotationToolV2/hypothesis_annotator/ (adjust if cloned elsewhere).
+1. `python hypothesis_annotator.py` to:
+   - Open a GUI with sample entries (e.g., ssc2019-15b-med.jpg, text hypotheses).
+   - Label entries as "Supported", "Refuted", or "Unsure".
+   - Store annotations in a SQL database and export to CSV.
+   - Use "Undo" to revert new annotations (blocked if no new actions).
               
 ### Results
-- Annotation: Successfully labels hypotheses on the sample image after user interaction.
-- Output: Generates hypothesis_data.csv (e.g., 380 bytes) and hypotheses.sqlite (e.g., 12KB) with annotated data.
-- Note: Undo functionality may display Undo blocked: idx=0 when no actions are available to undo—expected behavior with empty history.
+- Annotation: Labels 3 sample hypotheses (2 text, 1 image) on first run; extensible with additional entries.
+- Output: Generates hypothesis_data.csv (e.g., 380 bytes) and hypotheses.sqlite (e.g., 12KB).
+- Note: GUI starts with "Labeled: X/3" based on prior labels in hypotheses.sqlite. "Undo blocked: idx=0" appears if no new actions are available to undo.
+
+### Note
+- Sample image (ssc2019-15b-med.jpg) included in `images/` for testing.
+- Add your own images (e.g., from ~/Downloads, ~/Pictures/, or a dataset like NASA "Galaxies Images") to images/ (ignored by Git) and update the database to annotate them. 
+  - To add new images (Images can be in various formats—not limited to .jpg (e.g., .jpg, .png, .bmp, .gif supported via Pillow):  
+    1. Copy to images/:  
+       `cp /path/to/your/images/sample.png images/`
+    2. Add to database:
+       `sqlite3 hypotheses.sqlite "INSERT INTO hypotheses (data, modality, hypothesis) VALUES ('images/sample.png', 'image', 'Your hypothesis');"`
+    - Ensure the file exists in images/ to avoid load errors (e.g., "Image load error: [Errno 2] No such file or directory").
+  - To find your image path:
+    - In Finder: Right-click a file, hold the Option key, select "Copy [filename] as Pathname” where [filename] is the name of your file.
+    - In Terminal:
+      - Navigate to your image directory: `cd ~/Downloads/` # Adjust path as needed
+      - Run pwd to get the path (e.g., /Users/yourusername/Downloads/)
 
