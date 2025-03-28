@@ -9,15 +9,19 @@ A Python-based workflow for labeling images and training a PyTorch CNN to classi
 - Features 300x300 resizing during labeling; CNN uses 64x64 images.
 
 ### Files
+- `requirements.txt`: Lists dependencies (e.g., Pillow, torch, numpy, etc.) required to run the scripts.
 - `setup_db.py`: Initializes SQLite database (`annotation_db.sqlite`).
 - `load_images.py`: Loads images into database.
-- `label_images.py`: Main labeling GUI to annotate images.
-- `view_labeled.py`: Displays labeled images with "Next" button.
+- `label_images.py`: Main script for labeling images.
+- `view_labeled.py`: Script to view labeled images.
+- `images/`: Directory for input images (e.g., example.jpg)
 - `check_images.py`: Verifies labels (see also `check_db.py`).
 - `export_labels.py`: Exports labels to CSV (`labeled_images.csv`).
 - `verify_images.py`: Validates data integrity.
 - `train_cnn_pytorch.py`: Trains PyTorch CNN on labeled data.
 - `cat_dog_cnn_pytorch.pth`: Trained model weights (800KB).
+- `annotation_db.sqlite`: Generated SQLite database storing annotations (ignored by Git)
+- `labeled_images.csv`: Exported labeled image data (ignored by Git)
 
 ### Setup and Usage
 #### Option 1: From GitHub (Clone)
