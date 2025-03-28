@@ -1,12 +1,9 @@
 .DS_Store
 __pycache__/
 */*.sqlite # Ignores all .sqlite files in subdirectories
-*/*.db # Ignors all .db files in subdirectories
+*/*.db # Ignores all .db files in subdirectories
+*/*.csv # Ignores all .csv files in subdirectories
 image_annotation/images/
 *.save
-image_annotation/labeled_images.csv
-sarcasm_annotation/sarcasm_labels.csv
-bounding_box_annotation/bounding_boxes.csv
-hypothesis_annotator/hypothesis_data.csv
 */venv/ # Ignores venv/ in any subdirectory
 
