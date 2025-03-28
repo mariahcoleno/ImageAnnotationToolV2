@@ -46,7 +46,7 @@ A Python-based workflow for labeling text snippets as sarcastic or not using a T
 ### Results
 - Annotation: Labels 3 text snippets as Sarcastic, Not Sarcastic, or Unsure.
 - Output: Generates sarcasm_labels.csv and sarcasm_labels.db
-- Note: GUI starts with "Labeled: 0/3'.
+- Note: GUI starts with "Labeled: 0/3".
 
 ### Database Schema
 - **labels table**:
