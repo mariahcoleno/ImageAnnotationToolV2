@@ -24,23 +24,22 @@ A Python-based tool for annotating images with bounding boxes using a Tkinter GU
 1. Clone the repository: `git clone https://github.com/mariahcoleno/ImageAnnotationToolV2.git`                                      
 2. Navigate to the bounding_box_annotation directory: `cd bounding_box_annotation/` (from the root of your cloned repository)
 3. Create virtual environment: `python3 -m venv venv`
-4. Activate virtual environment (from parent dir): `source venv/bin/activate`
+4. Activate virtual environment: `source venv/bin/activate`
 5. Install dependencies: `pip install -r requirements.txt`
-6. Use existing images from `../image_annotation/images/` (shared directory):
-   - Ensure images are in `../image_annotation/images/` (e.g., from image_annotation setup).
-   - Or add new images to shared directory:  
+6. Prepare the shared images directory:
+   Ensure images are available in the shared directory `../image_annotation/images/` (relative to `bounding_box_annotation/`). This directory is shared with the `image_annotation` tool.
+   - If images already exist: If you’ve set up the `image_annotation` tool and placed images in `../image_annotation/images/`, you can use those.
+   - If adding new images: Copy your own images (e.g. from ~/Downloads/, ~/Pictures/, or a dataset like Kaggle's "Cats vs Dogs") to the shared directory with these commands (run from `bounding_box_annotation/`):
      - `mkdir -p ../image_annotation/images/` (if doesn't already exist)
      - `cp /path/to/your/images/*.jpg ../image_annotation/images/`
-     - **Note**:
-       - This repository shares sample images with the image_annotation tool.
-       - If images don't already exist in `../image_annoation/images/`, use your own .jpg files (e.g. from ~/Downloads/, ~/Pictures/, or a dataset like Kaggle's "Cats vs Dogs").
-       - To find your path:
-         - In Finder: Right-click a file, hold the Option key, select "Copy [filename] as Pathname" where [filename] is the name of your file.
-         - In Terminal:
-           - Navigate to your image directory: cd ~/Downloads/ # Adjust path as needed
-           - Run 'pwd' to get the path (e.g., /Users/yourusername/Downloads/).
-           - Return to the ../image_annotation/images/ directory: cd image_annotation/images/ (from the root of your cloned repository)
-7. Return to the bounding_box_annotation directory: cd bounding_box_annotation/ (from the root of your cloned repository)
+       - **Note**:
+         - To find your path:
+           - In Finder: Right-click a file, hold the Option key, select "Copy [filename] as Pathname" where [filename] is the name of your file.
+           - In Terminal:
+             - Navigate to your image directory: cd ~/Downloads/ # Adjust path as needed
+             - Run 'pwd' to get the path (e.g., /Users/yourusername/Downloads/).
+             - Replace /path/to/your/images/ with the actual path to your images (e.g., ~/Downloads/images/).
+7. Verify your location. You should now be in the bounding_box_annotation/ directory (e.g., ~/Downloads/ImageAnnotationToolV2/bounding_box_annotation/). If you’ve navigated elsewhere, return to it: `cd bounding_box_annotation/` (from the root of your cloned repository)
 
 #### Option 2: Local Setup (Existing Repository)
 1. Navigate to your local repository: `cd ~/Documents/AnnotationProject/` # Adjust path as needed
@@ -51,12 +50,15 @@ A Python-based tool for annotating images with bounding boxes using a Tkinter GU
      - `python3 -m venv venv`
      - `source venv/bin/activate`
 4. Install dependencies (if not already): `pip install -r requirements.txt`
-5. Use existing images from `..image_annotation/images/` (shared directory):
-   - Ensure images are in `../image_annotation/images/` (e.g., from image_annotation setup).
-   - Or add new images to shared directory:
+5. Prepare the shared images directory
+   Ensure images are available in the shared directory `../image_annotation/images/` (relative to `bounding_box_annotation/`).
+   - If images already exist: If you’ve set up the `image_annotation` tool and placed images in `../image_annotation/images/`, you can use those.
+   - If adding new images: Copy your own images (e.g. from ~/Downloads/, ~/Pictures/, or a dataset like Kaggle's "Cats vs Dogs") to the shared directory with these command$
      - `mkdir -p ../image_annotation/images/` (if doesn't already exist)
      - `cp /path/to/your/images/*.jpg ../image_annotation/images/`
-6. Return to the bounding_box_annotation directory: cd bounding_box_annotation/ (from the root of your cloned repository)
+     -**Note**: See "Option 1" for tips on finding your image path.
+6. Verify Your Location:
+   Ensure you’re in bounding_box_annotation/ (e.g., ~/Documents/AnnotationProject/bounding_box_annotation/). If not, return to it: `cd bounding_box_annotation/`.
 
 ### Run the Tool (Both Options):
 1. `python setup_db.py` to initialize the database.
