@@ -62,4 +62,4 @@ A Python-based tool for annotating hypotheses on images and text using a Tkinter
     - In Terminal:
       - Navigate to your image directory: `cd ~/Downloads/` # Adjust path as needed
       - Run pwd to get the path (e.g., /Users/yourusername/Downloads/)
-
+      - Return to the hypothesis_annotator directory: cd hypothesis_annotator/ (from the root of your clone repository)
