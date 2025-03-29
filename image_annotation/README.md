@@ -26,10 +26,10 @@ A Python-based workflow for labeling images and training a PyTorch CNN to classi
 ### Setup and Usage
 #### Option 1: From GitHub (Clone)
 - **Note**: 
-  - Start in your preferred directory (e.g., `cd ~/Desktop/` or `cd ~/Documents/`) to control where the repo clones. 
+  - Start in your preferred directory (e.g., `cd ~/Desktop/` or `cd ~/Downloads/` or `cd ~/Documents/`) to control where the repository clones. 
   - If you skip this, it clones to your current directory.
-1. Clone the repo: `git clone https://github.com/mariahcoleno/ImageAnnotationToolV2.git`
-2. Navigate to image_annotation directory: `cd ImageAnnotationToolV2/image_annotation/`
+1. Clone the repository: `git clone https://github.com/mariahcoleno/ImageAnnotationToolV2.git`
+2. Navigate to the image_annotation directory: `cd image_annotation/` (from the root of your cloned repository)
 3. Create a virtual environment: `python3 -m venv venv`
 4. Activate the virtual environment: `source venv/bin/activate`
 5. Install dependencies: `pip install -r requirements.txt`
@@ -44,9 +44,9 @@ A Python-based workflow for labeling images and training a PyTorch CNN to classi
        - In Terminal:
          - Navigate to your image directory: `cd ~/Downloads/` # Adjust path as needed
          - Run pwd to get the path (e.g., /Users/yourusername/Downloads/)
-         - Go back to the image_annotation directory: `cd ~/ImageAnnotationToolV2/image_annotation/` (adjust if cloned elsewhere).
+         - Return to the image_annotation directory: `cd image_annotation/` (from the root of your clone repository)
 
-#### Option 2: Local Setup (Existing Repo)
+#### Option 2: Local Setup (Existing Repository)
 1. Navigate to your local repository: `cd ~/Documents/AnnotationProject/` # Adjust path as needed
 2. Navigate to image_annotation directory: `cd image_annotation/`
 3. Setup and activate a virtual environment:
