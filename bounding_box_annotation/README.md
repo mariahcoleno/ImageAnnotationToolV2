@@ -19,10 +19,10 @@ A Python-based tool for annotating images with bounding boxes using a Tkinter GU
 ### Setup and Usage 
 #### Option 1: From GitHub(Clone)
 - **Note**:
-  - Start in your preferred directory (e.g., cd ~/Desktop/ or cd ~/Documents/) to control where the repo clones.
+  - Start in your preferred directory (e.g., cd ~/Desktop/ or cd ~/Downloads/ or cd ~/Documents/) to control where the repository clones.
   - If you skip this, it clones to your current directory.
-1. Clone the repo (if not already done): `git clone https://github.com/mariahcoleno/ImageAnnotationToolV2.git`                                      
-2. Navigate to bounding_box_annotation directory: `cd ImageAnnotationToolV2/bounding_box_annotation/`
+1. Clone the repository: `git clone https://github.com/mariahcoleno/ImageAnnotationToolV2.git`                                      
+2. Navigate to the bounding_box_annotation directory: `cd bounding_box_annotation/` (from the root of your cloned repository)
 3. Create virtual environment: `python3 -m venv venv`
 4. Activate virtual environment (from parent dir): `source venv/bin/activate`
 5. Install dependencies: `pip install -r requirements.txt`
@@ -36,9 +36,12 @@ A Python-based tool for annotating images with bounding boxes using a Tkinter GU
        - Use your own .jpg files (e.g. from ~/Downloads/, ~/Pictures/, or a dataset like Kaggle's "Cats vs Dogs").
        - To find your path:
          - In Finder: Right-click a file, hold the Option key, select "Copy [filename] as Pathname" where [filename] is the name of your file.
-         - In Terminal: Use 'pwd' from your image directory (e.g., /Users/yourusername/Downloads/).
+         - In Terminal:
+           - Navigate to your imgae directory: cd ~/Downloads/ # Adjust path as needed
+           - Run 'pwd' to get the path (e.g., /Users/yourusername/Downloads/).
+           - Return to the image_annotation/images/ directory: cd image_annotation/images/ (from the root of your clone repository)
 
-#### Option 2: Local Setup (Existing Repo)
+#### Option 2: Local Setup (Existing Repository)
 1. Navigate to your local repository: `cd ~/Documents/AnnotationProject/` # Adjust path as needed
 2. Navigate to the bounding_box_annotation directory: `cd bounding_box_annotation/`
 3. Setup and activate a virtual environment:
