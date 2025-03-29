@@ -26,20 +26,20 @@ A Python-based tool for annotating images with bounding boxes using a Tkinter GU
 3. Create virtual environment: `python3 -m venv venv`
 4. Activate virtual environment (from parent dir): `source venv/bin/activate`
 5. Install dependencies: `pip install -r requirements.txt`
-6. Use existing images from `image_annotation/` (shared directory):
+6. Use existing images from `..image_annotation/images/` (shared directory):
    - Ensure images are in `../image_annotation/images/` (e.g., from image_annotation setup).
-   - Or add new images:  
-     - `mkdir -p ../image_annotation/images/`
+   - Or add new images to shared directory:  
+     - `mkdir -p ../image_annotation/images/` (if doesn't already exist)
      - `cp /path/to/your/images/*.jpg ../image_annotation/images/`
      - **Note**:
-       - This repo does not include sample images.
-       - Use your own .jpg files (e.g. from ~/Downloads/, ~/Pictures/, or a dataset like Kaggle's "Cats vs Dogs").
+       - This repository shares sample images with the image_annotation tool.
+       - If images don't already exist in `..image_annoation/images/`, use your own .jpg files (e.g. from ~/Downloads/, ~/Pictures/, or a dataset like Kaggle's "Cats vs Dogs").
        - To find your path:
          - In Finder: Right-click a file, hold the Option key, select "Copy [filename] as Pathname" where [filename] is the name of your file.
          - In Terminal:
            - Navigate to your imgae directory: cd ~/Downloads/ # Adjust path as needed
            - Run 'pwd' to get the path (e.g., /Users/yourusername/Downloads/).
-           - Return to the image_annotation/images/ directory: cd image_annotation/images/ (from the root of your clone repository)
+           - Return to the ..image_annotation/images/ directory: cd image_annotation/images/ (from the root of your clone repository)
 
 #### Option 2: Local Setup (Existing Repository)
 1. Navigate to your local repository: `cd ~/Documents/AnnotationProject/` # Adjust path as needed
@@ -50,11 +50,21 @@ A Python-based tool for annotating images with bounding boxes using a Tkinter GU
      - `python3 -m venv venv`
      - `source venv/bin/activate`
 4. Install dependencies (if not already): `pip install -r requirements.txt`
-5. Use existing images from `image_annotation/images/` (shared directory):
+
+5. Use existing images from `..image_annotation/images/` (shared directory):
    - Ensure images are in `../image_annotation/images/` (e.g., from image_annotation setup).
-   - Or add new images:
-     - `mkdir -p ../image_annotation/images/`
-     - Add .jpg files (e.g., copy your own: `cp /path/to/your/images/*.jpg ../image_annotation/images/`
+   - Or add new images to shared directory:
+     - `mkdir -p ../image_annotation/images/` (if doesn't already exist)
+     - `cp /path/to/your/images/*.jpg ../image_annotation/images/`
+     - **Note**:
+       - This repository shares sample images with the image_annotation tool.
+       - If images don't already exist in `..image_annoation/images/`, use your own .jpg files (e.g. from ~/Downloads/, ~/Pictures/, or a dataset like Kaggle's "Cats v$
+       - To find your path:
+         - In Finder: Right-click a file, hold the Option key, select "Copy [filename] as Pathname" where [filename] is the name of your file.
+         - In Terminal:
+           - Navigate to your imgae directory: cd ~/Downloads/ # Adjust path as needed
+           - Run 'pwd' to get the path (e.g., /Users/yourusername/Downloads/).
+           - Return to the ..image_annotation/images/ directory: cd image_annotation/images/
 
 ### Run the Tool (Both Options):
 1. `python setup_db.py` to initialize the database.
