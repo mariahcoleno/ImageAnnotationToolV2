@@ -38,13 +38,22 @@ A Python-based workflow for labeling images and training a PyTorch CNN to classi
    - `cp /path/to/your/images/*.jpg images/`
    - **Note**: 
      - This repo does not include sample images.
-     - Use your own .jpg files (e.g., from ~/Downloads/, ~/Pictures/, or a dataset like Kaggle’s “Cats vs Dogs”). 
-     - To find your path:
-       - In Finder: Right-click a file, hold the Option key, select "Copy [filename] as Pathname” where [filename] is the name of your file. 
-       - In Terminal:
-         - Navigate to your image directory: `cd ~/Downloads/` # Adjust path as needed
-         - Run pwd to get the path (e.g., /Users/yourusername/Downloads/)
-         - Return to the image_annotation directory: `cd image_annotation/` (from the root of your clone repository)
+     - To add new images: Copy your images (e.g. from ~/Downloads/, ~/Pictures/, or a dataset like Kaggle's "Cats vs Dogs".
+       - Tips to find your image path:  
+         - Option 1: Use a separate terminal
+           - Open a new terminal window or tab.
+           - Navigate to your image directory: cd ~/Downloads/ (adjust as needed).
+           - Run pwd to get the path, e.g., /Users/yourusername/Downloads/.
+           - Copy that path, then go back to your original terminal (still in bounding_box_annotation/) and use it in the cp command.
+         - Option 2: Use Your File Explorer
+           - On macOS, right-click a file in Finder, hold the Option key, and select "Copy [filename] as Pathname" to get the full path (e.g., /Users/yourusername/Downloads/image1.jpg). Remove the filename to get the directory path.
+           - On Windows or Linux, you can drag the folder into the terminal to see its path.
+           - Use that path in the cp command without leaving bounding_box_annotation/.
+         - Option 3: Type the Path Directly
+           - If you already know where your images are (e.g., ~/Downloads/), just use that in the command.
+           - You can also start typing the path in the terminal and use tab completion to fill it in.
+- **Note**:
+  - You should still be in the image_annotation/ directory. Proceed to the "Run the Tool" section below. 
 
 #### Option 2: Local Setup (Existing Repository)
 1. Navigate to your local repository: `cd ~/Documents/AnnotationProject/` # Adjust path as needed
@@ -58,6 +67,12 @@ A Python-based workflow for labeling images and training a PyTorch CNN to classi
 5. Place images in the images/ directory (ignored by Git): 
    - `mkdir -p images/`
    - `cp /path/to/your/images/*.jpg images/`
+   - **Note**:
+     - This repo does not include sample images.
+     - To add new images: Copy your images (e.g. from ~/Downloads/, ~/Pictures/, or a dataset like Kaggle's "Cats vs Dogs".
+       - See "Option 1" for tips on finding your image path.
+- **Note**:
+  - You should still be in the image_annotation/ directory. Proceed to the "Run the Tool" section below. 
 
 ### Run the Tool (Both Options):
 1. `python setup_db.py` to initialize the database.
