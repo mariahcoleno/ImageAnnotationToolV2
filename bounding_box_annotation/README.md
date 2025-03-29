@@ -37,7 +37,7 @@ A Python-based tool for annotating images with bounding boxes using a Tkinter GU
        - To find your path:
          - In Finder: Right-click a file, hold the Option key, select "Copy [filename] as Pathname" where [filename] is the name of your file.
          - In Terminal:
-           - Navigate to your imgae directory: cd ~/Downloads/ # Adjust path as needed
+           - Navigate to your image directory: cd ~/Downloads/ # Adjust path as needed
            - Run 'pwd' to get the path (e.g., /Users/yourusername/Downloads/).
            - Return to the ..image_annotation/images/ directory: cd image_annotation/images/ (from the root of your clone repository)
 
@@ -56,15 +56,6 @@ A Python-based tool for annotating images with bounding boxes using a Tkinter GU
    - Or add new images to shared directory:
      - `mkdir -p ../image_annotation/images/` (if doesn't already exist)
      - `cp /path/to/your/images/*.jpg ../image_annotation/images/`
-     - **Note**:
-       - This repository shares sample images with the image_annotation tool.
-       - If images don't already exist in `..image_annoation/images/`, use your own .jpg files (e.g. from ~/Downloads/, ~/Pictures/, or a dataset like Kaggle's "Cats v$
-       - To find your path:
-         - In Finder: Right-click a file, hold the Option key, select "Copy [filename] as Pathname" where [filename] is the name of your file.
-         - In Terminal:
-           - Navigate to your imgae directory: cd ~/Downloads/ # Adjust path as needed
-           - Run 'pwd' to get the path (e.g., /Users/yourusername/Downloads/).
-           - Return to the ..image_annotation/images/ directory: cd image_annotation/images/
 
 ### Run the Tool (Both Options):
 1. `python setup_db.py` to initialize the database.
