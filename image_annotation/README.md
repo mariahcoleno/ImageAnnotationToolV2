@@ -14,7 +14,7 @@ A Python-based workflow for labeling images and training a PyTorch CNN to classi
 - `load_images.py`: Loads images into database.
 - `label_images.py`: Main script for labeling images.
 - `view_labeled.py`: Script to view labeled images.
-- `images/`: Directory for input images (e.g., example.jpg)
+- `images/`: Directory for input images (e.g., example.jpg) (ignored by Git)
 - `check_images.py`: Verifies labels.
 - `export_labels.py`: Exports labels to CSV (`labeled_images.csv`).
 - `verify_images.py`: Validates data integrity.
@@ -33,46 +33,43 @@ A Python-based workflow for labeling images and training a PyTorch CNN to classi
 3. Create a virtual environment: `python3 -m venv venv`
 4. Activate the virtual environment: `source venv/bin/activate`
 5. Install dependencies: `pip install -r requirements.txt`
-6. Place images in `images/` (ignored by Git):
-   - `mkdir -p images/`
-   - `cp /path/to/your/images/*.jpg images/`
+6. Prepare the images/ directory:
+   - Create images/ directory: `mkdir -p images/`
+   - Place images (e.g., from ~/Downloads/', ~/Pictures/, or a dataset like Kaggle's "Cats vs. Dogs") in the `images/ directory (ignored by Git): `cp /path/to/your/images/*.jpg images/`
    - **Note**: 
      - This repo does not include sample images.
-     - To add new images: Copy your images (e.g. from ~/Downloads/, ~/Pictures/, or a dataset like Kaggle's "Cats vs Dogs".
-       - Tips to find your image path:  
-         - Option 1: Use a separate terminal
-           - Open a new terminal window or tab.
-           - Navigate to your image directory: cd ~/Downloads/ (adjust as needed).
-           - Run pwd to get the path, e.g., /Users/yourusername/Downloads/.
-           - Copy that path, then go back to your original terminal (still in bounding_box_annotation/) and use it in the cp command.
-         - Option 2: Use Your File Explorer
-           - On macOS, right-click a file in Finder, hold the Option key, and select "Copy [filename] as Pathname" to get the full path (e.g., /Users/yourusername/Downloads/image1.jpg). Remove the filename to get the directory path.
-           - On Windows or Linux, you can drag the folder into the terminal to see its path.
-           - Use that path in the cp command without leaving bounding_box_annotation/.
-         - Option 3: Type the Path Directly
-           - If you already know where your images are (e.g., ~/Downloads/), just use that in the command.
-           - You can also start typing the path in the terminal and use tab completion to fill it in.
-- **Note**:
-  - You should still be in the image_annotation/ directory. Proceed to the "Run the Tool" section below. 
+     - To find your image path and copy your images to images/:
+       - Option 1: Use a Separate Terminal
+         - Open a new terminal window or tab.
+         - Navigate to your images directory: cd ~/Downloads/ (adjust as needed).
+         - Run pwd to get the path, e.g., /Users/yourusername/Downloads/.
+         - Copy that path. Then go back to your original terminal (still in image_annotation/), and use it in the cp command.
+       - Option 2: Use your File Explorer
+         - On macOS, right-click a file in Finder, hold the Option key, and select "Copy [filename] as Pathname" to get the full path (e.g., /Users/yourusername/Downloads/image1.jpg). Remove the filename to get the directory path.
+         - On Windows or Linux, you can drag the folder into the terminal to see its path.
+         - Use that path in the cp command without leaving image_annotation/.
+       - Option 3: Type the Path Directly
+         - If you already know where your images are (e.g., ~/Downloads/), just use that in the cp command.
+         - You can also start typing the path in the terminal and use tab completion to fill it in.
+7. Proceed to the "Run the Tool" section below. 
 
 #### Option 2: Local Setup (Existing Repository)
 1. Navigate to your local repository: `cd ~/Documents/AnnotationProject/` # Adjust path as needed
-2. Navigate to image_annotation directory: `cd image_annotation/`
+2. Navigate to the image_annotation directory: `cd image_annotation/`
 3. Setup and activate a virtual environment:
    - If existing: `source venv/bin/activate` # Adjust path if venv is elsewhere
    - If new:
      - `python3 -m venv venv`
      - `source venv/bin/activate`
 4. Install dependencies (if not already): `pip install -r requirements.txt`
-5. Place images in the images/ directory (ignored by Git): 
-   - `mkdir -p images/`
-   - `cp /path/to/your/images/*.jpg images/`
+5. Prepare the images/ directory:
+   - Create images/ directory: `mkdir -p images/`
+   - Place images (e.g., from ~/Downloads/', ~/Pictures/, or a dataset like Kaggle's "Cats vs. Dogs") in the `images/ directory (ignored by Git): `cp /path/to/your/im$
    - **Note**:
      - This repo does not include sample images.
-     - To add new images: Copy your images (e.g. from ~/Downloads/, ~/Pictures/, or a dataset like Kaggle's "Cats vs Dogs".
-       - See "Option 1" for tips on finding your image path.
-- **Note**:
-  - You should still be in the image_annotation/ directory. Proceed to the "Run the Tool" section below. 
+     - To find your image path and copy your images to images/:
+       - See "Option 1: From GitHub (Clone)", step 6 for a list of available options.
+6. Proceed to the "Run the Tool" section below. 
 
 ### Run the Tool (Both Options):
 1. `python setup_db.py` to initialize the database.
