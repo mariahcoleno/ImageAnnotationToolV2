@@ -1,5 +1,5 @@
 # ImageAnnotationToolV2
-A multi-purpose Python toolkit for annotating images, images with bounding boxes, sarcasm text, and hypothesis on images or text for ML datasets.
+A multi-purpose Python toolkit for annotating images, images with bounding boxes, sarcasm text, and hypotheses on images or text for ML datasets.
 
 ## Overview
 - **Image Annotation**: Labels images (e.g., cats/dogs) with a Tkinter GUI.
