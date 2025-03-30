@@ -19,7 +19,7 @@ A Python-based tool for annotating hypotheses on images and text using a Tkinter
 #### Option 1: From GitHub (Clone)
 - **Note**: 
   - Start in your preferred directory (e.g., `cd ~/Desktop/` or `cd ~/Downloads/` or `cd ~/Documents/`) to control where the repository clones. 
-  - If you skip this, it clones to your current directory.
+  - If you skip this step, it clones to your current directory.
 1. Clone the repository: `git clone https://github.com/mariahcoleno/ImageAnnotationToolV2.git`
 2. Navigate to the hypothesis_annotator directory: `cd hypothesis_annotator/` (from the root of your cloned repository)
 3. Create a virtual environment: `python3 -m venv venv`
