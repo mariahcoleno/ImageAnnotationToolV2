@@ -11,7 +11,7 @@ A Python-based workflow for labeling text snippets as sarcastic or not using a T
 
 ### Files
 - `requirements.txt`: Lists dependencies required to run scripts.
-- `annotate_sarcasm.py`: Main script containing the GUI, database setup, and labeling logic for annotating sarcasm in text.
+- `annotate_sarcasm.py`: Main script containing the GUI, database setup, and labeling logic.
 - `sarcasm_db.sqlite`: Generated SQLite database storing all sarcasm annotation data (ignored by Git)
 - `sarcasm_labels.db`: Generated SQLite database storing labeled texts (ignored by Git).
 - `sarcasm_labels.csv`: Exported CSV of labeled texts (ignored by Git).
