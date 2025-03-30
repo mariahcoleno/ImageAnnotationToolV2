@@ -69,4 +69,8 @@ A Python-based tool for annotating hypotheses on images and text using a Tkinter
         - Option 3: Type the Path Directly
           - If you already know where your images are (e.g., ~/Downloads/), just use that in the cp command.
           - You can also start typing the path in the terminal and use tab completion to fill it in.
-  2. Add your images to the database: `sqlite3 hypotheses.sqlite "INSERT INTO hypotheses (data, modality, hypothesis) VALUES ('images/sample.png', 'image', 'Your hypothesis');"`
+  2. Add your images to the database:
+     - Open SQLite terminal: `sqlite3 hypotheses.sqlite`
+     - At the sqlite> prompt: "INSERT INTO hypotheses (data, modality, hypothesis) VALUES ('images/sample.png', 'image', 'Your hypothesis');"`
+  3. Proceed to the "Run the Tool" section above.
+
