@@ -26,6 +26,7 @@ A Python-based workflow for labeling text snippets as sarcastic or not using a T
 3. Create virtual env: `python3 -m venv venv`
 4. Activate: `source venv/bin/activate`
 5. Install dependencies: `pip install -r requirements.txt`  # No external dependencies needed
+6. Proceed to the "Run the Tool" section below.
 
 #### Option 2: Local Setup (Existing Repository):
 1. Navigate to your local repository `cd ~/Documents/AnnotationProject/` # Adjust path as needed
@@ -36,6 +37,7 @@ A Python-based workflow for labeling text snippets as sarcastic or not using a T
      - `python3 -m venv venv`
      - `source venv/bin/activate`
 4. Install dependencies (if not already): `pip install -r requirements.txt` 
+5. Proceed to the "Run the Tool" section below.
 
 ### Run the Tool (Both Options):
 1. `python annotate_sarcasm.py` to:
