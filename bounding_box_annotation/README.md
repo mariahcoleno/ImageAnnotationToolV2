@@ -19,33 +19,33 @@ A Python-based tool for annotating images with bounding boxes using a Tkinter GU
 ### Setup and Usage 
 #### Option 1: From GitHub (Clone)
 - **Note**:
-  - Start in your preferred directory (e.g., cd ~/Desktop/ or cd ~/Downloads/ or cd ~/Documents/) to control where the repository clones. If you skip this, it clones to your current directory.
+  - Start in your preferred directory (e.g., cd ~/Desktop/ or cd ~/Downloads/ or cd ~/Documents/) to control where the repository clones. 
+  - If you skip this, it clones to your current directory.
 1. Clone the repository: `git clone https://github.com/mariahcoleno/ImageAnnotationToolV2.git`                                      
 2. Navigate to the bounding_box_annotation directory: `cd bounding_box_annotation/` (from the root of your cloned repository)
 3. Create virtual environment: `python3 -m venv venv`
 4. Activate virtual environment: `source venv/bin/activate`
 5. Install dependencies: `pip install -r requirements.txt`
 6. Prepare the shared images directory:
+   - Create shared images directory if it doesn't already exist: `mkdir -p ../image_annotation/images/`
    - Ensure images are in `../image_annotation/images/` (relative to `bounding_box_annotation/`). 
-     - If images already exist: Use those from a prior image_annotation setup.
-     - If adding new images: Copy your images (e.g. from ~/Downloads/, ~/Pictures/, or a dataset like Kaggle's "Cats vs Dogs") to the shared directory with these commands (run from `bounding_box_annotation/`):
-       - `mkdir -p ../image_annotation/images/` # Create the directory if it doesn't exist
-       - `cp /path/to/your/images/*.jpg ../image_annotation/images/`
-         - Tips to find your image path: 
-            - Option 1: Use a separate terminal
-              - Open a new terminal window or tab.
-              - Navigate to your image directory: cd ~/Downloads/ (adjust as needed).
-              - Run pwd to get the path, e.g., /Users/yourusername/Downloads/.
-              - Copy that path, then go back to your original terminal (still in bounding_box_annotation/) and use it in the cp command.
-            - Option 2: Use Your File Explorer
-              - On macOS, right-click a file in Finder, hold the Option key, and select "Copy [filename] as Pathname" to get the full path (e.g., /Users/yourusername/Downloads/image1.jpg). Remove the filename to get the directory path.
-              - On Windows or Linux, you can drag the folder into the terminal to see its path.
-              - Use that path in the cp command without leaving bounding_box_annotation/.
-            - Option 3: Type the Path Directly
-              - If you already know where your images are (e.g., ~/Downloads/), just use that in the command.
-              - You can also start typing the path in the terminal and use tab completion to fill it in.
-- **Note**:
-  - You should still be in the bounding_box_annotation/ directory. Proceed to the "Run the Tool" section below. 
+     - If images already exist from a prior image_annotation setup: Use those.
+     - If adding new images, place images (e.g. from ~/Downloads/, ~/Pictures/, or a dataset like Kaggle's "Cats vs Dogs") in the shared directory: `cp /path/to/your/images/*.jpg ../image_annotation/images/`
+   - **Note**:
+     - To find your image path and copy your images to `../image_annotation/images/`:
+       - Option 1: Use a Separate Terminal
+         - Open a new terminal window or tab.
+         - Navigate to your images directory: cd ~/Downloads/ (adjust as needed).
+         - Run pwd to get the path, e.g., /Users/yourusername/Downloads/.
+         - Copy that path. Then go back to your original terminal (still in bounding_box_annotation/), and use it in the cp command.
+       - Option 2: Use your File Explorer
+         - On macOS, right-click a file in Finder, hold the Option key, and select "Copy [filename] as Pathname" to get the full path (e.g., /Users/yourusername/Downloads/image1.jpg). Remov$
+         - On Windows or Linux, you can drag the folder into the terminal to see its path.
+         - Use that path in the cp command without leaving image_annotation/.
+       - Option 3: Type the Path Directly
+         - If you already know where your images are (e.g., ~/Downloads/), just use that in the cp command.
+         - You can also start typing the path in the terminal and use tab completion to fill it in.
+7. Proceed to the "Run the Tool" section below.
 
 #### Option 2: Local Setup (Existing Repository)
 1. Navigate to your local repository: `cd ~/Documents/AnnotationProject/` # Adjust path as needed
@@ -57,14 +57,14 @@ A Python-based tool for annotating images with bounding boxes using a Tkinter GU
      - `source venv/bin/activate`
 4. Install dependencies (if not already): `pip install -r requirements.txt`
 5. Prepare the shared images directory:
+   - Create shared images directory if it doesn't already exist: `mkdir -p ../image_annotation/images/`
    - Ensure images are in `../image_annotation/images/` (relative to `bounding_box_annotation/`).
-     - If images already exist: Use those from a prior image_annotation setup.
-     - If adding new images: Copy your images (e.g. from ~/Downloads/, ~/Pictures/, or a dataset like Kaggle's "Cats vs Dogs") $
-       - `mkdir -p ../image_annotation/images/` # Create the directory if it doesn't exist
-       - `cp /path/to/your/images/*.jpg ../image_annotation/images/`
-         - See "Option 1" for tips on finding your image path.
-- **Note**:
-  - You should still be in the bounding_box_annotation/ directory. Proceed to the "Run the Tool" section below. 
+     - If images already exist from a prior image_annotation setup: Use those.
+     - If adding new images, place images (e.g. from ~/Downloads/, ~/Pictures/, or a dataset like Kaggle's "Cats vs Dogs") in the shared directory: `cp /path/to/your/images/*.jpg ../image_a$
+   - **Note**:
+     - To find your image path and copy your images to images/:
+     - See "Option 1: From GitHub (Clone)", step 6 for a list of available options.
+6. Proceed to the "Run the Tool" section below.
 
 ### Run the Tool (Both Options):
 1. `python setup_db.py` to initialize the database.
