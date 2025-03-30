@@ -10,7 +10,7 @@ A Python-based tool for annotating hypotheses on images and text using a Tkinter
 
 ### Files
 - `hypothesis_annotator.py`: Main script with GUI for annotating hypotheses.
-- `requirements.txt`: Lists dependencies (e.g., Tkinter, Pillow).
+- `requirements.txt`: Lists dependencies (e.g., Pillow).
 - `images/ssc2019-15b-med.jpg`: Sample image for annotation (included in repo).
 - `hypotheses.sqlite`: Generated SQLite database (ignored by Git).
 - `hypothesis_data.csv`: Exported annotations (ignored by Git).
@@ -25,6 +25,7 @@ A Python-based tool for annotating hypotheses on images and text using a Tkinter
 3. Create a virtual environment: `python3 -m venv venv`
 4. Activate the virtual environment: `source venv/bin/activate`
 5. Install dependencies: `pip install -r requirements.txt`
+6. Proceed to the "Run the Tool" section below.
 
 #### Option 2: Local Setup (Existing Repository)
 1. Navigate to your local repository: `cd ~/Documents/AnnotationProject/` # Adjust path as needed
@@ -35,6 +36,7 @@ A Python-based tool for annotating hypotheses on images and text using a Tkinter
      - `python3 -m venv venv`
      - `source venv/bin/activate`
 4. Install dependencies (if not already): `pip install -r requirements.txt`
+5. Proceed to the "Run the Tool" section below.
 
 ### Run the Tool (Both Options):
 1. `python hypothesis_annotator.py` to:
@@ -50,16 +52,21 @@ A Python-based tool for annotating hypotheses on images and text using a Tkinter
 
 ### Note
 - Sample image (ssc2019-15b-med.jpg) included in `images/` for testing.
-- Add your own images (e.g., from ~/Downloads, ~/Pictures/, or a dataset like NASA "Galaxies Images") to images/ (ignored by Git) and update the database to annotate them. 
-  - To add new images (Images can be in various formats—not limited to .jpg (e.g., .jpg, .png, .bmp, .gif supported via Pillow)):  
-    1. Copy to images/:  
-       `cp /path/to/your/images/sample.png images/`
-    2. Add to database:
-       `sqlite3 hypotheses.sqlite "INSERT INTO hypotheses (data, modality, hypothesis) VALUES ('images/sample.png', 'image', 'Your hypothesis');"`
-    - Ensure the file exists in images/ to avoid load errors (e.g., "Image load error: [Errno 2] No such file or directory").
-  - To find your image path:
-    - In Finder: Right-click a file, hold the Option key, select "Copy [filename] as Pathname” where [filename] is the name of your file.
-    - In Terminal:
-      - Navigate to your image directory: `cd ~/Downloads/` # Adjust path as needed
-      - Run pwd to get the path (e.g., /Users/yourusername/Downloads/)
-      - Return to the hypothesis_annotator directory: cd hypothesis_annotator/ (from the root of your clone repository)
+- To annotate your own images:
+  1. Add your own images (e.g., from ~/Downloads, ~/Pictures/, or a dataset like NASA "Galaxies Images") to images/: `cp /path/to/your/images/sample.png images/`
+    - **Note**:
+      - Images can be in various formats supported by Pillow (e.g., .jpg, .png, .bmp, .gif)
+      - To find your image path and copy your images to images/:
+        - Option 1: Use a Separate Terminal
+          - Open a new terminal window or tab.
+          - Navigate to your images directory: cd ~/Downloads/ (adjust as needed).
+          - Run pwd to get the path, e.g., /Users/yourusername/Downloads/.
+          - Copy that path. Then go back to your original terminal (still in hypothesis_annotation/), and use it in the cp command.
+        - Option 2: Use your File Explorer
+          - On macOS, right-click a file in Finder, hold the Option key, and select "Copy [filename] as Pathname" to get the full path (e.g., /Users/yourusername/Downloads/image1.jpg). Remove the filename to get the directory path.
+          - On Windows or Linux, you can drag the folder into the terminal to see its path.
+          - Use that path in the cp command without leaving hypothesis_annotation/.
+        - Option 3: Type the Path Directly
+          - If you already know where your images are (e.g., ~/Downloads/), just use that in the cp command.
+          - You can also start typing the path in the terminal and use tab completion to fill it in.
+  2. Add your images to the database: `sqlite3 hypotheses.sqlite "INSERT INTO hypotheses (data, modality, hypothesis) VALUES ('images/sample.png', 'image', 'Your hypothesis');"`
