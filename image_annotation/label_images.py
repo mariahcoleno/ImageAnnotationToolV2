@@ -10,6 +10,8 @@ logging.basicConfig(level=logging.DEBUG)
 logging.debug("Script started!")
 
 db_path = 'annotation_db.sqlite'
+conn = sqlite3.connect(db_path) 
+cursor = conn.cursor()
 cursor.execute('PRAGMA foreign_keys = ON;')
 
 def get_unlabeled_image(cursor):
