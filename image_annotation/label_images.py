@@ -10,6 +10,7 @@ logging.basicConfig(level=logging.DEBUG)
 logging.debug("Script started!")
 
 db_path = 'annotation_db.sqlite'
+cursor.execute('PRAGMA foreign_keys = ON;')
 
 def get_unlabeled_image(cursor):
     cursor.execute("SELECT id, file_path FROM images WHERE id NOT IN (SELECT image_id FROM annotations)")
