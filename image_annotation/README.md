@@ -3,11 +3,9 @@
 A Python-based workflow for labeling images and training a PyTorch CNN to classify cats and dogs.
 
 ### Overview
-- Labels 100 images (50 cats, 50 dogs) using a Tkinter GUI.
-- Trains a CNN with training, validation, and test accuracies.
-- Built with Python, Tkinter, Pillow, SQLite, PyTorch, Scikit-learn.
-- Features 300x300 resizing during labeling; CNN uses 64x64 images.
-- Uses `PRAGMA foreign_keys` and `ON DELETE CASCADE`.
+- Labels 100 images (50 cats, 50 dogs) using a Tkinter GUI with 300x300 resizing.
+- Trains a CNN on 64x64 images, reporting training, validation, and test accuracies.
+- Built with Python, Tkinter, Pillow, SQLite (with PRAGMA foreign_keys, ON DELETE CASCADE), PyTorch, and Scikit-learn.
 
 ### Screenshots
 ![Cat Image GUI](screenshots/gui_image_loaded.png)
