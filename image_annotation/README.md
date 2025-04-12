@@ -10,7 +10,8 @@ A Python-based workflow for labeling images and training a PyTorch CNN to classi
 - Uses `PRAGMA foreign_keys` and `ON DELETE CASCADE`.
 
 ### Screenshots
-![Image Annotation GUI](screenshots/gui_image_loaded.png)
+![Cat Image GUI](screenshots/gui_image_loaded.png)
+![Dog Image GUI](screenshots/gui_dog_loaded.png)
 
 ### Files
 - `requirements.txt`: Lists dependencies (e.g., Pillow, torch, numpy, etc.) required to run the scripts.
