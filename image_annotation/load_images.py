@@ -3,7 +3,7 @@ import os
 
 conn = sqlite3.connect('annotation_db.sqlite')
 c = conn.cursor()
-cursor.execute('PRAGMA foreign_keys = ON;')
+c.execute('PRAGMA foreign_keys = ON;')
 
 c.execute('''CREATE TABLE IF NOT EXISTS images (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
