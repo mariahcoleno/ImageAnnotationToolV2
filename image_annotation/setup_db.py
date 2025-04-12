@@ -19,7 +19,7 @@ cursor.execute('''
         image_id INTEGER,
         label TEXT,
         annotated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (image_id) REFERENCES images(id)
+        FOREIGN KEY (image_id) REFERENCES images(id) ON DELETE CASCADE
     )
 ''')
 conn.commit()
