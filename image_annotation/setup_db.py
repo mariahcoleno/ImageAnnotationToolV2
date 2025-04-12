@@ -3,6 +3,7 @@ import sqlite3
 # Connect (creates file if it doesn’t exist)
 conn = sqlite3.connect('annotation_db.sqlite')
 cursor = conn.cursor()
+cursor.execute('PRAGMA foreign_keys = ON;')
 
 # Create tables
 cursor.execute('''
