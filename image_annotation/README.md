@@ -7,6 +7,10 @@ A Python-based workflow for labeling images and training a PyTorch CNN to classi
 - Trains a CNN with training, validation, and test accuracies.
 - Built with Python, Tkinter, Pillow, SQLite, PyTorch, Scikit-learn.
 - Features 300x300 resizing during labeling; CNN uses 64x64 images.
+- Uses `PRAGMA foreign_keys` and `ON DELETE CASCADE`.
+
+### Screenshots
+![Image Annotation GUI](screenshots/gui_image_loaded.png)
 
 ### Files
 - `requirements.txt`: Lists dependencies (e.g., Pillow, torch, numpy, etc.) required to run the scripts.
