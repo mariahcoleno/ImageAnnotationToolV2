@@ -9,6 +9,10 @@ A Python-based workflow for labeling text snippets as sarcastic or not using a T
 - Built with Python, Tkinter, SQLite, and includes undo functionality.
 - Features a responsive GUI with labeling, export, and undo options.
 
+### Screenshots
+
+![Sarcasm Text GUI](screenshots/gui_text_loaded.png)
+
 ### Files
 - `requirements.txt`: Lists dependencies required to run scripts.
 - `annotate_sarcasm.py`: Main script containing the GUI, database setup, and labeling logic.
