@@ -7,6 +7,10 @@ A Python-based tool for annotating images with bounding boxes using a Tkinter GU
 - Stores annotations in SQLite; exports to CSV.
 - Built with Python, Tkinter, Pillow, SQLite.
 
+### Screenshots
+![Cat Bounding Box Image GUI](screenshots/Cat_bounding_box_gui_image.png)
+![Dog Bounding Box Image GUI](screenshots/Dog_bounding_box_gui_image.png)
+
 ### Files
 - `requirements.txt`: Lists dependencies (e.g. Pillow) required to run the scripts.
 - `setup_db.py`: Initializes SQLite database (`bounding_box_db.sqlite`).
