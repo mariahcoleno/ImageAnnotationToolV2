@@ -11,7 +11,7 @@ A Python-based workflow for labeling images and training a PyTorch CNN to classi
 
 ### Screenshots
 ![Cat Image GUI](screenshots/gui_image_loaded.png)
-![Dog Image GUI](screenshots/gui_dog_loaded.png)
+![Dog Image GUI](screenshots/gui_dog_image.png)
 
 ### Files
 - `requirements.txt`: Lists dependencies (e.g., Pillow, torch, numpy, etc.) required to run the scripts.
