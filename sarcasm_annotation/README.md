@@ -19,7 +19,7 @@ A Tkinter GUI for labeling text as sarcastic or non-sarcastic, with undo and CSV
 - `load_texts.py`: Loads sarcasm texts to the database.
 - `sample_texts.txt`: File that contains sample sarcasm texts.
 - `annotate_sarcasm.py`: Main script containing the GUI, database setup, and labeling logic.
-- `sarcasm_database.sqlite`: Generated SQLite database storing labeled texts (ignored by Git).
+- `sarcasm_db.sqlite`: Generated SQLite database storing labeled texts (ignored by Git).
 - `sarcasm_labels.csv`: Exported CSV of labeled texts (ignored by Git).
 - `train_sarcasm_classifier.py`: Trains a classifier on labeled texts, reporting training, validation, and test accuracies.
 
