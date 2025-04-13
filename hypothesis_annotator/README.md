@@ -10,7 +10,7 @@ A Python-based tool for annotating hypotheses on images and text using a Tkinter
 
 ### Screenshots
 ![Image Hypotheis GUI](screenshots/Image_hypothesis_GUI.png)
-![Text Hypothesis  GUI](screenshots/Text_hypothesis_GUI.png)
+![Text Hypothesis GUI](screenshots/Text_hypothesis_GUI.png)
 
 ### Files
 - `hypothesis_annotator.py`: Main script with GUI for annotating hypotheses.
