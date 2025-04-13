@@ -68,5 +68,4 @@ A Tkinter GUI for labeling text as sarcastic or non-sarcastic, with undo and CSV
 - **Export to CSV Button**: Saves all current annotations to `sarcasm_labels.csv` at any time.
 - **Undo Button**: Reverts the last annotation, updating the database and GUI.
 - **Progress Tracking**: Displays "Labeled: X/Y" (e.g., "Labeled: 2/3").
-- **Predefined Texts**: Currently hardcoded (3 examples); no external `texts.txt` required.
-
+- **Predefined Texts**:  No external `texts.txt` required.
