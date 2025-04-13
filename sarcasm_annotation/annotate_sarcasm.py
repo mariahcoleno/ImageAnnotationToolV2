@@ -3,61 +3,72 @@ from tkinter import ttk
 import sqlite3
 import csv
 
-conn = sqlite3.connect('sarcasm_labels.db')  # Define globally at the top, after imports
+conn = sqlite3.connect('sarcasm_db.sqlite')  # Use sarcasm_db.sqlite
 
 def setup_database():
-    conn = sqlite3.connect('sarcasm_labels.db')
+    conn = sqlite3.connect('sarcasm_db.sqlite')
     c = conn.cursor()
-    c.execute('''CREATE TABLE IF NOT EXISTS labels
+    c.execute('''CREATE TABLE IF NOT EXISTS texts
                  (id INTEGER PRIMARY KEY AUTOINCREMENT,
-                  message TEXT,
-                  label TEXT)''')
-    # Clear existing data to start fresh each run (optional: comment out if you want persistence)
-    c.execute("DELETE FROM labels")
+                  text_content TEXT UNIQUE,
+                  created_at DATETIME DEFAULT CURRENT_TIMESTAMP)''')
+    c.execute('''CREATE TABLE IF NOT EXISTS sarcasm_annotations
+                 (id INTEGER PRIMARY KEY AUTOINCREMENT,
+                  text_id INTEGER,
+                  label TEXT,
+                  annotated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+                  FOREIGN KEY (text_id) REFERENCES texts(id) ON DELETE CASCADE)''')
     conn.commit()
     conn.close()
 
 def load_messages():
-    return ["Wow, you're SO good at this!", "I love Mondays.", "Nice weather today."]
+    conn = sqlite3.connect('sarcasm_db.sqlite')
+    c = conn.cursor()
+    c.execute("SELECT id, text_content FROM texts ORDER BY id")
+    texts = c.fetchall()
+    conn.close()
+    if not texts:
+        return [(1, "Wow, you're SO good at this!"), (2, "I love Mondays."), (3, "Nice weather today.")]
+    return texts
 
-def save_label(conn, message, label):
+def save_label(conn, text_id, label):
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO labels (message, label) VALUES (?, ?)", (message, label))
+    cursor.execute("INSERT OR REPLACE INTO sarcasm_annotations (text_id, label) VALUES (?, ?)", (text_id, label))
     conn.commit()
-    print(f"Saved: '{label}' for message '{message}'")
+    print(f"Saved: '{label}' for text_id {text_id}")
 
 def get_labeled_count():
-    conn = sqlite3.connect('sarcasm_labels.db')
+    conn = sqlite3.connect('sarcasm_db.sqlite')
     c = conn.cursor()
-    c.execute("SELECT COUNT(*) FROM labels")
+    c.execute("SELECT COUNT(*) FROM sarcasm_annotations")
     count = c.fetchone()[0]
     conn.close()
     return count
 
 def load_existing_labels():
-    conn = sqlite3.connect('sarcasm_labels.db')
+    conn = sqlite3.connect('sarcasm_db.sqlite')
     c = conn.cursor()
-    c.execute("SELECT message, label FROM labels")
+    c.execute("SELECT t.text_content, a.label FROM sarcasm_annotations a JOIN texts t ON a.text_id = t.id")
     rows = c.fetchall()
     conn.close()
     return rows
 
 def undo_last_label():
-    conn = sqlite3.connect('sarcasm_labels.db')
+    conn = sqlite3.connect('sarcasm_db.sqlite')
     c = conn.cursor()
-    c.execute("DELETE FROM labels WHERE id = (SELECT MAX(id) FROM labels)")
+    c.execute("DELETE FROM sarcasm_annotations WHERE id = (SELECT MAX(id) FROM sarcasm_annotations)")
     conn.commit()
     conn.close()
 
 def export_to_csv():
-    conn = sqlite3.connect('sarcasm_labels.db')
+    conn = sqlite3.connect('sarcasm_db.sqlite')
     c = conn.cursor()
-    c.execute("SELECT message, label FROM labels")
+    c.execute("SELECT t.text_content, a.label FROM sarcasm_annotations a JOIN texts t ON a.text_id = t.id")
     rows = c.fetchall()
     conn.close()
     with open('sarcasm_labels.csv', 'w', newline='') as f:
         writer = csv.writer(f)
-        writer.writerow(['Message', 'Label'])
+        writer.writerow(['Text', 'Label'])
         writer.writerows(rows)
     print("Exported to sarcasm_labels.csv")
 
@@ -65,23 +76,26 @@ def main():
     setup_database()
     messages = load_messages()
     current_index = [0]
-    labels = list(load_existing_labels())  # Load existing labels from DB
+    labels = list(load_existing_labels())
 
     def update_message():
         if current_index[0] < len(messages):
-            message_label.config(text=messages[current_index[0]])
+            text_id, text_content = messages[current_index[0]]
+            message_label.config(text=text_content)
         else:
             message_label.config(text="All messages labeled!")
 
     def label_message(label):
         if current_index[0] < len(messages):
-            message = messages[current_index[0]]
-            save_label(conn, message, label)  # Use global conn and message
-            labels.append((message, label))
+            text_id, text_content = messages[current_index[0]]
+            if label != "Unsure":
+                new_label = "sarcastic" if label == "Sarcastic" else "non-sarcastic"
+                save_label(conn, text_id, new_label)
+                labels.append((text_content, new_label))
             current_index[0] += 1
             update_message()
             count_label.config(text=f"Labeled: {get_labeled_count()}/{len(messages)}")
-            print(f"Labeled: {message} -> {label}, Labels={labels}")
+            print(f"Labeled: {text_content} -> {label}, Labels={labels}")
 
     def undo():
         if labels:

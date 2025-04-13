@@ -1,13 +1,12 @@
 # ImageAnnotationToolV2
-## Sarcasm Annotation Tool
-A Python-based workflow for labeling text snippets as sarcastic or not using a Tkinter GUI and exporting results.
+### Sarcasm Annotation Tool
+A Tkinter GUI for labeling text as sarcastic or non-sarcastic, with undo and CSV export functionality. Trains a Scikit-learn logistic regression classifier on labeled texts, reporting training, validation, and test accuracies. Built with Python, Tkinter, SQLite (with PRAGMA foreign_keys, ON DELETE CASCADE), and Scikit-learn.
 
 ### Overview
-- Labels predefined text snippets as "Sarcastic", "Not Sarcastic", or "Unsure".
-- Stores annotations in an SQLite database (`sarcasm_labels.db`).
-- Exports labeled data to CSV (`sarcasm_labels.csv`) for further analysis.
-- Built with Python, Tkinter, SQLite, and includes undo functionality.
-- Features a responsive GUI with labeling, export, and undo options.
+- Labels text as sarcastic or non-sarcastic with a user-friendly GUI.
+- Supports undoing annotations and exporting to CSV.
+- Stores texts and annotations in SQLite with robust constraints.
+- Trains a text classifier to predict sarcasm using TF-IDF features.
 
 ### Screenshots
 
@@ -16,9 +15,13 @@ A Python-based workflow for labeling text snippets as sarcastic or not using a T
 
 ### Files
 - `requirements.txt`: Lists dependencies required to run scripts.
+- `setup_sarcasm_db.py`: Sets up the database.
+- `load_texts.py`: Loads sarcasm texts to the database.
+- `sample_texts.txt`: File that contains sample sarcasm texts.
 - `annotate_sarcasm.py`: Main script containing the GUI, database setup, and labeling logic.
-- `sarcasm_labels.db`: Generated SQLite database storing labeled texts (ignored by Git).
+- `sarcasm_database.sqlite`: Generated SQLite database storing labeled texts (ignored by Git).
 - `sarcasm_labels.csv`: Exported CSV of labeled texts (ignored by Git).
+- `train_sarcasm_classifier.py`: Trains a classifier on labeled texts, reporting training, validation, and test accuracies.
 
 ### Setup and Usage
 #### Option 1: From GitHub (Clone)
