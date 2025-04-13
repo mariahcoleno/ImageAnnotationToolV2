@@ -8,6 +8,10 @@ A Python-based tool for annotating hypotheses on images and text using a Tkinter
 - Built with Python, Tkinter, Pillow, SQLite.
 - Features interactive undo/redo for new annotations.
 
+### Screenshots
+![Text Hypothesis GUI](screenshots/Text_hypothesis_GUI.png)
+![Image Hypothesis GUI](screenshots/Image_hypothesis_GUI.png)
+
 ### Files
 - `hypothesis_annotator.py`: Main script with GUI for annotating hypotheses.
 - `requirements.txt`: Lists dependencies (e.g., Pillow).
