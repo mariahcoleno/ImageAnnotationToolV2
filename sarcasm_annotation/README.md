@@ -11,7 +11,8 @@ A Python-based workflow for labeling text snippets as sarcastic or not using a T
 
 ### Screenshots
 
-![Sarcasm Text GUI](screenshots/gui_text_loaded.png)
+![Sarcasm Annotation Text GUI example 1](screenshots/gui_text_loaded.png)
+![Sarcasm Annotation Text GUI example 2](screenshots/sarcasm_gui.png)
 
 ### Files
 - `requirements.txt`: Lists dependencies required to run scripts.
