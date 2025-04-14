@@ -16,7 +16,7 @@ A Tkinter GUI for labeling text as sarcastic or non-sarcastic, with undo and CSV
 - `requirements.txt`: Lists dependencies required to run scripts.
 - `setup_sarcasm_db.py`: Initializes `sarcasm_db.sqlite` with `texts` and `sarcasm_annotations` tables, setting up the database structure.
 - `load_texts.py`: Loads 20 sarcasm texts to the `sarcasm_db.sqlite` database.
-- `migrate_labels.py`: A script used to add 3 migrated hardcoded messages to the `sarcasm_db.sqlite` database, increasing the text count to 23.  
+- `migrate_labels.py`: A one-time migration script used to add 3 hardcoded messages to the `sarcasm_db.sqlite` database, increasing the text count to 23.  
 - `sample_texts.txt`: File that contains sample sarcasm texts.
 - `annotate_sarcasm.py`: The main script that runs a Tkinter-based GUI to display texts from `sarcasm_db.sqlite` and save annotations (sarcastic/non-sarcastic) to the database.
 - `sarcasm_db.sqlite`: Generated SQLite database storing labeled texts (ignored by Git).
@@ -55,7 +55,7 @@ A Tkinter GUI for labeling text as sarcastic or non-sarcastic, with undo and CSV
    - Use "Sarcastic", "Not Sarcastic", or "Unsure" buttons to label each text. 
    - Store annotations in a SQL database and export to CSV.
    - Click "Undo" to revert the last annotation.
-5. `train_sarcasm_classifier.py` to train a classifier on labeled texts, reporting training, validation, and test accuracies.
+5. `train_sarcasm_classifier.py` to train a classifier on 23 labeled texts, reporting training, validation, and test accuracies.
 
 ### Features
 - **Export to CSV Button**: Saves all current annotations to `sarcasm_labels.csv` at any time.
@@ -67,3 +67,4 @@ A Tkinter GUI for labeling text as sarcastic or non-sarcastic, with undo and CSV
 - The database (`sarcasm_db.sqlite`), once populated, contains 23 texts, including 3 migrated hardcoded messages.
 - The 3 hardcoded messages ("Wow, you're SO good at this!", "I love Mondays.", "Nice weather today.") were migrated once using `migrate_labels.py` and are now part of the main database.
 - The tool is designed for manual annotation to support sarcasm detection models.
+- "Unsure" labels in the GUI are stored, supporting flexible annotation workflows.
