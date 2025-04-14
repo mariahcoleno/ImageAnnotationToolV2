@@ -1,11 +1,11 @@
 .DS_Store
 __pycache__/
-*/*.sqlite # Ignores all .sqlite files in subdirectories
-*/*.db # Ignores all .db files in subdirectories
-*/*.csv # Ignores all .csv files in subdirectories
+**/*.sqlite  # Ignores .sqlite files at any depth
+**/*.db      # Ignores .db files at any depth
+**/*.csv     # Ignores .csv files at any depth
 image_annotation/images/
 *.save
-*/venv/ # Ignores venv/ in any subdirectory
+**/venv/     # Ignores venv/ at any depth
 md
 md/
 *.pyc
