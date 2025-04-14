@@ -48,7 +48,7 @@ A Tkinter GUI for labeling text as sarcastic or non-sarcastic, with undo and CSV
 
 ### Run the Tool (Both Options):
 1. `setup_sarcasm_db.py` to create empty tables in the `sarcasm_db.sqlite` database.
-2. `load_texts.py` to load 20 texts from `sample_texts.txt` into the `sarcasm_db.sqlite` database.
+2. `load_texts.py` to automatically load 20 texts from `sample_texts.txt` (included) into the `sarcasm_db.sqlite` database.
 3. `migrate_labels.py` to add 3 hardcoded texts to the `sarcasm_db.sqlite` database.
 4. `python annotate_sarcasm.py` to:
    - Open a GUI with the 23 sample texts.
@@ -68,3 +68,4 @@ A Tkinter GUI for labeling text as sarcastic or non-sarcastic, with undo and CSV
 - The 3 hardcoded messages ("Wow, you're SO good at this!", "I love Mondays.", "Nice weather today.") were migrated once using `migrate_labels.py` and are now part of the main database.
 - The tool is designed for manual annotation to support sarcasm detection models.
 - "Unsure" labels in the GUI are stored, supporting flexible annotation workflows.
+- Automatic loading from sample_texts.txt simplifies the user experience.
