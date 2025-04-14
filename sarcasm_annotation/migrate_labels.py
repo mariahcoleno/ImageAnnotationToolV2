@@ -1,39 +1,41 @@
 import sqlite3
 
-def migrate_labels():
-    src_conn = sqlite3.connect("sarcasm_labels.db")
-    dst_conn = sqlite3.connect("sarcasm_db.sqlite")
-    src_cursor = src_conn.cursor()
-    dst_cursor = dst_conn.cursor()
+def migrate_labels(db_path="sarcasm_db.sqlite"):
+    # Hardcoded messages and labels
+    hardcoded_messages = [
+        ("Wow, you're SO good at this!", "Sarcastic"),
+        ("I love Mondays.", "Sarcastic"),
+        ("Nice weather today.", "Sarcastic")
+    ]
 
-    src_cursor.execute("SELECT message, label FROM labels")
-    labels = src_cursor.fetchall()
+    # Connect to database
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
 
-    for message, label in labels:
+    for message, label in hardcoded_messages:
         if label == "Unsure":
             continue
         new_label = "sarcastic" if label == "Sarcastic" else "non-sarcastic"
 
         # Check if message exists in texts
-        dst_cursor.execute("SELECT id FROM texts WHERE text_content = ?", (message,))
-        result = dst_cursor.fetchone()
+        cursor.execute("SELECT id FROM texts WHERE text_content = ?", (message,))
+        result = cursor.fetchone()
 
         if result:
             # Message exists, get its ID
             text_id = result[0]
         else:
             # Insert new message into texts
-            dst_cursor.execute("INSERT INTO texts (text_content) VALUES (?)", (message,))
-            text_id = dst_cursor.lastrowid
+            cursor.execute("INSERT INTO texts (text_content) VALUES (?)", (message,))
+            text_id = cursor.lastrowid
             print(f"Inserted text: '{message}' with ID {text_id}")
 
         # Insert or update label in sarcasm_annotations
-        dst_cursor.execute("INSERT OR REPLACE INTO sarcasm_annotations (text_id, label) VALUES (?, ?)", (text_id, new_label))
+        cursor.execute("INSERT OR REPLACE INTO sarcasm_annotations (text_id, label) VALUES (?, ?)", (text_id, new_label))
         print(f"Migrated: '{message}' -> {new_label}")
 
-    dst_conn.commit()
-    src_conn.close()
-    dst_conn.close()
+    conn.commit()
+    conn.close()
 
 if __name__ == "__main__":
     migrate_labels()
