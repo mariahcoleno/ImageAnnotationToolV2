@@ -6,4 +6,6 @@ __pycache__/
 image_annotation/images/
 *.save
 */venv/ # Ignores venv/ in any subdirectory
-
+md
+md/
+*.pyc

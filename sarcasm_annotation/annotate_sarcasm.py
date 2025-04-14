@@ -3,23 +3,7 @@ from tkinter import ttk
 import sqlite3
 import csv
 
-conn = sqlite3.connect('sarcasm_db.sqlite')  # Use sarcasm_db.sqlite
-
-def setup_database():
-    conn = sqlite3.connect('sarcasm_db.sqlite')
-    c = conn.cursor()
-    c.execute('''CREATE TABLE IF NOT EXISTS texts
-                 (id INTEGER PRIMARY KEY AUTOINCREMENT,
-                  text_content TEXT UNIQUE,
-                  created_at DATETIME DEFAULT CURRENT_TIMESTAMP)''')
-    c.execute('''CREATE TABLE IF NOT EXISTS sarcasm_annotations
-                 (id INTEGER PRIMARY KEY AUTOINCREMENT,
-                  text_id INTEGER,
-                  label TEXT,
-                  annotated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-                  FOREIGN KEY (text_id) REFERENCES texts(id) ON DELETE CASCADE)''')
-    conn.commit()
-    conn.close()
+conn = sqlite3.connect('sarcasm_db.sqlite')
 
 def load_messages():
     conn = sqlite3.connect('sarcasm_db.sqlite')
@@ -73,7 +57,6 @@ def export_to_csv():
     print("Exported to sarcasm_labels.csv")
 
 def main():
-    setup_database()
     messages = load_messages()
     current_index = [0]
     labels = list(load_existing_labels())
@@ -132,3 +115,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
