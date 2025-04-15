@@ -1,0 +1,105 @@
+# ImageAnnotationToolV2
+### Emotion and Intent Annotator 
+A multi-modal annotation platform for labeling emotions and intents in text, with planned support for audio and video. This tool uses AI to suggest emotion labels and provides a user-friendly GUI for manual annotation, designed for research and data preparation in NLP and multi-modal AI.
+
+### Overview
+- Labels text emotion and intent with a user-friendly GUI.
+- Supports undoing annotations and exporting to CSV.
+- Stores texts and annotations in SQLite with robust constraints.
+
+### Features
+- **Text Annotation**: Upload text files, segment into sentences, and annotate with emotions (happy, sad, sarcastic, angry, neutral) and intents (inform, persuade, joke, complain).
+- **AI Suggestions**: Emotion labels suggested by DistilRoBERTa for efficient annotation.
+- **Database Storage**: Annotations saved to SQLite with media metadata.
+- **GUI Features**: Undo annotations, export to CSV for analysis.
+- **Future Plans**: Audio/video annotation, explainability (e.g., SHAP visualizations).
+
+### Screenshots
+![EmotionIntentAnnotator GUI example 1](screenshots/emotionintentannotator_gui_1.png)
+![EmotionIntentAnnotator GUI example 2](screenshots/emotionintentannotator_gui_2.png)
+
+### Files
+- `requirements.txt`: Lists dependencies required to run scripts.
+- `src/setup_db.py`: Initializes SQLite databse.
+- `src/process_text.py`: Text segmentation and AI suggestions.
+- `src/annotate_emotions.py`: The main script that runs a Tkinter-based GUI to display texts from `emotions_intents.sqlite` and save annotations (emotions/intents) to the database.
+- `data/sample_text.txt`: File that contains sample texts.
+- `emotions_intents.sqlite`: Generated SQLite database storing labeled texts (ignored by Git).
+- `annotations_export.csv`: Exported CSV of labeled texts (ignored by Git).
+
+### Setup and Usage
+#### Option 1: From GitHub (Clone)
+- **Note**:
+  - Start in your preferred directory (e.g., cd ~/Desktop/ or cd ~/Downloads/ or cd ~/Documents/) to control where the repository clones. 
+  - If you skip this step, it clones to your current directory.
+1. Clone the repository: `git clone https://github.com/mariahcoleno/ImageAnnotationToolV2.git`
+2. Navigate to the sarcasm_annotation directory: `cd EmotionIntentAnnotator/` (from the root of your cloned repository)
+3. Create virtual environment: `python3 -m venv venv`
+4. Activate: `source venv/bin/activate` # On Windows: venv\Scripts\activate
+5. Install dependencies: `pip install -r requirements.txt`  
+6. Proceed to the "Run the Tool" section below.
+
+#### Option 2: Local Setup (Existing Repository)
+1. Navigate to your local repository `cd ~/Documents/AnnotationProject/` # Adjust path as needed
+2. Navigate to EmotionIntentAnnotator directory: `cd EmotionIntentAnnotator/`
+3. Setup and activate a virtual environment:
+   - If existing: `source venv/bin/activate` # Adjust path if venv is elsewhere
+   - If new:
+     - `python3 -m venv venv`
+     - `source venv/bin/activate` # On Windows: venv\Scripts\activate
+4. Install dependencies (if not already): `pip install -r requirements.txt` 
+5. Proceed to the "Run the Tool" section below.
+
+### Run the Tool (Both Options):
+1. `python3 src/setup_db.py` to initialize the database.
+2. `python3 -m src.annotate_emotions` to open a GUI to:
+    1. Upload Text:
+       - Click "Upload Text", select a .txt file (e.g., data/sample_text.txt), and click "Open".
+       - Text is segmented into sentences (e.g., "I'm thrilled about this project! Just kidding, it's overwhelming." -> two segments).
+    2. Annotate:
+       - View each sentence in the GUI.
+       - Click "Suggest Labels" for AI-predicted emotions.
+       - Select emotion and intent from dropdowns.
+       - Click "Save Annotation" to store in the database.
+    3. Manage Annotations:
+       - Use "Undo" to revert the last annotation.
+       - Click "Export CSV" to save annotations as annotations_export.csv.    
+
+### Sample Data
+The repository includes an example text file for testing text segmentation and annotation:
+- **`data/sample_text.txt`**: 
+  ```text
+  I’m thrilled about this project! Just kidding, it’s overwhelming.
+  ```
+  This file is used to demonstrate the GUI’s ability to segment text into sentences and annotate emotions and intents. You can also upload your own .txt files via the GUI.
+
+### Project Structure
+- ImageAnnotationToolV2/
+  - EmotionIntentAnnotator/
+    - data/
+      - sample_text.txt # Example text file 
+    - src/
+      - __init__.py
+      - annotate_emotions.py # GUI for annotation
+      - process_text.py # Text segmentation and AI suggestions 
+      - setup_db.py # Initializes SQLite database
+    - README.md
+    - requirements.txt
+
+### Dependencies
+- Listed in requirements.txt:
+  - torch, transformers (DistilRoBERTa for emotion suggestions)
+  - nltk (sentence segmentation)
+  - tkinter (GUI)
+  - sqlite3 (database, built-in)
+
+### Planned Features
+- Audio Annotation: Segment and annotate WAV files using librosa.
+- Video Support: Extract frames and annotate using opencv.
+- Explainability: Visualize AI suggestions with SHAP or matplotlib.
+
+### Notes
+- Ensure nltk.download('punkt_tab') is run for sentence segmentation (included in process_text.py).
+- The database (emotions_intents.sqlite) is created automatically by setup_db.py.
+- For issues, check Python 3.8+ and virtual environment activation.
+
