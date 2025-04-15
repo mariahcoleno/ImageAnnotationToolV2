@@ -75,12 +75,12 @@ A Python-based workflow for labeling images and training a PyTorch CNN to classi
 6. Proceed to the "Run the Tool" section below. 
 
 ### Run the Tool (Both Options):
-1. `python setup_db.py` to initialize the database.
-2. `python load_images.py` to load images.
-3. `python label_images.py` to label images.
-4. `python view_labeled.py` to view labeled images.
-5. `python export_labels.py` to export annotations to labeled_images.csv
-6. `python train_cnn_pytorch.py` to train the CNN (after labeling).
+1. `python3 setup_db.py` to initialize the database.
+2. `python3 load_images.py` to load images.
+3. `python3 label_images.py` to label images.
+4. `python3 view_labeled.py` to view labeled images.
+5. `python3 export_labels.py` to export annotations to labeled_images.csv
+6. `python3 train_cnn_pytorch.py` to train the CNN (after labeling).
 
 ### Results
 - Annotation: 100% user accuracy after 5+ hours of debugging.
