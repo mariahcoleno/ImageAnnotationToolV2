@@ -1,0 +1,5 @@
+*.sqlite
+*.pkl
+*.pyc
+__pycache__/
+venv/
