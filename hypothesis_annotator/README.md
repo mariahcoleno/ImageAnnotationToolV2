@@ -43,7 +43,7 @@ A Python-based tool for annotating hypotheses on images and text using a Tkinter
 5. Proceed to the "Run the Tool" section below.
 
 ### Run the Tool (Both Options):
-1. `python hypothesis_annotator.py` to:
+1. `python3 hypothesis_annotator.py` to:
    - Open a GUI with sample entries (e.g., ssc2019-15b-med.jpg, text hypotheses).
    - Label entries as "Supported", "Refuted", or "Unsure".
    - Store annotations in a SQL database and export to CSV.
