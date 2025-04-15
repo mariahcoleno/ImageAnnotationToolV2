@@ -47,15 +47,15 @@ A Tkinter GUI for labeling text as sarcastic or non-sarcastic, with undo and CSV
 5. Proceed to the "Run the Tool" section below.
 
 ### Run the Tool (Both Options):
-1. `setup_sarcasm_db.py` to create empty tables in the `sarcasm_db.sqlite` database.
-2. `load_texts.py` to automatically load 20 texts from `sample_texts.txt` (included) into the `sarcasm_db.sqlite` database.
-3. `migrate_labels.py` to add 3 hardcoded texts to the `sarcasm_db.sqlite` database.
-4. `python annotate_sarcasm.py` to:
+1. `python3 setup_sarcasm_db.py` to create empty tables in the `sarcasm_db.sqlite` database.
+2. `python3 load_texts.py` to automatically load 20 texts from `sample_texts.txt` (included) into the `sarcasm_db.sqlite` database.
+3. `python3 migrate_labels.py` to add 3 hardcoded texts to the `sarcasm_db.sqlite` database.
+4. `python3 annotate_sarcasm.py` to:
    - Open a GUI with the 23 sample texts.
    - Use "Sarcastic", "Not Sarcastic", or "Unsure" buttons to label each text. 
    - Store annotations in a SQL database and export to CSV.
    - Click "Undo" to revert the last annotation.
-5. `train_sarcasm_classifier.py` to train a classifier on labeled texts, reporting training, validation, and test accuracies.
+5. `python3 train_sarcasm_classifier.py` to train a classifier on labeled texts, reporting training, validation, and test accuracies.
 
 ### Features
 - **Export to CSV Button**: Saves all current annotations to `sarcasm_labels.csv` at any time.
