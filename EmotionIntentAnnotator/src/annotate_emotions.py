@@ -19,6 +19,7 @@ class AnnotatorGUI:
         self.segments = []
         self.current_segment = 0
         self.label_history = []
+        self.is_editing = False
         self.setup_gui()
 
     def setup_gui(self):
@@ -27,6 +28,10 @@ class AnnotatorGUI:
         self.text_area = tk.Text(self.root, height=5, width=50)
         self.text_area.pack(pady=5)
         self.text_area.config(state="disabled")
+        self.edit_btn = tk.Button(self.root, text="Edit Text", command=self.toggle_edit)
+        self.edit_btn.pack(pady=5)
+        self.save_edit_btn = tk.Button(self.root, text="Save Edit", command=self.save_edit, state="disabled")
+        self.save_edit_btn.pack(pady=5)
         self.emotion_label = tk.Label(self.root, text="Emotion:")
         self.emotion_label.pack()
         self.emotion_var = tk.StringVar(value="neutral")
@@ -41,6 +46,49 @@ class AnnotatorGUI:
         tk.Button(self.root, text="Save Annotation", command=self.save_labels).pack(pady=5)
         tk.Button(self.root, text="Undo", command=self.undo).pack(pady=5)
         tk.Button(self.root, text="Export CSV", command=self.export_csv).pack(pady=5)
+
+    def toggle_edit(self):
+        if not self.is_editing:
+            if self.current_segment < len(self.segments):
+                self.text_area.config(state="normal")
+                self.is_editing = True
+                self.edit_btn.config(text="Cancel Edit")
+                self.save_edit_btn.config(state="normal")
+                self.upload_btn.config(state="disabled")
+                self.save_edit_btn.focus_set()
+            else:
+                messagebox.showwarning("Warning", "No segment to edit.")
+        else:
+            self.text_area.config(state="disabled")
+            self.is_editing = False
+            self.edit_btn.config(text="Edit Text")
+            self.save_edit_btn.config(state="disabled")
+            self.upload_btn.config(state="normal")
+            self.show_segment()
+
+    def save_edit(self):
+        if self.current_segment >= len(self.segments):
+            return
+        try:
+            new_text = self.text_area.get("1.0", tk.END).strip()
+            old_text = self.segments[self.current_segment]
+            if new_text == old_text:
+                messagebox.showinfo("Info", "No changes made.")
+                self.toggle_edit()
+                return
+            self.segments[self.current_segment] = new_text
+            cursor = self.conn.cursor()
+            full_text = " ".join(self.segments)
+            cursor.execute("UPDATE media SET content = ? WHERE id = ?", (full_text, self.media_id))
+            cursor.execute(
+                "INSERT INTO edits (media_id, segment_id, old_text, new_text) VALUES (?, ?, ?, ?)",
+                (self.media_id, self.current_segment, old_text, new_text)
+            )
+            self.conn.commit()
+            messagebox.showinfo("Success", "Text updated.")
+            self.toggle_edit()
+        except sqlite3.Error as e:
+            messagebox.showerror("Error", f"Failed to save edit: {e}")
 
     def upload_text(self):
         file_path = filedialog.askopenfilename(filetypes=[("Text Files", "*.txt")])
@@ -95,14 +143,25 @@ class AnnotatorGUI:
                 "surprise": "happy"
             }
             gui_emotion = emotion_map.get(model_emotion.lower(), "neutral")
-            if "just kidding" in segment.lower():
-                gui_emotion = "sarcastic" if model_emotion in ["joy", "surprise"] else gui_emotion
-            self.emotion_var.set(gui_emotion)
             segment_lower = segment.lower()
             if "just kidding" in segment_lower:
+                gui_emotion = "sarcastic" if model_emotion in ["joy", "surprise"] else gui_emotion
+            elif any(word in segment_lower for word in ["tough", "hard", "challenging"]):
+                gui_emotion = "sad"
+            self.emotion_var.set(gui_emotion)
+            negative_keywords = ["overwhelming", "difficult", "stress", "tough", "hard", "challenging"]
+            # Check next segment for context
+            is_joke_context = False
+            if self.current_segment + 1 < len(self.segments):
+                next_segment_lower = self.segments[self.current_segment + 1].lower()
+                if any(word in next_segment_lower for word in negative_keywords):
+                    is_joke_context = True
+            if "just kidding" in segment_lower:
                 self.intent_var.set("joke")
-            elif any(word in segment_lower for word in ["overwhelming", "difficult", "stress"]):
+            elif any(word in segment_lower for word in negative_keywords):
                 self.intent_var.set("complain")
+            elif is_joke_context and gui_emotion == "happy":
+                self.intent_var.set("joke")
             elif gui_emotion in ["happy", "neutral"]:
                 self.intent_var.set("inform")
             else:
