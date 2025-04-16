@@ -1,17 +1,20 @@
 # ImageAnnotationToolV2
 ### Emotion and Intent Annotator 
-A multi-modal annotation platform for labeling emotions and intents in text, with planned support for audio and video. This tool uses AI to suggest emotion labels and provides a user-friendly GUI for manual annotation, designed for research and data preparation in NLP and multi-modal AI.
+A multi-modal annotation platform for labeling emotions and intents in text, with planned support for audio and video. This tool uses AI to suggest emotion and intent labels and provides a user-friendly GUI for annotation, designed for research and data preparation in NLP and multi-modal AI.
 
 ### Overview
 - Labels text emotion and intent with a user-friendly GUI.
 - Supports undoing annotations and exporting to CSV.
 - Stores texts and annotations in SQLite with robust constraints.
 
-### Features
-- **Text Annotation**: Upload text files, segment into sentences, and annotate with emotions (happy, sad, sarcastic, angry, neutral) and intents (inform, persuade, joke, complain).
-- **AI Suggestions**: Emotion labels suggested by DistilRoBERTa for efficient annotation.
-- **Database Storage**: Annotations saved to SQLite with media metadata.
-- **GUI Features**: Undo annotations, export to CSV for analysis.
+### GUI Features
+- Upload text files and segment them automatically.
+- Edit text segments directly in the GUI with save functionality.
+- Manual selection of emotions and intents.
+- AI suggested emotions (happy, sad, sarcastic, angry, neutral) and intents (inform, persuade, joke, complain) by DistilRoBERTa for efficient annotation.
+- Save annotations to a SQLite database.
+- Undo annotations.
+- Export annotations to annotations_export.csv with media_id, segment, emotion, intent, with success/warning popups.
 - **Future Plans**: Audio/video annotation, explainability (e.g., SHAP visualizations).
 
 ### Screenshots
@@ -53,13 +56,14 @@ A multi-modal annotation platform for labeling emotions and intents in text, wit
 ### Run the Tool (Both Options):
 1. `python3 src/setup_db.py` to initialize the database.
 2. `python3 -m src.annotate_emotions` to open a GUI to:
-    1. Upload Text:
+    1. Upload and Edit Text:
        - Click "Upload Text", select a .txt file (e.g., data/sample_text.txt), and click "Open".
        - Text is segmented into sentences (e.g., "I'm thrilled about this project! Just kidding, it's overwhelming." -> two segments).
+       - Manually edit segmens (as desired).   
     2. Annotate:
        - View each sentence in the GUI.
        - Click "Suggest Labels" for AI-predicted emotions.
-       - Select emotion and intent from dropdowns.
+       - Select Emotion and Intent from dropdowns.
        - Click "Save Annotation" to store in the database.
     3. Manage Annotations:
        - Use "Undo" to revert the last annotation.
