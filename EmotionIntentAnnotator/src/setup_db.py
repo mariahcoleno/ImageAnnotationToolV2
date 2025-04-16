@@ -9,7 +9,8 @@ def setup_database():
             CREATE TABLE IF NOT EXISTS media (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 type TEXT NOT NULL,
-                content TEXT NOT NULL
+                content TEXT NOT NULL,
+                filename TEXT
             )
         """)
         

@@ -4,6 +4,7 @@ import sqlite3
 import pandas as pd
 import os
 from src.process_text import segment_text, suggest_text_emotion
+from src.audio import process_audio
 
 class AnnotatorGUI:
     def __init__(self, root):
@@ -20,11 +21,15 @@ class AnnotatorGUI:
         self.current_segment = 0
         self.label_history = []
         self.is_editing = False
+        self.media_type = None
+        self.filename = None
         self.setup_gui()
 
     def setup_gui(self):
-        self.upload_btn = tk.Button(self.root, text="Upload Text", command=self.upload_text)
-        self.upload_btn.pack(pady=5)
+        self.upload_text_btn = tk.Button(self.root, text="Upload Text", command=self.upload_text)
+        self.upload_text_btn.pack(pady=5)
+        self.upload_audio_btn = tk.Button(self.root, text="Upload Audio", command=self.upload_audio)
+        self.upload_audio_btn.pack(pady=5)
         self.text_area = tk.Text(self.root, height=5, width=50)
         self.text_area.pack(pady=5)
         self.text_area.config(state="disabled")
@@ -54,7 +59,8 @@ class AnnotatorGUI:
                 self.is_editing = True
                 self.edit_btn.config(text="Cancel Edit")
                 self.save_edit_btn.config(state="normal")
-                self.upload_btn.config(state="disabled")
+                self.upload_text_btn.config(state="disabled")
+                self.upload_audio_btn.config(state="disabled")
                 self.save_edit_btn.focus_set()
             else:
                 messagebox.showwarning("Warning", "No segment to edit.")
@@ -63,7 +69,8 @@ class AnnotatorGUI:
             self.is_editing = False
             self.edit_btn.config(text="Edit Text")
             self.save_edit_btn.config(state="disabled")
-            self.upload_btn.config(state="normal")
+            self.upload_text_btn.config(state="normal")
+            self.upload_audio_btn.config(state="normal")
             self.show_segment()
 
     def save_edit(self):
@@ -105,16 +112,45 @@ class AnnotatorGUI:
                     return
                 cursor = self.conn.cursor()
                 cursor.execute(
-                    "INSERT INTO media (type, content) VALUES (?, ?)",
-                    ("text", content)
+                    "INSERT INTO media (type, content, filename) VALUES (?, ?, ?)",
+                    ("text", content, os.path.basename(file_path))
                 )
                 self.media_id = cursor.lastrowid
                 self.conn.commit()
+                self.media_type = "text"
+                self.filename = os.path.basename(file_path)
                 self.current_segment = 0
                 self.label_history = []
                 self.show_segment()
             except Exception as e:
                 messagebox.showerror("Error", f"Failed to upload text: {e}")
+
+    def upload_audio(self):
+        file_path = filedialog.askopenfilename(filetypes=[("Audio Files", "*.wav *.mp3 *.m4a")])
+        if file_path:
+            try:
+                self.segments = process_audio(file_path)
+                if not self.segments:
+                    self.text_area.config(state="normal")
+                    self.text_area.delete("1.0", tk.END)
+                    self.text_area.insert(tk.END, "No valid transcription found.")
+                    self.text_area.config(state="disabled")
+                    return
+                content = " ".join(self.segments)
+                cursor = self.conn.cursor()
+                cursor.execute(
+                    "INSERT INTO media (type, content, filename) VALUES (?, ?, ?)",
+                    ("audio", content, os.path.basename(file_path))
+                )
+                self.media_id = cursor.lastrowid
+                self.conn.commit()
+                self.media_type = "audio"
+                self.filename = os.path.basename(file_path)
+                self.current_segment = 0
+                self.label_history = []
+                self.show_segment()
+            except Exception as e:
+                messagebox.showerror("Error", f"Failed to upload audio: {e}")
 
     def show_segment(self):
         self.text_area.config(state="normal")
@@ -134,6 +170,8 @@ class AnnotatorGUI:
             segment = self.segments[self.current_segment]
             model_emotion = suggest_text_emotion(segment)
             emotion_map = {
+                "positive": "happy",
+                "negative": "sad",
                 "joy": "happy",
                 "sadness": "sad",
                 "anger": "angry",
@@ -145,12 +183,13 @@ class AnnotatorGUI:
             gui_emotion = emotion_map.get(model_emotion.lower(), "neutral")
             segment_lower = segment.lower()
             if "just kidding" in segment_lower:
-                gui_emotion = "sarcastic" if model_emotion in ["joy", "surprise"] else gui_emotion
+                gui_emotion = "sarcastic" if model_emotion.lower() in ["positive", "surprise"] else gui_emotion
             elif any(word in segment_lower for word in ["tough", "hard", "challenging"]):
                 gui_emotion = "sad"
+            elif "excited" in segment_lower:
+                gui_emotion = "happy"
             self.emotion_var.set(gui_emotion)
             negative_keywords = ["overwhelming", "difficult", "stress", "tough", "hard", "challenging"]
-            # Check next segment for context
             is_joke_context = False
             if self.current_segment + 1 < len(self.segments):
                 next_segment_lower = self.segments[self.current_segment + 1].lower()
@@ -160,7 +199,7 @@ class AnnotatorGUI:
                 self.intent_var.set("joke")
             elif any(word in segment_lower for word in negative_keywords):
                 self.intent_var.set("complain")
-            elif is_joke_context and gui_emotion == "happy":
+            elif is_joke_context:
                 self.intent_var.set("joke")
             elif gui_emotion in ["happy", "neutral"]:
                 self.intent_var.set("inform")
@@ -204,10 +243,9 @@ class AnnotatorGUI:
         try:
             cursor = self.conn.cursor()
             query = """
-                SELECT m.id, m.content, a.segment_id, a.emotion, a.intent
+                SELECT m.id, m.content, m.filename, a.segment_id, a.emotion, a.intent
                 FROM media m
                 LEFT JOIN annotations a ON m.id = a.media_id
-                WHERE m.type = 'text'
             """
             cursor.execute(query)
             rows = cursor.fetchall()
@@ -216,12 +254,13 @@ class AnnotatorGUI:
                 return
             data = []
             for row in rows:
-                media_id, content, segment_id, emotion, intent = row
+                media_id, content, filename, segment_id, emotion, intent = row
                 if segment_id is not None:
                     segments = segment_text(content)
                     if segment_id < len(segments):
                         data.append({
                             "media_id": media_id,
+                            "filename": filename,
                             "segment": segments[segment_id],
                             "emotion": emotion or "N/A",
                             "intent": intent or "N/A"

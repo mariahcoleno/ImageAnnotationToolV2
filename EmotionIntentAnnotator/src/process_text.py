@@ -1,41 +1,47 @@
 import nltk
 from transformers import pipeline
 
-try:
-    nltk.data.find('tokenizers/punkt_tab')
-except LookupError:
-    nltk.download('punkt_tab')
-
-try:
-    emotion_classifier = pipeline(
-        "text-classification",
-        model="j-hartmann/emotion-english-distilroberta-base",
-        top_k=None
-    )
-except Exception as e:
-    print(f"Failed to load classifier: {e}")
-    emotion_classifier = None
+nltk.download('punkt', quiet=True)
 
 def segment_text(text):
-    """Split text into sentences."""
-    return nltk.sent_tokenize(text)
+    """
+    Segment text into meaningful units, handling missing punctuation.
+    Returns list of segments.
+    """
+    if not text:
+        return []
+    
+    # Try NLTK sentence tokenizer first
+    segments = nltk.sent_tokenize(text)
+    
+    # If only one segment (e.g., no punctuation), split before discourse markers
+    if len(segments) <= 1:
+        markers = ['actually', 'but', 'however', 'so', 'well', 'anyway']
+        segments = []
+        current = ""
+        words = text.split()
+        for i, word in enumerate(words):
+            if word.lower() in markers and current.strip():
+                segments.append(current.strip())
+                current = word + " "
+            else:
+                current += word + " "
+        if current.strip():
+            segments.append(current.strip())
+    
+    # Clean up segments
+    segments = [s.strip() for s in segments if s.strip()]
+    return segments if segments else [text]
 
-def suggest_text_emotion(segment):
-    """Suggest emotion for a text segment."""
-    if not emotion_classifier:
-        print("Error: Emotion classifier not loaded")
-        return "neutral"
+def suggest_text_emotion(text):
+    """
+    Suggest emotion for a text segment using a pre-trained model.
+    Returns predicted emotion.
+    """
     try:
-        # Preprocess: If "just kidding" is present, focus on the main clause
-        segment_lower = segment.lower()
-        if "just kidding" in segment_lower:
-            main_clause = segment_lower.split("just kidding")[-1].strip(", .")
-            if main_clause:
-                segment = main_clause
-        results = emotion_classifier(segment)[0]
-        print(f"Segment: {segment}, Model output: {results}")  # Debug
-        top_emotion = max(results, key=lambda x: x["score"])["label"]
-        return top_emotion
+        classifier = pipeline("text-classification", model="distilbert-base-uncased-finetuned-sst-2-english")
+        result = classifier(text)[0]
+        return result['label'].lower()
     except Exception as e:
-        print(f"Error suggesting emotion: {e}")
+        print(f"Emotion suggestion failed: {e}")
         return "neutral"
