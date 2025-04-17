@@ -28,7 +28,7 @@ class AnnotatorGUI:
     def setup_gui(self):
         self.upload_text_btn = tk.Button(self.root, text="Upload Text", command=self.upload_text)
         self.upload_text_btn.pack(pady=5)
-        self.upload_audio_btn = tk.Button(self.root, text="Upload Audio", command=self.upload_audio)
+        self.upload_audio_btn = tk.Button(self.root, text="Upload Audio/Video", command=self.upload_media)
         self.upload_audio_btn.pack(pady=5)
         self.text_area = tk.Text(self.root, height=5, width=50)
         self.text_area.pack(pady=5)
@@ -125,8 +125,8 @@ class AnnotatorGUI:
             except Exception as e:
                 messagebox.showerror("Error", f"Failed to upload text: {e}")
 
-    def upload_audio(self):
-        file_path = filedialog.askopenfilename(filetypes=[("Audio Files", "*.wav *.mp3 *.m4a")])
+    def upload_media(self):
+        file_path = filedialog.askopenfilename(filetypes=[("Media Files", "*.wav *.mp3 *.m4a *.mp4 *.mov")])
         if file_path:
             try:
                 self.segments = process_audio(file_path)
@@ -138,19 +138,20 @@ class AnnotatorGUI:
                     return
                 content = " ".join(self.segments)
                 cursor = self.conn.cursor()
+                media_type = "video" if os.path.splitext(file_path)[1].lower() in [".mp4", ".mov"] else "audio"
                 cursor.execute(
                     "INSERT INTO media (type, content, filename) VALUES (?, ?, ?)",
-                    ("audio", content, os.path.basename(file_path))
+                    (media_type, content, os.path.basename(file_path))
                 )
                 self.media_id = cursor.lastrowid
                 self.conn.commit()
-                self.media_type = "audio"
+                self.media_type = media_type
                 self.filename = os.path.basename(file_path)
                 self.current_segment = 0
                 self.label_history = []
                 self.show_segment()
             except Exception as e:
-                messagebox.showerror("Error", f"Failed to upload audio: {e}")
+                messagebox.showerror("Error", f"Failed to upload media: {e}")
 
     def show_segment(self):
         self.text_area.config(state="normal")

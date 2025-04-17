@@ -6,20 +6,28 @@ import string
 
 def process_audio(file_path):
     """
-    Transcribe audio file and segment the transcription.
-    Supports .wav, .mp3, .m4a.
+    Transcribe audio or video file and segment the transcription.
+    Supports .wav, .mp3, .m4a, .mp4, .mov.
     Returns list of segments.
     """
     try:
-        # Handle .m4a by converting to .wav
+        # Determine file extension
         ext = os.path.splitext(file_path)[1].lower()
-        if ext == ".m4a":
+        temp_path = None
+        
+        # Handle video/audio conversion to .wav
+        if ext in [".mp4", ".mov"]:
+            audio = AudioSegment.from_file(file_path, format=ext[1:])
+            temp_path = file_path.rsplit(".", 1)[0] + "_temp.wav"
+            audio.export(temp_path, format="wav")
+            file_path = temp_path
+        elif ext == ".m4a":
             audio = AudioSegment.from_file(file_path, format="m4a")
             temp_path = file_path.replace(".m4a", "_temp.wav")
             audio.export(temp_path, format="wav")
             file_path = temp_path
-        else:
-            temp_path = None
+        elif ext not in [".wav", ".mp3"]:
+            raise ValueError(f"Unsupported file format: {ext}")
         
         # Load Whisper model
         model = whisper.load_model("tiny")
@@ -40,5 +48,5 @@ def process_audio(file_path):
         
         return segments if segments else [transcription]
     except Exception as e:
-        print(f"Audio processing failed: {e}")
+        print(f"Media processing failed: {e}")
         return []
