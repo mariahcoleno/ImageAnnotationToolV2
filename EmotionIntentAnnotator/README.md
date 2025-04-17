@@ -18,8 +18,8 @@ A GUI-based tool for annotating text and audio segments with emotions and intent
 - Export annotations to annotations_export.csv with media_id, segment, emotion, intent, with success/warning popups.
 
 ### Screenshots
-![EmotionIntentAnnotator GUI example 1](screenshots/emotionintentannotator_gui_1.png)
-![EmotionIntentAnnotator GUI example 2](screenshots/emotionintentannotator_gui_2.png)
+![EmotionIntentAnnotator GUI example 1](screenshots/emotionintentannotator_gui_text_audio_1.png)
+![EmotionIntentAnnotator GUI example 2](screenshots/emotionintentannotator_gui_text_audio_2.png)
 
 ### Files
 - `requirements.txt`: Lists dependencies required to run scripts.
