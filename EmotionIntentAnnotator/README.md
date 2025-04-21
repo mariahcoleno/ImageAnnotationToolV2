@@ -26,8 +26,8 @@ A GUI-based tool for annotating text, audio, and video segments with emotions an
 ### Screenshots
 ![EmotionIntentAnnotator Upload File GUI example 1](screenshots/EmotionandIntentAnnotator_GUI_segment1.png)
 ![EmotionIntentAnnotator Upload File GUI example 2](screenshots/EmotionandIntentAnnotator_GUI_segment2.png)
-![EmotionIntentAnnotator Shap Text based Force Plot example 1](screenshots/shap_force_text_segment1.png)
-![EmotionIntentAnnotator Shap Text based Force Plot example 2](screenshots/shap_force_text_segment2.png)
+![EmotionIntentAnnotator Shap Text Force Plot example 1](screenshots/shap_force_text_segment1.png)
+![EmotionIntentAnnotator Shap Text Force Plot example 1](screenshots/shap_force_text_segment2.png)
 ![EmotionIntentAnnotator Shap Summary Plot example 1](screenshots/shap_summary_segment1.png)
 ![EmotionIntentAnnotator Shap Summary Plot example 2](screenshots/shap_summary_segment2.png)
 ![EmotionIntentAnnotator Shap Waterfall Plot example 1](screenshots/shap_waterfall_segment1.png)
@@ -40,6 +40,9 @@ A GUI-based tool for annotating text, audio, and video segments with emotions an
 - `src/annotate_emotions.py`: The main script that runs a Tkinter-based GUI to display texts from `emotions_intents.sqlite` and save annotations (emotions/intents) to the database.
 - `src/audio.py`: Handles audio transcriptions using openai-whisper and segments transcriptions for annotation. 
 - `data/sample_text.txt`: File that contains sample texts.
+- `data/sample_audio.m4a`: File that contains sample audio.
+- `data/sample_audio.wav`: File that contains sample audio.
+- `data/sample_video.mp4`: File that contains sample video.
 - `emotions_intents.sqlite`: Generated SQLite database storing labeled texts (ignored by Git).
 - `annotations_export.csv`: Exported CSV of labeled texts (ignored by Git).
 
