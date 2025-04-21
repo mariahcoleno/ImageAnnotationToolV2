@@ -59,10 +59,10 @@ A GUI-based tool for annotating text, audio, and video segments with emotions an
 3. Create virtual environment: `python3 -m venv venv`
 4. Activate: `source venv/bin/activate` # On Windows: venv\Scripts\activate
 5. Install dependencies: `pip install -r requirements.txt`
-6. Install ffmeg (required for audio/video processing):
-   # macOS: `brew install ffmpeg`
-   # Ubuntu/Debian: `sudo apt-get install ffmpeg` 
-   # Windows: Download from https://ffmpeg.org/download.html and add to PATH
+6. Install ffmpeg (required for audio/video processing):
+   - macOS: `brew install ffmpeg`
+   - Ubuntu/Debian: `sudo apt-get install ffmpeg` 
+   - Windows: Download from https://ffmpeg.org/download.html and add to PATH
 7. Set environment variable to suppress tokenizers warning: `export TOKENIZERS_PARALLELISM=false`  
 8. Proceed to the "Run the Tool" section below.
 
@@ -75,10 +75,10 @@ A GUI-based tool for annotating text, audio, and video segments with emotions an
      - `python3 -m venv venv`
      - `source venv/bin/activate` # On Windows: venv\Scripts\activate
 4. Install dependencies (if not already): `pip install -r requirements.txt` 
-5. Install ffmeg (required for audio/video processing):
-   # macOS: `brew install ffmpeg`
-   # Ubuntu/Debian: `sudo apt-get install ffmpeg`
-   # Windows: Download from https://ffmpeg.org/download.html and add to PATH          
+5. Install ffmpeg (required for audio/video processing):
+   - macOS: `brew install ffmpeg`
+   - Ubuntu/Debian: `sudo apt-get install ffmpeg`
+   - Windows: Download from https://ffmpeg.org/download.html and add to PATH          
 6. Set environment variable to suppress tokenizers warning: `export TOKENIZERS_PARALLELISM=false`
 7. Proceed to the "Run the Tool" section below.
 
