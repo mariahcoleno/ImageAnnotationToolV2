@@ -25,9 +25,9 @@ A GUI-based tool for annotating text, audio, and video segments with emotions an
 
 ### Screenshots
 ![EmotionIntentAnnotator Upload File GUI example 1](screenshots/EmotionandIntentAnnotator_GUI_segment1.png)
-![EmotionIntentAnnotator Upload File GUI example 2](screenshots/EmotionandIntentAnnotator_GUI_segment1.png)
-![EmotionIntentAnnotator Shap Text-based Force Plot example 1](screenshots/shap_force_text_segment1.png)
-![EmotionIntentAnnotator Shap Text-based Force Plot example 2](screenshots/shap_force_text_segment2.png)
+![EmotionIntentAnnotator Upload File GUI example 2](screenshots/EmotionandIntentAnnotator_GUI_segment2.png)
+![EmotionIntentAnnotator Shap Text based Force Plot example 1](screenshots/shap_force_text_segment1.png)
+![EmotionIntentAnnotator Shap Text based Force Plot example 2](screenshots/shap_force_text_segment2.png)
 ![EmotionIntentAnnotator Shap Summary Plot example 1](screenshots/shap_summary_segment1.png)
 ![EmotionIntentAnnotator Shap Summary Plot example 2](screenshots/shap_summary_segment2.png)
 ![EmotionIntentAnnotator Shap Waterfall Plot example 1](screenshots/shap_waterfall_segment1.png)
