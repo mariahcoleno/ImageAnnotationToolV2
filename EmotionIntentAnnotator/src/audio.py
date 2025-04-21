@@ -1,52 +1,52 @@
 import whisper
-from pydub import AudioSegment
 import os
-from src.process_text import segment_text
-import string
+import torch
+import warnings
+import logging
+
+# Set up logging
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 def process_audio(file_path):
     """
-    Transcribe audio or video file and segment the transcription.
-    Supports .wav, .mp3, .m4a, .mp4, .mov.
-    Returns list of segments.
+    Process audio or video file to extract transcriptions using Whisper.
+    Returns list of text segments.
     """
+    logger.debug(f"Processing file: {file_path}")
+    if not os.path.exists(file_path):
+        logger.error(f"File not found: {file_path}")
+        return []
+    
     try:
-        # Determine file extension
-        ext = os.path.splitext(file_path)[1].lower()
-        temp_path = None
+        # Suppress FP16 warning and load model
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            logger.debug("Loading Whisper base model on CPU")
+            model = whisper.load_model("base", device="cpu")
         
-        # Handle video/audio conversion to .wav
-        if ext in [".mp4", ".mov"]:
-            audio = AudioSegment.from_file(file_path, format=ext[1:])
-            temp_path = file_path.rsplit(".", 1)[0] + "_temp.wav"
-            audio.export(temp_path, format="wav")
-            file_path = temp_path
-        elif ext == ".m4a":
-            audio = AudioSegment.from_file(file_path, format="m4a")
-            temp_path = file_path.replace(".m4a", "_temp.wav")
-            audio.export(temp_path, format="wav")
-            file_path = temp_path
-        elif ext not in [".wav", ".mp3"]:
-            raise ValueError(f"Unsupported file format: {ext}")
+        # Transcribe with verbose output and language detection
+        logger.debug("Starting transcription")
+        result = model.transcribe(file_path, fp16=False, verbose=True, language="en")
         
-        # Load Whisper model
-        model = whisper.load_model("tiny")
+        # Log raw result
+        logger.debug(f"Transcription result: {result}")
         
-        # Transcribe audio
-        result = model.transcribe(file_path)
-        transcription = result["text"].strip()
+        # Extract segments
+        segments = result.get("segments", [])
+        if not segments:
+            logger.warning("No segments found in transcription")
+            return []
         
-        # Remove trailing punctuation for consistency
-        transcription = transcription.rstrip(string.punctuation)
+        # Combine text if segments are too short, then re-segment in process_text
+        text_segments = [seg["text"].strip() for seg in segments if seg["text"] and seg["text"].strip()]
+        logger.debug(f"Extracted segments: {text_segments}")
         
-        # Segment transcription
-        segments = segment_text(transcription)
+        if not text_segments:
+            logger.warning("No valid text segments after filtering")
+            return []
         
-        # Clean up temp file
-        if temp_path and os.path.exists(temp_path):
-            os.remove(temp_path)
-        
-        return segments if segments else [transcription]
+        return text_segments
     except Exception as e:
-        print(f"Media processing failed: {e}")
+        logger.error(f"Audio processing failed: {str(e)}")
         return []

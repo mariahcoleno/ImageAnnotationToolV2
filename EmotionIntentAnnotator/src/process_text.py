@@ -1,47 +1,47 @@
-import nltk
 from transformers import pipeline
+import re
+import shap
+import numpy as np
 
-nltk.download('punkt', quiet=True)
+# Initialize emotion classifier and SHAP explainer
+classifier = pipeline("text-classification", model="bhadresh-savani/distilbert-base-uncased-emotion", top_k=None)
+explainer = shap.Explainer(classifier)
 
 def segment_text(text):
     """
-    Segment text into meaningful units, handling missing punctuation.
+    Segment text based on discourse markers or punctuation.
     Returns list of segments.
     """
-    if not text:
-        return []
-    
-    # Try NLTK sentence tokenizer first
-    segments = nltk.sent_tokenize(text)
-    
-    # If only one segment (e.g., no punctuation), split before discourse markers
-    if len(segments) <= 1:
-        markers = ['actually', 'but', 'however', 'so', 'well', 'anyway']
-        segments = []
-        current = ""
-        words = text.split()
-        for i, word in enumerate(words):
-            if word.lower() in markers and current.strip():
-                segments.append(current.strip())
-                current = word + " "
-            else:
-                current += word + " "
-        if current.strip():
-            segments.append(current.strip())
-    
-    # Clean up segments
+    discourse_markers = r'\b(but|however|actually|anyway|nevertheless)\b'
+    segments = re.split(discourse_markers, text, flags=re.IGNORECASE)
     segments = [s.strip() for s in segments if s.strip()]
-    return segments if segments else [text]
+    cleaned_segments = []
+    i = 0
+    while i < len(segments):
+        if i + 1 < len(segments) and re.match(discourse_markers, segments[i], re.IGNORECASE):
+            combined = f"{segments[i]} {segments[i+1]}".strip()
+            cleaned_segments.append(combined)
+            i += 2
+        else:
+            cleaned_segments.append(segments[i])
+            i += 1
+    return cleaned_segments
 
 def suggest_text_emotion(text):
     """
-    Suggest emotion for a text segment using a pre-trained model.
-    Returns predicted emotion.
+    Suggest emotion for a text segment using a transformer model.
+    Returns emotion label and SHAP values for visualization.
     """
     try:
-        classifier = pipeline("text-classification", model="distilbert-base-uncased-finetuned-sst-2-english")
-        result = classifier(text)[0]
-        return result['label'].lower()
+        # Get model predictions
+        result = classifier(text)
+        emotions = {item['label']: item['score'] for item in result[0]}
+        predicted_emotion = max(emotions, key=emotions.get)
+        
+        # Compute SHAP values
+        shap_values = explainer([text], fixed_context=1)
+        
+        return predicted_emotion, shap_values
     except Exception as e:
         print(f"Emotion suggestion failed: {e}")
-        return "neutral"
+        return "neutral", None

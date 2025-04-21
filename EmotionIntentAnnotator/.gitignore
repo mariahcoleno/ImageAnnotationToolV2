@@ -1,4 +1,14 @@
-*.sqlite
+*.log
+test.png
+test_plot.png
+shap_debug_segment1.png
+shap_force_text_segment1.png
+shap_force_text_segment2.png
+shap_force_traditional_segment1.png
+shap_force_traditional_segment2.png
+shap_summary.png
+shap_summary_segment1.png
+shap_summary_segment2.png*.sqlite
 *.pkl
 *.pyc
 __pycache__/
