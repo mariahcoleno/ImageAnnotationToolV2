@@ -32,7 +32,7 @@ A Tkinter GUI for labeling text as sarcastic or non-sarcastic, with undo and CSV
 2. Navigate to the sarcasm_annotation directory: `cd sarcasm_annotation/` (from the root of your cloned repository)
 3. Create virtual env: `python3 -m venv venv`
 4. Activate: `source venv/bin/activate`
-5. Install dependencies: `pip install -r requirements.txt`  # No external dependencies needed
+5. Install dependencies: `pip install -r requirements.txt`
 6. Proceed to the "Run the Tool" section below.
 
 #### Option 2: Local Setup (Existing Repository):
