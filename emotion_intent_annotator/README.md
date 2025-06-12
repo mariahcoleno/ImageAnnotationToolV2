@@ -1,10 +1,19 @@
-### Emotion and Intent Annotator 
-A GUI-based tool for annotating text, audio, and video segments with emotions and intents, built with Python, tkinter, and SQLite. This tool supports uploading text/audio/video files, transcribing audio from media, suggesting labels with explainability, editing segments, saving annotations, undoing, and exporting to CSV, designed for research and data preparation in NLP and multi-modal AI.
+### Emotion and Intent Annotation and Classification Tool 
+This tool annotates and classifies text, audio, and video segments with emotions and intents using a Tkinter-based GUI with AI suggestions and SHAP explainability.
+
+Thisels with explainability, editing segments, saving annotations, undoing, and exporting to CSV, designed for research and data preparation in NLP and multi-modal AI.
+
+ Text, audio, and video annotation with Hugging Face Transformers-based classifier; Annotates and classifies emotions and intents in text, 
+emotion_intent_annotator/: Annotates and classifies emotions and intents in text, audio, and video
 
 ### Overview
-- Labels text emotion and intent with a user-friendly GUI.
+- Supports uploading text/audio/video files using a Tkinter-based GUI.
+- Supports transcribing audio from media.
+- Supports suggesting labels with explainability.
+- Supports editing segments.
+- Supports labeling text, audio, and video segments with emotions and intents and saving annotations.
 - Supports undoing annotations and exporting to CSV.
-- Stores texts and annotations in SQLite with robust constraints.
+- Built with Python, Tkinter, and SQLite.
 
 ### GUI Features
 - Upload text files (.txt) or media files (.wav, .mp3, .m4a, .mp4, .mov).
@@ -36,7 +45,7 @@ A GUI-based tool for annotating text, audio, and video segments with emotions an
 ![SHAP Waterfall Plot Segment 2](screenshots/shap_waterfall_segment2.png)
 
 ### Files
-- `requirements.txt`: Lists dependencies required to run scripts.
+- `requirements.txt`: Lists all Python dependencies required to run the tool.
 - `src/setup_db.py`: Initializes SQLite databse.
 - `src/process_text.py`: Text segmentation and AI suggestions.
 - `src/annotate_emotions.py`: The main script that runs a Tkinter-based GUI to display texts from `emotions_intents.sqlite` and save annotations (emotions/intents) to the database.
@@ -48,13 +57,30 @@ A GUI-based tool for annotating text, audio, and video segments with emotions an
 - `emotions_intents.sqlite`: Generated SQLite database storing labeled texts (ignored by Git).
 - `annotations_export.csv`: Exported CSV of labeled texts (ignored by Git).
 
+### Requirements
+- Python 3.8+ (required for some dependencies, tested with Python 3.13.3)
+
+**Third-party packages:**
+- pandas - for data manipulation and CSV handling
+- torch - for PyTorch machine learning models
+- transformers - for Hugging Face NLP models and pipelines (for emotion suggestions)
+- textblob - for natural language processing
+- shap - for model explainability
+- matplotlib - for plotting and visualizations
+- numpy - for numerical operations
+- openai-whisper - for speech-to-text transcription
+- nltk - for natural language toolkit (sentence segmentation)
+
+**Python standard library modules used:**
+- tkinter, sqlite3, os, sys, logging, traceback, warnings, re
+
 ### Setup and Usage
 #### Option 1: From GitHub (Clone)
 - **Note**:
   - Start in your preferred directory (e.g., cd ~/Desktop/ or cd ~/Downloads/ or cd ~/Documents/) to control where the repository clones. 
   - If you skip this step, it clones to your current directory.
 1. Clone the repository: `git clone https://github.com/mariahcoleno/annotation-classification-toolkit.git`
-2. Navigate to the sarcasm_annotation directory: `cd EmotionIntentAnnotator/` (from the root of your cloned repository)
+2. Navigate to the emotion_intent_annotator directory: `cd emotion_intent_annotator/` (from the root of your cloned repository)
 3. Create virtual environment: `python3 -m venv venv`
 4. Activate: `source venv/bin/activate` # On Windows: venv\Scripts\activate
 5. Install dependencies: `pip install -r requirements.txt`
@@ -67,7 +93,7 @@ A GUI-based tool for annotating text, audio, and video segments with emotions an
 
 #### Option 2: Local Setup (Existing Repository)
 1. Navigate to your local repository `cd ~/Documents/annotation-classification-toolkit/` # Adjust path as needed
-2. Navigate to EmotionIntentAnnotator directory: `cd EmotionIntentAnnotator/`
+2. Navigate to emotion_intent_annoator directory: `cd emotion_intent_annotator/`
 3. Setup and activate a virtual environment:
    - If existing: `source venv/bin/activate` # Adjust path if venv is elsewhere
    - If new:
@@ -84,7 +110,7 @@ A GUI-based tool for annotating text, audio, and video segments with emotions an
 ### Run the Tool (Both Options):
 1. `python3 src/setup_db.py` to initialize the database.
 2. `python3 -m src.annotate_emotions` to open a GUI to:
-    1. Upload a text file (e.g., data/sample_text.txt) or media file (.wav, .mp3, .m4a, .mp4, .mov):
+    1. Upload a text file (e.g., data/sample_text.txt) or media file (`.wav`, `.mp3`, `.m4a`, `.mp4`, `.mov`):
        - Click "Upload File", select a .txt file (e.g., data/sample_text.txt) or an audio or video file, and click "Open".
        - View segmented text/transcriptions (e.g., "I'm thrilled about this project! Just kidding, it's overwhelming." -> two segments); edit if needed using "Edit Text" and "Save Edit".
     2. Annotate:
@@ -109,29 +135,20 @@ The repository includes an example text file for testing text segmentation and a
   This file is used to demonstrate the GUI’s ability to segment text into sentences and annotate emotions and intents. You can also upload your own .txt files via the GUI.
 
 ### Project Structure
-- ImageAnnotationToolV2/
-  - EmotionIntentAnnotator/
-    - data/
-      - sample_audio.m4a # Example audio file
-      - sample_audio.wav # Example audio file
-      - sample_text.txt # Example text file
-      - sample_video.mp4 # Example video file 
-    - src/
-      - __init__.py
-      - annotate_emotions.py # GUI for annotation
-      - audio.py # Audio transcription and segmentation
-      - process_text.py # Text segmentation and AI suggestions 
-      - setup_db.py # Initializes SQLite database
-    - README.md
-    - requirements.txt
+- data/
+  - sample_audio.m4a # Example audio file
+  - sample_audio.wav # Example audio file
+  - sample_text.txt # Example text file
+  - sample_video.mp4 # Example video file 
+- src/
+   - __init__.py
+   - annotate_emotions.py # GUI for annotation
+   - audio.py # Audio transcription and segmentation
+   - process_text.py # Text segmentation and AI suggestions 
 
-### Dependencies
-- Listed in requirements.txt:
-  - transformers (for emotion suggestions)
-  - nltk (sentence segmentation)
-  - tkinter (GUI)
-  - sqlite3 (database, built-in)
-  - openai-whisper, pydub
+   - setup_db.py # Initializes SQLite database
+- README.md
+- requirements.txt
 
 ### Features
 - Audio Annotation: Segment and annotate WAV files using librosa.
