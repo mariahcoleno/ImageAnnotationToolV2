@@ -1,6 +1,5 @@
-# ImageAnnotationToolV2 
 ## Bounding Box Annotation Tool
-A Python-based tool for annotating images with bounding boxes using a Tkinter GUI.
+A Python-based tool for annotating images with bounding boxes using a Tkinter-based GUI.
 
 ### Overview
 - Annotates images by drawing bounding boxes and assigning labels.
@@ -25,7 +24,7 @@ A Python-based tool for annotating images with bounding boxes using a Tkinter GU
 - **Note**:
   - Start in your preferred directory (e.g., cd ~/Desktop/ or cd ~/Downloads/ or cd ~/Documents/) to control where the repository clones. 
   - If you skip this step, it clones to your current directory.
-1. Clone the repository: `git clone https://github.com/mariahcoleno/ImageAnnotationToolV2.git`                                      
+1. Clone the repository: `git clone https://github.com/mariahcoleno/annotation-classification-toolkit.git`                                      
 2. Navigate to the bounding_box_annotation directory: `cd bounding_box_annotation/` (from the root of your cloned repository)
 3. Create virtual environment: `python3 -m venv venv`
 4. Activate virtual environment: `source venv/bin/activate`
@@ -52,7 +51,7 @@ A Python-based tool for annotating images with bounding boxes using a Tkinter GU
 7. Proceed to the "Run the Tool" section below.
 
 #### Option 2: Local Setup (Existing Repository)
-1. Navigate to your local repository: `cd ~/Documents/AnnotationProject/` # Adjust path as needed
+1. Navigate to your local repository: `cd ~/Documents/annotation-classification-toolkit/` # Adjust path as needed
 2. Navigate to the bounding_box_annotation directory: `cd bounding_box_annotation/`
 3. Setup and activate a virtual environment:
    - If existing: `source venv/bin/activate` # Adjust path if venv is elsewhere
