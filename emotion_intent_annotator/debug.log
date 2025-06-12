@@ -1,0 +1,14 @@
+/Users/mariahcoleno/Documents/AnnotationProject/EmotionIntentAnnotator/venv/lib/python3.12/site-packages/whisper/transcribe.py:115: UserWarning: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn("FP16 is not supported on CPU; using FP32 instead")
+DEBUG:__main__:Loading sentiment classifier: distilbert-base-uncased-finetuned-sst-2-english
+/Users/mariahcoleno/Documents/AnnotationProject/EmotionIntentAnnotator/venv/lib/python3.12/site-packages/huggingface_hub/file_download.py:896: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): huggingface.co:443
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /distilbert-base-uncased-finetuned-sst-2-english/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:__main__:Sentiment classifier loaded
+DEBUG:__main__:Prev emotion: None, Sentiment: positive, Score: 0.9998288154602051, Contrast: False
+DEBUG:__main__:Top emotion: happy
+DEBUG:__main__:After update - Suggested labels for 'I'm excited about this project.': happy, joke
+DEBUG:__main__:Prev emotion: happy, Sentiment: negative, Score: 0.9940357208251953, Contrast: True
+DEBUG:__main__:Top emotion: disappointment
+DEBUG:__main__:After update - Suggested labels for 'Actually, it's tough.': disappointment, complain
