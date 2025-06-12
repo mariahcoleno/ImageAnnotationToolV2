@@ -1,4 +1,3 @@
-# ImageAnnotationToolV2
 ### Emotion and Intent Annotator 
 A GUI-based tool for annotating text, audio, and video segments with emotions and intents, built with Python, tkinter, and SQLite. This tool supports uploading text/audio/video files, transcribing audio from media, suggesting labels with explainability, editing segments, saving annotations, undoing, and exporting to CSV, designed for research and data preparation in NLP and multi-modal AI.
 
@@ -54,7 +53,7 @@ A GUI-based tool for annotating text, audio, and video segments with emotions an
 - **Note**:
   - Start in your preferred directory (e.g., cd ~/Desktop/ or cd ~/Downloads/ or cd ~/Documents/) to control where the repository clones. 
   - If you skip this step, it clones to your current directory.
-1. Clone the repository: `git clone https://github.com/mariahcoleno/ImageAnnotationToolV2.git`
+1. Clone the repository: `git clone https://github.com/mariahcoleno/annotation-classification-toolkit.git`
 2. Navigate to the sarcasm_annotation directory: `cd EmotionIntentAnnotator/` (from the root of your cloned repository)
 3. Create virtual environment: `python3 -m venv venv`
 4. Activate: `source venv/bin/activate` # On Windows: venv\Scripts\activate
@@ -67,7 +66,7 @@ A GUI-based tool for annotating text, audio, and video segments with emotions an
 8. Proceed to the "Run the Tool" section below.
 
 #### Option 2: Local Setup (Existing Repository)
-1. Navigate to your local repository `cd ~/Documents/AnnotationProject/` # Adjust path as needed
+1. Navigate to your local repository `cd ~/Documents/annotation-classification-toolkit/` # Adjust path as needed
 2. Navigate to EmotionIntentAnnotator directory: `cd EmotionIntentAnnotator/`
 3. Setup and activate a virtual environment:
    - If existing: `source venv/bin/activate` # Adjust path if venv is elsewhere
