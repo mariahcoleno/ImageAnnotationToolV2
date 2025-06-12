@@ -32,8 +32,8 @@ This tool annotates and classifies images (e.g., cats/dogs) using a Tkinter-base
 - NumPy - for array operations
 - Scikit-learn - for train/test splitting
 - Pillow (PIL) - for image processing
-- Tkinter - for GUI (usually included with Python)
-- SQLite3 - for database (usually included with Python)
+- Tkinter - for GUI (Python standard library)
+- SQLite3 - for database (Python standard library)
 
 ### Setup and Usage
 #### Option 1: From GitHub (Clone)
