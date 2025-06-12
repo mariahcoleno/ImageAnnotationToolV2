@@ -1,20 +1,25 @@
-# ImageAnnotationToolV2
-A multi-purpose Python toolkit for annotating images, images with bounding boxes, sarcasm text, hypotheses on images or text, and text, audio, and video segments with emotions and intents for ML datasets.
+# ML Annotation & Classification Toolkit
+This repository contains annotation tools and ML classifiers for multiple data types. 
+Tools support images, text, audio, and video with both annotation-only and full annotation + classification workflows.
 
-## Overview
-- **Image Annotation**: Labels images (e.g., cats/dogs) with a Tkinter GUI.
-- **Sarcasm Annotation**: Labels text as Sarcastic, Not Sarcastic, or Unsure with a Tkinter GUI.
-- **Bounding Box Annotation**: Labels images with bounding boxes with a Tkinter GUI.
-- **Hypothesis Annotator**: Labels hypotheses on images or text as Supported, Refuted, or Unsure with a Tkinter GUI.
-- **EmotionIntentAnnotator**: Annotates text, audio, and video segments with emotions (happy, sad, sarcastic, etc.) and intents (inform, persuade, etc.) using a GUI and AI suggestions with SHAP explainability.
+## Annotation + Classification Tools
+- **Image Annotation and Classification Tool**: Image annotation with PyTorch classifier; Annotates images (e.g., cats/dogs) with a Tkinter-based GUI.
+- **Sarcasm Annotation and Classification Tool**: Text annotation with scikit-learn classifier; Annotates text as Sarcastic, Not Sarcastic, or Unsure with a Tkinter-based GUI.
+- **Emotion and Intent Annotation and Classification Tool**: Text, audio, and video annotation with Hugging Face Transformers-based classifier; Annotates text, audio, and video segments with emotions (happy, sad, sarcastic, etc.) and intents (inform, persuade, etc.) using a Tkinter-based GUI and AI suggestions with SHAP explainability.
 
+## Annotation-Only Tools
+- **Hypothesis Annotation Tool**: Text and image annotation; Annotates hypotheses on images or text as Supported, Refuted, or Unsure with a Tkinter-based GUI.
+- **Bounding Box Annotation Tool**: Image annotation; Annotates images with bounding boxes with a Tkinter-based GUI.
 
 ## Structure
-- `image_annotation/`: Image labeling tool.
-- `sarcasm_annotation/`: Text sarcasm labeling tool.
-- `bounding_box_annotation/`: Image labeling tool with bounding boxes.
-- `hypothesis_annotator/`: Image or text hypotheses labeling tool.
-- `EmotionIntentAnnotator/`: Text, audio, and video segment emotion and intent labeling tool. 
+### Annotation + Classification Tools
+- `image_annotation/`: Image annotation and classification tool
+- `sarcasm_annotation/`: Sarcasm annotation and classification tool
+- `EmotionIntentAnnotator/`: Emotion and intent annotation and classification tool
 
-## Usage
-See subfolder READMEs for details.
+### Annotation-Only Tools
+- `bounding_box_annotation/`: Bounding box annotation tool
+- `hypothesis_annotator/`: Hypothesis annotation tool
+
+## Installation
+Each tool has its own requirements. See individual subfolder READMEs for setup instructions.
