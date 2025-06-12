@@ -25,6 +25,9 @@ This tool annotates and classifies images (e.g., cats/dogs) using a Tkinter-base
 - `annotation_db.sqlite`: Generated SQLite database storing annotations (ignored by Git)
 - `labeled_images.csv`: Exported labeled image data (ignored by Git)
 
+### Requirements
+- Python 3.7+ (tested with Python 3.13.3)
+
 ### Setup and Usage
 #### Option 1: From GitHub (Clone)
 - **Note**: 
