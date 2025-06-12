@@ -1,4 +1,3 @@
-# ImageAnnotationToolV2
 ## Image Annotation Tool
 A Python-based workflow for labeling images and training a PyTorch CNN to classify cats and dogs.
 
@@ -31,7 +30,7 @@ A Python-based workflow for labeling images and training a PyTorch CNN to classi
 - **Note**: 
   - Start in your preferred directory (e.g., `cd ~/Desktop/` or `cd ~/Downloads/` or `cd ~/Documents/`) to control where the repository clones. 
   - If you skip this step, it clones to your current directory.
-1. Clone the repository: `git clone https://github.com/mariahcoleno/ImageAnnotationToolV2.git`
+1. Clone the repository: `git clone https://github.com/mariahcoleno/annotation-classification-toolkit.git`
 2. Navigate to the image_annotation directory: `cd image_annotation/` (from the root of your cloned repository)
 3. Create a virtual environment: `python3 -m venv venv`
 4. Activate the virtual environment: `source venv/bin/activate`
@@ -57,7 +56,7 @@ A Python-based workflow for labeling images and training a PyTorch CNN to classi
 7. Proceed to the "Run the Tool" section below. 
 
 #### Option 2: Local Setup (Existing Repository)
-1. Navigate to your local repository: `cd ~/Documents/AnnotationProject/` # Adjust path as needed
+1. Navigate to your local repository: `cd ~/Documents/annotation-classification-toolkit/` # Adjust path as needed
 2. Navigate to the image_annotation directory: `cd image_annotation/`
 3. Setup and activate a virtual environment:
    - If existing: `source venv/bin/activate` # Adjust path if venv is elsewhere
