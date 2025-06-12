@@ -65,14 +65,12 @@ This tool annotates and classifies images (e.g., cats/dogs) using a Tkinter-base
 6. `python3 train_cnn_pytorch.py` to train the CNN (after labeling).
 
 ### Results
--**Manual Annotation**: 100% accuracy (100 images labeled)
--**CNN Training (10 epochs)**:
+- **Manual Annotation**: 100% accuracy (100 images labeled)
+- **CNN Training (10 epochs)**:
   - Training Accuracy: ~100% (80 images)
   - Validation Accuracy: ~100% (10 images)
   - Test Accuracy: 70% (10 images)
-
--**Note**: Test accuracy of 70% is expected given the small dataset size (10 test images). 
-Results will improve with larger datasets.
+  - **Note**: Test accuracy of 70% is expected given the small dataset size (10 test images). Results will improve with larger datasets.
 
 ### Note
 - CNN code adapted from xAI's Grok as I learn PyTorch.
