@@ -1,11 +1,10 @@
 ## Hypothesis Annotation Tool
-A Python-based tool for annotating hypotheses on images and text using a Tkinter GUI.
+This tool annotates text hypotheses with or without corresponding images using a Tkinter-based GUI.
 
 ### Overview
-- Annotates hypotheses on images (e.g., `ssc2019-15b-med.jpg`) or text with user-defined text labels.
-- Stores annotations in a SQLite database and exports to CSV.
-- Built with Python, Tkinter, Pillow, SQLite.
-- Features interactive undo/redo for new annotations.
+- Labels hypotheses as supported, refuted, or unsure (e.g., `ssc2019-15b-med.jpg`) using a Tkinter-based GUI.
+- Supports undoing annotations and exporting to CSV.
+- Built with Python, Tkinter, Pillow, and SQLite.
 
 ### Screenshots
 ![Text Hypothesis GUI](screenshots/Text_hypothesis_GUI.png)
@@ -13,10 +12,16 @@ A Python-based tool for annotating hypotheses on images and text using a Tkinter
 
 ### Files
 - `hypothesis_annotator.py`: Main script with GUI for annotating hypotheses.
-- `requirements.txt`: Lists dependencies (e.g., Pillow).
+- `requirements.txt`: Lists all Python dependencies required to run the tool.
 - `images/ssc2019-15b-med.jpg`: Sample image for annotation (included in repo).
-- `hypotheses.sqlite`: Generated SQLite database (ignored by Git).
+- `hypotheses.sqlite`: Generated SQLite database storing annoations 09[987[.(ignored by Git).
 - `hypothesis_data.csv`: Exported annotations (ignored by Git).
+
+### Requirements
+- Python 3.7+ (tested with Python 3.13.3)
+- Tkinter - for GUI (Python standard library)
+- SQLite3 - for database (Python standard library)
+- Pillow (PIL) - for image processing
 
 ### Setup and Usage
 #### Option 1: From GitHub (Clone)
@@ -47,28 +52,31 @@ A Python-based tool for annotating hypotheses on images and text using a Tkinter
    - Label entries as "Supported", "Refuted", or "Unsure".
    - Store annotations in a SQL database and export to CSV.
    - Use "Undo" to revert new annotations (blocked if no new actions).
+   - **Note**: To annotate your own images, see Tips below.
               
 ### Results
 - Annotation: Labels 3 sample hypotheses (2 text, 1 image) on first run; extensible with additional entries.
-- Output: Generates hypothesis_data.csv (e.g., 380 bytes) and hypotheses.sqlite (e.g., 12KB).
-- Note: GUI starts with "Labeled: X/3" based on prior labels in hypotheses.sqlite. "Undo blocked: idx=0" appears if no new actions are available to undo.
+- Output: Generates `hypothesis_data.csv` (e.g., 380 bytes) and `hypotheses.sqlite` (e.g., 12KB).
+- Note: GUI starts with "Labeled: X/3" based on prior labels in `hypotheses.sqlite`. "Undo blocked: idx=0" appears if no new actions are available to undo.
 
 ### Note
 - Sample image (ssc2019-15b-med.jpg) included in `images/` for testing.
+
+### Tips
 - To annotate your own images:
   1. Add your own images (e.g., from ~/Downloads, ~/Pictures/, or a dataset like NASA "Galaxies Images") to images/: `cp /path/to/your/images/sample.png images/`
     - **Note**:
-      - Images can be in various formats supported by Pillow (e.g., .jpg, .png, .bmp, .gif)
-      - To find your image path and copy your images to images/:
+      - Images can be in various formats supported by Pillow (e.g., `.jpg`, `.png`, `.bmp`, `.gif`)
+      - To find your image path and copy your images to `images/`:
         - Option 1: Use a Separate Terminal
           - Open a new terminal window or tab.
-          - Navigate to your images directory: cd ~/Downloads/ (adjust as needed).
-          - Run pwd to get the path, e.g., /Users/yourusername/Downloads/.
+          - Navigate to your images directory: `cd ~/Downloads/` (adjust as needed).
+          - Run `pwd` to get the path, e.g., `/Users/yourusername/Downloads/`.
           - Copy that path. Then go back to your original terminal (still in hypothesis_annotation/), and use it in the cp command.
         - Option 2: Use your File Explorer
           - On macOS, right-click a file in Finder, hold the Option key, and select "Copy [filename] as Pathname" to get the full path (e.g., /Users/yourusername/Downloads/image1.jpg). Remove the filename to get the directory path.
           - On Windows or Linux, you can drag the folder into the terminal to see its path.
-          - Use that path in the cp command without leaving hypothesis_annotation/.
+          - Use that path in the cp command without leaving `hypothesis_annotator/`.
         - Option 3: Type the Path Directly
           - If you already know where your images are (e.g., ~/Downloads/), just use that in the cp command.
           - You can also start typing the path in the terminal and use tab completion to fill it in.
