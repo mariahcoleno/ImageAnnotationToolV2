@@ -57,15 +57,17 @@ This tool annotates text hypotheses with or without corresponding images using a
 - Note: GUI starts with "Labeled: X/3" based on prior labels in `hypotheses.sqlite`. "Undo blocked: idx=0" appears if no new actions are available to undo.
 
 ### Project Structure
-- images
-  - galaxy.jpg
-  - ssc2019-15b-med.jpg
-- screenshots
-  - Image_hypothesis_GUI.png
-  - Text_hypothesis_GUI.png
-- hypothesis_annotator.py
-- README.md
-- requirements.txt
+- annotation-classification-toolkit/
+  - hypothesis_annotator/
+    - images
+      - galaxy.jpg
+      - ssc2019-15b-med.jpg
+  - screenshots
+    - Image_hypothesis_GUI.png
+    - Text_hypothesis_GUI.png
+  - README.md
+  - hypothesis_annotator.py  
+  - requirements.txt
 
 ### Tips
 - To annotate your own images:
