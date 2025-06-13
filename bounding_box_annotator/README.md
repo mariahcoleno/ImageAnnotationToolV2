@@ -99,3 +99,5 @@ _ setup_db.py
     - If you already know where your images are (e.g.,`~/Downloads/`), just use that in the cp command.
     - You can also start typing the path in the terminal and use tab completion to fill it in.
 
+### Development Notes
+- Application developed through iterative prompt engineering with AI tools (Claude/Grok) for rapid prototyping and learning.
