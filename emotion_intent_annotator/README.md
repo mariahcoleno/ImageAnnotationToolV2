@@ -126,4 +126,5 @@ The repository includes an example text file for testing text segmentation and a
 - README.md
 - requirements.txt
 
-
+### Development Notes
+- Application developed through iterative prompt engineering with AI tools (Claude/Grok) for rapid prototyping and learning.
