@@ -88,20 +88,20 @@ This tool annotates and classifies emotions and intents in text, audio, and vide
 1. Initialize the database: `python3 src/setup_db.py`
 2. Start the application: `python3 -m src.annotate_emotions` 
 3. Using the GUI:
-   - **Upload:**: Click "Upload File" and selecct a text file (.txt) or media file (`.wav`, `.mp3`, `.m4a`, `.mp4`, `.mov`)
-   - **Review segments:**: View auot-segmented text/transcriptions; edit if needed using "Edit Segment"
-   - **Get AI suggestions:**: Click "Suggest Labels" for emotion/intent predictions
-   - **View explanations:**: Click "Visualize Suggestions" to see SHAP plots
-   - **Annotate:**: Select emotions and intents, then click "Save Annotation"
-   - **Export:**: Click "Export CSV" to save annotations as annotations_export.csv
-   - **Undo:** Use "Undo Last Annotation" to revert changes
+   - **Upload**: Click "Upload File" and selecct a text file (.txt) or media file (`.wav`, `.mp3`, `.m4a`, `.mp4`, `.mov`)
+   - **Review segments**: View auot-segmented text/transcriptions; edit if needed using "Edit Segment"
+   - **Get AI suggestions**: Click "Suggest Labels" for emotion/intent predictions
+   - **View explanations**: Click "Visualize Suggestions" to see SHAP plots
+   - **Annotate**: Select emotions and intents, then click "Save Annotation"
+   - **Export**: Click "Export CSV" to save annotations as annotations_export.csv
+   - **Undo**: Use "Undo Last Annotation" to revert changes
 
 Note: NLTK punkt tokenizer downloads automatically on first run.
     
 ### Advanced Usage
 Reset database (clears all data):
-  - `mv emotions_intents.sqlite emotions_intents_backup_$(date +%F).sqlite`
-  - `python3 src/setup_db.py`
+ - `mv emotions_intents.sqlite emotions_intents_backup_$(date +%F).sqlite`
+ - `python3 src/setup_db.py`
     
 ### Sample Data
 The repository includes an example text file for testing text segmentation and annotation:
