@@ -1,4 +1,4 @@
-### Sarcasm Annotation and Classification Tool
+## Sarcasm Annotation and Classification Tool
 This tool annotates and classifies text for sarcasm using a Tkinter-based GUI.
 
 ### Features
@@ -72,17 +72,19 @@ This tool annotates and classifies text for sarcasm using a Tkinter-based GUI.
 5. Train classifier on annotations, reporting training, validation, and test accuracies: `python3 train_sarcasm_classifier.py` 
 
 ### Project Structure
-- screenshots
-  - gui_text_loaded.png
-  - sarcasm_gui.png
-- README.md
-- annotate_sarcasm.py
-- load_texts.py
-- migrate_labels.py
-- requirements.txt
-- sample_texts.txt
-- setup_sarcasm_db.py
-- train_sarcasm_classifier.py
+- annotation-classification-toolkit/
+  - sarcasm_annotator/
+    - screenshots
+      - gui_text_loaded.png
+      - sarcasm_gui.png
+    - README.md
+    - annotate_sarcasm.py
+    - load_texts.py
+    - migrate_labels.py
+    - requirements.txt
+    - sample_texts.txt
+    - setup_sarcasm_db.py
+    - train_sarcasm_classifier.py
 
 ### Notes
 - The database (`sarcasm_db.sqlite`), once populated, contains 23 texts, including 3 migrated hardcoded messages.
