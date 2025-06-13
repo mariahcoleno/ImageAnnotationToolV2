@@ -85,7 +85,8 @@ This tool annotates and classifies text for sarcasm using a Tkinter-based GUI.
     - sample_texts.txt
     - setup_sarcasm_db.py
     - train_sarcasm_classifier.py
-
+  - .gitignore
+  - README.md
 ### Notes
 - The database (`sarcasm_db.sqlite`), once populated, contains 23 texts, including 3 migrated hardcoded messages.
 - The 3 hardcoded messages ("Wow, you're SO good at this!", "I love Mondays.", "Nice weather today.") were migrated once using `migrate_labels.py` and are now part of the main database.
