@@ -1,10 +1,11 @@
 ## Bounding Box Annotation Tool
 This tool annotates objects in images with bounding boxes and text labels with a Tkinter-based GUI.
 
-### Overview
-- Annotates objects in images by drawing bounding boxes and assigning labels.
-- Supports exporting to CSV.
-- Built with Python, Tkinter, Pillow, and SQLite.
+### Features
+- Draw bounding boxes around objects in images via Tkinter GUI
+- Assign text labels to annotated objects
+- Save annotations and navigate between images
+- Export annotations to CSV format
 
 ### Screenshots
 ![Cat Bounding Box Image GUI](screenshots/Cat_bounding_box_gui_image.png)
@@ -22,12 +23,9 @@ This tool annotates objects in images with bounding boxes and text labels with a
 ### Requirements
 - Python 3.7+ (tested with Python 3.13.3)
 - Pillow (PIL) - for image processing
-- Tkinter - for GUI (Python standard library)
-- SQLite3 - for database (Python standard library)
-- CSV - for data export (Python standard library)
 
 ### Setup and Usage 
-#### Option 1: From GitHub (Clone)
+#### Option 1: From GitHub (First Time Setup)
 - **Note**:
   - Start in your preferred directory (e.g., cd ~/Desktop/ or cd ~/Downloads/ or cd ~/Documents/) to control where the repository clones. 
   - If you skip this step, it clones to your current directory.
@@ -62,20 +60,29 @@ This tool annotates objects in images with bounding boxes and text labels with a
 6. Proceed to the "Run the Tool" section below.
 
 ### Run the Tool (Both Options):
-1. `python3 setup_db.py` to initialize the database.
-2. `python3 load_images.py` to load images from ../image_annotator/images/.
-3. `python3 annotate_boxes.py` to draw bounding boxes and label objects.
-4. `python3 export_boxes.py` to export annotations to bounding_boxes.csv.
+1. Initialize the database: `python3 setup_db.py` 
+2. Load images from ../image_annotator/images/: `python3 load_images.py` 
+3. Draw bounding boxes around objects in the image and label objects: `python3 annotate_boxes.py`
+4. Export annotations to bounding_boxes.csv: `python3 export_boxes.py`
 
 ### Results
--Example Output (bounding_boxes.csv):
- file_path,x1,y1,x2,y2,label
- ../image_annotation/images/cat.6.jpg,70,222,301,459,Cat box
- ../image_annotation/images/dog.36.jpg,107,90,473,535,Dog box 
+- Example Output (bounding_boxes.csv):
+  ```csv 
+   file_path,x1,y1,x2,y2,label
+  ../image_annotation/images/cat.6.jpg,70,222,301,459,Cat box
+  ../image_annotation/images/dog.36.jpg,107,90,473,535,Dog box 
+  ```
 
-### Notes
-- Shares `images/` with `image_annotator/`—ensure images are present in `../image_annotator/images/`.
-- Example: Draw boxes around "cat" or "dog" and assign labels.
+### Project Structure
+- screenshots/
+  - Cat_bounding_box_gui_image.png
+  - Dog_bounding_box_gui_image.png
+- annotate_boxes.py
+- export_boxes.py
+- load_images.py
+- README.md
+- requirements.txt
+_ setup_db.py
 
 ### Tips
 - To find your image path and copy your images to images/:
