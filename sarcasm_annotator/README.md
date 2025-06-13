@@ -38,7 +38,7 @@ This tool annotates and classifies text for sarcasm using a Tkinter-based GUI.
 - **Note**: "Unsure" labels are excluded from training data
 
 ### Setup and Usage
-#### Option 1: From GitHub (Clone)
+#### Option 1: From GitHub (First Time Setup)
 - **Note**:
   - Start in your preferred directory (e.g., cd ~/Desktop/ or cd ~/Downloads/ or cd ~/Documents/) to control where the repository clones. 
   - If you skip this step, it clones to your current directory.
@@ -70,6 +70,19 @@ This tool annotates and classifies text for sarcasm using a Tkinter-based GUI.
    - **Export**: Click "Export to CSV" to save annotations as sarcasm_labels.csv
    - **Undo**: Click "Undo" to revert the last annotation
 5. Train classifier on annotations, reporting training, validation, and test accuracies: `python3 train_sarcasm_classifier.py` 
+
+### Project Structure
+- screenshots
+  - gui_text_loaded.png
+  - sarcasm_gui.png
+- README.md
+- annotate_sarcasm.py
+- load_texts.py
+- migrate_labels.py
+- requirements.txt
+- sample_texts.txt
+- setup_sarcasm_db.py
+- train_sarcasm_classifier.py
 
 ### Notes
 - The database (`sarcasm_db.sqlite`), once populated, contains 23 texts, including 3 migrated hardcoded messages.
