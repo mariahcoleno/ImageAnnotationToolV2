@@ -90,3 +90,6 @@ This tool annotates and classifies text for sarcasm using a Tkinter-based GUI.
 - The tool is designed for manual annotation to support sarcasm detection models.
 - "Unsure" labels in the GUI are stored, supporting flexible annotation workflows.
 - Automatic loading from sample_texts.txt simplifies the user experience.
+
+### Development Notes
+- Application developed through iterative prompt engineering with AI tools (Claude/Grok) for rapid prototyping and learning.
