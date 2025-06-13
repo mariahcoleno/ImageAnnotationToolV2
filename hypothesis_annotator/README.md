@@ -61,7 +61,7 @@ This tool annotates text hypotheses with or without corresponding images using a
   - galaxy.jpg
   - ssc2019-15b-med.jpg
 - screenshots
-  - image_hypothesis_GUI.png
+  - Image_hypothesis_GUI.png
   - Text_hypothesis_GUI.png
 - hypothesis_annotator.py
 - README.md
