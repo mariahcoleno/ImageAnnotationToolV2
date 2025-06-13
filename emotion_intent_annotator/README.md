@@ -1,4 +1,4 @@
-### Emotion and Intent Annotation and Classification Tool 
+## Emotion and Intent Annotation and Classification Tool 
 This tool annotates and classifies emotions and intents in text, audio, and video segments using AI suggestions with SHAP explainability in a Tkinter-based GUI.
 
 ### Features
@@ -112,19 +112,23 @@ The repository includes an example text file for testing text segmentation and a
   This file is used to demonstrate the GUI’s ability to segment text into sentences and annotate emotions and intents. You can also upload your own .txt files via the GUI.
 
 ### Project Structure
-- data/
-  - sample_audio.m4a # Example audio file
-  - sample_audio.wav # Example audio file
-  - sample_text.txt # Example text file
-  - sample_video.mp4 # Example video file 
-- src/
-  - __init__.py
-  - annotate_emotions.py # GUI for annotation
-  - audio.py # Audio transcription and segmentation
-  - process_text.py # Text segmentation and AI suggestions 
-  - setup_db.py # Initializes SQLite database
-- README.md
-- requirements.txt
+- annotation-classification-toolkit/
+  - emotion_intent_annotator/
+    - data/
+      - sample_audio.m4a # Example audio file
+      - sample_audio.wav # Example audio file
+      - sample_text.txt # Example text file
+      - sample_video.mp4 # Example video file 
+    - screenshots/ (multiple image files)
+    - src/
+      - __init__.py
+      - annotate_emotions.py # GUI for annotation
+      - audio.py # Audio transcription and segmentation
+      - process_text.py # Text segmentation and AI suggestions 
+      - setup_db.py # Initializes SQLite database
+  - .gitignore
+  - README.md
+  - requirements.txt
 
 ### Development Notes
 - Application developed through iterative prompt engineering with AI tools (Claude/Grok) for rapid prototyping and learning.
