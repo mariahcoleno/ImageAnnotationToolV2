@@ -32,6 +32,9 @@ This tool annotates and classifies images (e.g., cats/dogs) using a Tkinter-base
 - Scikit-learn - for train/test splitting
 - Pillow (PIL) - for image processing
 
+### File Format Requirements
+- Supported image formats: `.jpg`, `.png`, `.gif`
+
 ### Setup and Usage
 #### Option 1: From GitHub (First Time Setup)
 - **Note**: 
@@ -97,10 +100,6 @@ This tool annotates and classifies images (e.g., cats/dogs) using a Tkinter-base
 - verify_images.py
 - view_labeled.py
 
-### Note
-- CNN code adapted from xAI's Grok as I learn PyTorch.
-- File format requirements: Ensure images are in common formats: `.jpg`, `.png`, `.gif`
-
 ### Tips
 - To find your image path and copy your images to images/:
   - Option 1: Use a Separate Terminal
@@ -116,4 +115,6 @@ This tool annotates and classifies images (e.g., cats/dogs) using a Tkinter-base
     - If you already know where your images are (e.g.,`~/Downloads/`), just use that in the cp command.
     - You can also start typing the path in the terminal and use tab completion to fill it in.  
 
-
+### Development Notes
+- Application developed through iterative prompt engineering with AI tools (Claude/Grok) for rapid prototyping and learning.
+- CNN architecture specifically adapted from xAI's Grok as part of PyTorch learning process.
