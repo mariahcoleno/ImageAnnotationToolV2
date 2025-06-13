@@ -1,19 +1,0 @@
-Device set to use cpu
-Top predicted emotion: joy
-Prediction scores: [('joy', 0.9988020658493042), ('love', 0.00033667992101982236), ('fear', 0.00024053468951024115), ('anger', 0.00022667412122245878), ('surprise', 0.00020699427113868296), ('sadness', 0.00018708188144955784)]
-background_data shape: (10, 5)
-test_data shape: (1, 5)
-  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:06<00:00,  6.55s/it]100%|██████████| 1/1 [00:06<00:00,  6.55s/it]
-tokens: ["I'm", 'excited', 'about', 'this', 'project.']
-shap_values_for_class: [ 0.03075407  0.45891136  0.00950155 -0.01253413  0.03862044]
-tokens length: 5
-shap_values_for_class length: 5
-shap_values_for_class_2d shape: (1, 5)
-test_data_2d shape: (1, 5)
-base_value (adjusted): 0.9988020658493042
-explainer_joy.expected_value: 0.47354877034085807
-Model prediction for joy: 0.9988020658493042
-Force plot inputs:
-Base value passed: 0.47354877034085807
-SHAP values passed: [ 0.03075407  0.45891136  0.00950155 -0.01253413  0.03862044]
-Features passed: ["I'm", 'excited', 'about', 'this', 'project.']
