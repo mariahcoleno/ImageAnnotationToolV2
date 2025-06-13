@@ -1,7 +1,43 @@
+# Databases
 *.sqlite
+
+# Python pickle files
 *.pkl
+
+# Python compiled files
 *.pyc
 __pycache__/
+
+# Virtual environments
 venv/
+env/
+
+# macOS
 .DS_Store
-*.swp, *~
+
+# Editor temporary files
+*.swp
+*~
+
+# Generated SHAP files (for emotion_intent_annotator)
+shap_*.png
+shap_*.log
+
+# Log files
+*.log
+debug.log
+
+# Test outputs (if they're generated files)
+test_*.png
+test_plot.png
+
+# Temporary files
+*.save
+*.tmp
+
+# IDE files
+.vscode/
+.idea/
+
+# Jupyter Notebooks checkpoints
+.ipynb_checkpoints/
