@@ -85,8 +85,11 @@ This tool annotates objects in images with bounding boxes and text labels with a
     - load_images.py
     - requirements.txt 
     - setup_db.py
+  - .gitignore
+  - README.md
 
-### Tips
+##
+x# Tips
 - To find your image path and copy your images to images/:
   - Option 1: Use a Separate Terminal
     - Open a new terminal window or tab.
