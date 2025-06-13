@@ -126,9 +126,11 @@ The repository includes an example text file for testing text segmentation and a
       - audio.py # Audio transcription and segmentation
       - process_text.py # Text segmentation and AI suggestions 
       - setup_db.py # Initializes SQLite database
+    - .gitignore
+    - README.md
+    - requirements.txt
   - .gitignore
   - README.md
-  - requirements.txt
 
 ### Development Notes
 - Application developed through iterative prompt engineering with AI tools (Claude/Grok) for rapid prototyping and learning.
