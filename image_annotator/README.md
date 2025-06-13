@@ -1,10 +1,9 @@
 ## Image Annotation and Classification Tool
 This tool annotates and classifies images (e.g., cats/dogs) using a Tkinter-based GUI.
 
-### Overview
-- Labels 100 images (50 cats, 50 dogs) using a Tkinter-based GUI with 300x300 resizing.
-- Trains a CNN on 64x64 images, reporting training, validation, and test accuracies.
-- Built with Python, Tkinter, Pillow, SQLite (with PRAGMA foreign_keys, ON DELETE CASCADE), PyTorch, and Scikit-learn.
+### Features
+- Label 100 images (50 cats, 50 dogs) with 300X300 resizing using a Tkinter-based GUI.
+- Train a CNN on 64x64 images, reporting training, validation, and test accuracies.
 
 ### Screenshots
 ![Cat Image GUI](screenshots/gui_image_loaded.png)
@@ -32,11 +31,9 @@ This tool annotates and classifies images (e.g., cats/dogs) using a Tkinter-base
 - NumPy - for array operations
 - Scikit-learn - for train/test splitting
 - Pillow (PIL) - for image processing
-- Tkinter - for GUI (Python standard library)
-- SQLite3 - for database (Python standard library)
 
 ### Setup and Usage
-#### Option 1: From GitHub (Clone)
+#### Option 1: From GitHub (First Time Setup)
 - **Note**: 
   - Start in your preferred directory (e.g., `cd ~/Desktop/` or `cd ~/Downloads/` or `cd ~/Documents/`) to control where the repository clones. 
   - If you skip this step, it clones to your current directory.
@@ -67,12 +64,12 @@ This tool annotates and classifies images (e.g., cats/dogs) using a Tkinter-base
 6. Proceed to the "Run the Tool" section below. 
 
 ### Run the Tool (Both Options):
-1. `python3 setup_db.py` to initialize the database.
-2. `python3 load_images.py` to load images.
-3. `python3 label_images.py` to label images.
-4. `python3 view_labeled.py` to view labeled images.
-5. `python3 export_labels.py` to export annotations to labeled_images.csv
-6. `python3 train_cnn_pytorch.py` to train the CNN (after labeling).
+1. Initialize the Database: `python3 setup_db.py` 
+2. Load images: `python3 load_images.py` 
+3. Label images: `python3 label_images.py` 
+4. View labeled images: `python3 view_labeled.py` 
+5. Export annotations to labeled_images.csv: `python3 export_labels.py`
+6. Train CNN: `python3 train_cnn_pytorch.py` 
 
 ### Results
 - **Manual Annotation**: 100% accuracy (100 images labeled)
@@ -81,6 +78,24 @@ This tool annotates and classifies images (e.g., cats/dogs) using a Tkinter-base
   - Validation Accuracy: ~100% (10 images)
   - Test Accuracy: 70% (10 images)
   - **Note**: Test accuracy of 70% is expected given the small dataset size (10 test images). Results will improve with larger datasets.
+
+### Project Structure
+- images (contains 100 sample images for training)
+- screenshots
+  - gui_dog_image.png
+  - gui_image_loaded.png
+- annotation_db.sqlite
+- cat_dog_cnn_pytorch.pth
+- check_images.py
+- export_labels.py
+- label_images.py
+- load_images.py
+- README.md
+- requirements.txt
+- setup_db.py
+- train_cnn_pytorch.py
+- verify_images.py
+- view_labeled.py
 
 ### Note
 - CNN code adapted from xAI's Grok as I learn PyTorch.
