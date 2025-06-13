@@ -90,3 +90,5 @@ This tool annotates text hypotheses with or without corresponding images using a
      - At the sqlite> prompt: `"INSERT INTO hypotheses (data, modality, hypothesis) VALUES ('images/sample.png', 'image', 'Your hypothesis');"`
   3. Proceed to the "Run the Tool" section above.
 
+### Development Notes
+- Application developed through iterative prompt engineering with AI tools (Claude/Grok) for rapid prototyping and learning.
