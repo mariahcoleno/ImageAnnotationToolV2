@@ -100,6 +100,8 @@ This tool annotates and classifies images (e.g., cats/dogs) using a Tkinter-base
     - train_cnn_pytorch.py
     - verify_images.py
     - view_labeled.py
+  - .gitignore
+  - README.md
 
 ### Tips
 - To find your image path and copy your images to images/:
