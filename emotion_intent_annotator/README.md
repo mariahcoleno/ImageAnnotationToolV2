@@ -128,3 +128,5 @@ The repository includes an example text file for testing text segmentation and a
 
 ### Development Notes
 - Application developed through iterative prompt engineering with AI tools (Claude/Grok) for rapid prototyping and learning.
+- SHAP implementation for emotion/intent explanation developed through iterative troubleshooting and refinement.
+
