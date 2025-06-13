@@ -83,22 +83,23 @@ This tool annotates and classifies images (e.g., cats/dogs) using a Tkinter-base
   - **Note**: Test accuracy of 70% is expected given the small dataset size (10 test images). Results will improve with larger datasets.
 
 ### Project Structure
-- images (contains 100 sample images for training)
-- screenshots
-  - gui_dog_image.png
-  - gui_image_loaded.png
-- annotation_db.sqlite
-- cat_dog_cnn_pytorch.pth
-- check_images.py
-- export_labels.py
-- label_images.py
-- load_images.py
-- README.md
-- requirements.txt
-- setup_db.py
-- train_cnn_pytorch.py
-- verify_images.py
-- view_labeled.py
+- annotation-classification-toolkit/
+  - image_annotator/
+    - images (contains 100 sample images for training)
+    - screenshots
+      - gui_dog_image.png
+      - gui_image_loaded.png
+    - README.md
+    - cat_dog_cnn_pytorch.pth
+    - check_images.py
+    - export_labels.py
+    - label_images.py
+    - load_images.py
+    - requirements.txt
+    - setup_db.py
+    - train_cnn_pytorch.py
+    - verify_images.py
+    - view_labeled.py
 
 ### Tips
 - To find your image path and copy your images to images/:
