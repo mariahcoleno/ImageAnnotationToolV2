@@ -1,35 +1,14 @@
 ### Emotion and Intent Annotation and Classification Tool 
-This tool annotates and classifies text, audio, and video segments with emotions and intents using a Tkinter-based GUI with AI suggestions and SHAP explainability.
+This tool annotates and classifies emotions and intents in text, audio, and video segments using AI suggestions with SHAP explainability in a Tkinter-based GUI.
 
-Thisels with explainability, editing segments, saving annotations, undoing, and exporting to CSV, designed for research and data preparation in NLP and multi-modal AI.
-
- Text, audio, and video annotation with Hugging Face Transformers-based classifier; Annotates and classifies emotions and intents in text, 
-emotion_intent_annotator/: Annotates and classifies emotions and intents in text, audio, and video
-
-### Overview
-- Supports uploading text/audio/video files using a Tkinter-based GUI.
-- Supports transcribing audio from media.
-- Supports suggesting labels with explainability.
-- Supports editing segments.
-- Supports labeling text, audio, and video segments with emotions and intents and saving annotations.
-- Supports undoing annotations and exporting to CSV.
-- Built with Python, Tkinter, and SQLite.
-
-### GUI Features
-- Upload text files (.txt) or media files (.wav, .mp3, .m4a, .mp4, .mov).
-- Transcribe audio from audio/video files to text using Whisper with consistent segmentation and punctuation cleanup.
-- Segment text/transcriptions automatically, splitting before disclosure markers (e.g., "actually").
-- Suggest emotions (happy, sad, sarcastic, angry, neutral) and intents (inform, persuade, joke, complain) with context-aware logic. 
-- Visualize AI emotion suggestions using SHAP plots to show word contributions (e.g., "excited" boosts "happy").
-- Edit text segments with save functionality.
-- Save annotations to a SQLite database with filename support.
-- Undo annotations.
-- Export annotations to annotations_export.csv with media_id, filename, segment, emotion, intent, with success/warning popups.
-
-### Feature Details
-- Audio Annotation: Segment and annotate WAV files using librosa.
-- Video Support: Extract frames and annotate using opencv.
-- Explainability: Visualize AI suggestions with SHAP or matplotlib.
+### Features
+- **Multi-format support**: Upload text (.txt) or media files (.wav, .mp3, .m4a, .mp4, .mov)
+- **Audio transcription**: Convert audio/video to text using Whisper with automatic segmentation
+- **AI-powered suggestions**: Context-aware emotion (happy, sad, sarcastic, angry, neutral) and intent (inform, persuade, joke, complain) predictions
+- **Explainability**: SHAP visualizations show word contributions to AI suggestions
+- **Interactive editing**: Edit text segments with save functionality
+- **Annotation management**: Save to SQLite database, undo annotations, export to CSV
+- **Smart segmentation**: Automatic text splitting at disclosure markers (e.g., "actually")
 
 ### Screenshots
 #### GUI Screenshots
@@ -58,9 +37,7 @@ emotion_intent_annotator/: Annotates and classifies emotions and intents in text
 - `annotations_export.csv`: Exported CSV of labeled texts (ignored by Git).
 
 ### Requirements
-- Python 3.8+ (required for some dependencies, tested with Python 3.13.3)
-
-**Third-party packages:**
+- Python 3.8+ (tested with Python 3.13.3)
 - pandas - for data manipulation and CSV handling
 - torch - for PyTorch machine learning models
 - transformers - for Hugging Face NLP models and pipelines (for emotion suggestions)
@@ -70,12 +47,12 @@ emotion_intent_annotator/: Annotates and classifies emotions and intents in text
 - numpy - for numerical operations
 - openai-whisper - for speech-to-text transcription
 - nltk - for natural language toolkit (sentence segmentation)
-
-**Python standard library modules used:**
-- tkinter, sqlite3, os, sys, logging, traceback, warnings, re
+- librosa - for advanced audio analysis and feature extraction from audio files
+- opencv-python-headless - for video processing and frame extraction (headless version without GUI dependencies)
+- pydub - for audio file format conversion and basic audio manipulationpydub
 
 ### Setup and Usage
-#### Option 1: From GitHub (Clone)
+#### Option 1: From GitHub (First Time Setup)
 - **Note**:
   - Start in your preferred directory (e.g., cd ~/Desktop/ or cd ~/Downloads/ or cd ~/Documents/) to control where the repository clones. 
   - If you skip this step, it clones to your current directory.
@@ -88,13 +65,13 @@ emotion_intent_annotator/: Annotates and classifies emotions and intents in text
    - macOS: `brew install ffmpeg`
    - Ubuntu/Debian: `sudo apt-get install ffmpeg` 
    - Windows: Download from https://ffmpeg.org/download.html and add to PATH
-7. Set environment variable to suppress tokenizers warning: `export TOKENIZERS_PARALLELISM=false`  
+7. Set environment variable (optional, suppresses warnings): `export TOKENIZERS_PARALLELISM=false`  
 8. Proceed to the "Run the Tool" section below.
 
 #### Option 2: Local Setup (Existing Repository)
 1. Navigate to your local repository `cd ~/Documents/annotation-classification-toolkit/` # Adjust path as needed
 2. Navigate to emotion_intent_annoator directory: `cd emotion_intent_annotator/`
-3. Setup and activate a virtual environment:
+3. Setup and activate a virtual environmnt:
    - If existing: `source venv/bin/activate` # Adjust path if venv is elsewhere
    - If new:
      - `python3 -m venv venv`
@@ -104,27 +81,27 @@ emotion_intent_annotator/: Annotates and classifies emotions and intents in text
    - macOS: `brew install ffmpeg`
    - Ubuntu/Debian: `sudo apt-get install ffmpeg`
    - Windows: Download from https://ffmpeg.org/download.html and add to PATH          
-6. Set environment variable to suppress tokenizers warning: `export TOKENIZERS_PARALLELISM=false`
+6. Set environment variable (optional, suppresses warnings): `export TOKENIZERS_PARALLELISM=false`
 7. Proceed to the "Run the Tool" section below.
 
 ### Run the Tool (Both Options):
-1. `python3 src/setup_db.py` to initialize the database.
-2. `python3 -m src.annotate_emotions` to open a GUI to:
-    1. Upload a text file (e.g., data/sample_text.txt) or media file (`.wav`, `.mp3`, `.m4a`, `.mp4`, `.mov`):
-       - Click "Upload File", select a .txt file (e.g., data/sample_text.txt) or an audio or video file, and click "Open".
-       - View segmented text/transcriptions (e.g., "I'm thrilled about this project! Just kidding, it's overwhelming." -> two segments); edit if needed using "Edit Text" and "Save Edit".
-    2. Annotate:
-       - View each segment in the GUI.
-       - Click "Suggest Labels" to get AI-suggested emotions/intents.
-       - Click "Visualize Suggestions" to see SHAP plots explaining AI emotion predictions.
-       - Annotate each segment with emotions and intents.
-       - Click "Save Annotation" to store in the database.
-    3. Manage Annotations:
-       - Use "Undo Last Annotation" to revert the last annotation.
-       - Click "Export CSV" to save annotations as annotations_export.csv.    
-3. **Optional**: To reset the database (e.g., to clear test data and start media_id at 1):
-     - `mv emotions_intents.sqlite emotions_intents_backup_$(date +%F).sqlite`
-     - `python3 src/setup_db.py`
+1. Initialize the database: `python3 src/setup_db.py`
+2. Start the application: `python3 -m src.annotate_emotions` 
+3. Using the GUI:
+   - **Upload:**: Click "Upload File" and selecct a text file (.txt) or media file (`.wav`, `.mp3`, `.m4a`, `.mp4`, `.mov`)
+   - **Review segments:**: View auot-segmented text/transcriptions; edit if needed using "Edit Segment"
+   - **Get AI suggestions:**: Click "Suggest Labels" for emotion/intent predictions
+   - **View explanations:**: Click "Visualize Suggestions" to see SHAP plots
+   - **Annotate:**: Select emotions and intents, then click "Save Annotation"
+   - **Export:**: Click "Export CSV" to save annotations as annotations_export.csv
+   - **Undo:** Use "Undo Last Annotation" to revert changes
+
+Note: NLTK punkt tokenizer downloads automatically on first run.
+    
+### Advanced Usage
+Reset database (clears all data):
+  - `mv emotions_intents.sqlite emotions_intents_backup_$(date +%F).sqlite`
+  - `python3 src/setup_db.py`
     
 ### Sample Data
 The repository includes an example text file for testing text segmentation and annotation:
@@ -141,22 +118,12 @@ The repository includes an example text file for testing text segmentation and a
   - sample_text.txt # Example text file
   - sample_video.mp4 # Example video file 
 - src/
-   - __init__.py
-   - annotate_emotions.py # GUI for annotation
-   - audio.py # Audio transcription and segmentation
-   - process_text.py # Text segmentation and AI suggestions 
-
-   - setup_db.py # Initializes SQLite database
+  - __init__.py
+  - annotate_emotions.py # GUI for annotation
+  - audio.py # Audio transcription and segmentation
+  - process_text.py # Text segmentation and AI suggestions 
+  - setup_db.py # Initializes SQLite database
 - README.md
 - requirements.txt
 
-### Features
-- Audio Annotation: Segment and annotate WAV files using librosa.
-- Video Support: Extract frames and annotate using opencv.
-- Explainability: Visualize AI suggestions with SHAP or matplotlib.
-
-### Notes
-- Ensure nltk.download('punkt_tab') is run for sentence segmentation (included in process_text.py).
-- The database (emotions_intents.sqlite) is created automatically by setup_db.py.
-- For issues, check Python 3.8+ and virtual environment activation.
 
