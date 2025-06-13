@@ -1,11 +1,12 @@
 ### Sarcasm Annotation and Classification Tool
 This tool annotates and classifies text for sarcasm using a Tkinter-based GUI.
 
-### Overview
-- Labels text as sarcastic, not sarcastic, or unsure using a Tkinter-based GUI.
-- Supports undoing annotations and exporting to CSV.
-- Trains a Scikit-learn logistic regression classifier with TF-IDF vectorization on labeled texts, reporting training, validation, and test accuracies.
-- Built with Python, Tkinter, SQLite (with PRAGMA foreign_keys, ON DELETE CASCADE), and Scikit-learn. 
+### Features
+- Label text as sarcastic, not sarcastic, or unsure using a Tkinter-based GUI
+- Undo annotations and export to CSV
+- Track progress with "Labeled: X/Y" counter
+- Includes 23 predefined sample texts for immediate use
+- Train a Scikit-learn logistic regression classifier with TF-IDF vectorization on labeled texts, reporting training, validation, and test accuracies.
 
 ### Screenshots
 ![Sarcasm Annotation Text GUI example 1](screenshots/gui_text_loaded.png)
@@ -28,8 +29,6 @@ This tool annotates and classifies text for sarcasm using a Tkinter-based GUI.
 - Scikit-learn - for logistic regression and TF-IDF text vectorization
 - NumPy - for array operations  
 - Joblib - for model serialization
-- Tkinter - for GUI (usually included with Python)
-- SQLite3 - for database (usually included with Python)
 
 ### Model Details
 - **Algorithm**: Logistic Regression with TF-IDF vectorization
@@ -62,21 +61,15 @@ This tool annotates and classifies text for sarcasm using a Tkinter-based GUI.
 5. Proceed to the "Run the Tool" section below.
 
 ### Run the Tool (Both Options):
-1. `python3 setup_sarcasm_db.py` to create empty tables in the `sarcasm_db.sqlite` database.
-2. `python3 load_texts.py` to automatically load 20 texts from `sample_texts.txt` (included) into the `sarcasm_db.sqlite` database.
-3. `python3 migrate_labels.py` to add 3 hardcoded texts to the `sarcasm_db.sqlite` database.
-4. `python3 annotate_sarcasm.py` to:
-   - Open a GUI with the 23 sample texts.
-   - Use "Sarcastic", "Not Sarcastic", or "Unsure" buttons to label each text. 
-   - Store annotations in a SQL database and export to CSV.
-   - Click "Undo" to revert the last annotation.
-5. `python3 train_sarcasm_classifier.py` to train a Scikit-learn logistic regression classifier on labeled texts, reporting training, validation, and test accuracies.
-
-### Features
-- **Export to CSV Button**: Saves all current annotations to `sarcasm_labels.csv` at any time.
-- **Undo Button**: Reverts the last annotation, updating the database and GUI.
-- **Progress Tracking**: Displays "Labeled: X/Y" (e.g., "Labeled: 2/23").
-- **Predefined Texts**:  No external `texts.txt` required.
+1. Create database tables: `python3 setup_sarcasm_db.py`
+2. Load sample texts: `python3 load_texts.py`
+3. Add additional texts: `python3 migrate_labels.py` 
+4. Start the annotation GUI: `python3 annotate_sarcasm.py`
+5. Using the GUI:
+   - **Annotate**: Select "Sarcastic", "Not Sarcastic", or "Unsure" to label each text and automatically store annotations in a SQL database.
+   - **Export**: Click "Export to CSV" to save annotations as sarcasm_labels.csv
+   - **Undo**: Click "Undo" to revert the last annotation
+5. Train classifier on annotations, reporting training, validation, and test accuracies: `python3 train_sarcasm_classifier.py` 
 
 ### Notes
 - The database (`sarcasm_db.sqlite`), once populated, contains 23 texts, including 3 migrated hardcoded messages.
