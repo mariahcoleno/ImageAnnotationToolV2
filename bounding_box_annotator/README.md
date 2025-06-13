@@ -74,15 +74,17 @@ This tool annotates objects in images with bounding boxes and text labels with a
   ```
 
 ### Project Structure
-- screenshots/
-  - Cat_bounding_box_gui_image.png
-  - Dog_bounding_box_gui_image.png
-- annotate_boxes.py
-- export_boxes.py
-- load_images.py
-- README.md
-- requirements.txt
-_ setup_db.py
+- annotation-classification-toolkit/
+  - bounding_box_annotator/
+    - screenshots/
+      - Cat_bounding_box_gui_image.png
+      - Dog_bounding_box_gui_image.png
+    - README.md
+    - annotate_boxes.py
+    - export_boxes.py
+    - load_images.py
+    - requirements.txt 
+    - setup_db.py
 
 ### Tips
 - To find your image path and copy your images to images/:
